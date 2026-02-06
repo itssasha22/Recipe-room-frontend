@@ -1,13 +1,11 @@
 /**
  * Handles validation, image upload, and dynamic ingredient/step management.
  */
-
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createRecipe, clearError } from '../store/recipeSlice';
 import './CreateRecipe.css';
-
 const CreateRecipe = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
