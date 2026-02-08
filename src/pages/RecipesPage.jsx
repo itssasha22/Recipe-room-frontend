@@ -11,6 +11,21 @@ const RecipesPage = () => {
   const [maxServings, setMaxServings] = useState(100);
   const [searchIngredient, setSearchIngredient] = useState('');
   
+  const getCountryFlag = (country) => {
+    const flags = {
+      'Italy': '🇮🇹',
+      'France': '🇫🇷',
+      'USA': '🇺🇸',
+      'China': '🇨🇳',
+      'Thailand': '🇹🇭',
+      'Vietnam': '🇻🇳',
+      'Mexico': '🇲🇽',
+      'Norway': '🇳🇴',
+      'Kenya': '🇰🇪'
+    };
+    return flags[country] || '🌍';
+  };
+
   const allRecipes = [
     { id: 1, name: 'Caesar Salad', chef: 'Chef Sarah', course: 'Starter', time: '15 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Romaine lettuce', 'Parmesan', 'Croutons'], image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400', createdAt: '2024-01-15' },
     { id: 2, name: 'Spaghetti Carbonara', chef: 'Chef Sarah', course: 'Main Course', time: '30 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Spaghetti', 'Eggs', 'Pancetta'], image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400', createdAt: '2024-01-16' },
@@ -184,7 +199,7 @@ const RecipesPage = () => {
                       {recipe.course}
                     </span>
                     <span style={{ padding: '0.25rem 0.75rem', background: '#2a2a2a', color: '#aaa', borderRadius: '20px', fontSize: '0.7rem' }}>
-                      {recipe.country}
+                      {getCountryFlag(recipe.country)} {recipe.country}
                     </span>
                   </div>
                   <h3 style={{ color: '#fdba74', margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>{recipe.name}</h3>
