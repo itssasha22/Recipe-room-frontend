@@ -11,21 +11,21 @@ import GroupDetail from './pages/GroupDetail.jsx';
 
 function Home() {
   const featuredRecipes = [
-    { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600', time: '30 min', cuisine: 'Italian' },
-    { name: 'Beef Burger', chef: 'Chef John', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600', time: '35 min', cuisine: 'American' },
-    { name: 'Chicken Fried Rice', chef: 'Chef Mary', image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600', time: '25 min', cuisine: 'Asian' },
-    { name: 'Margherita Pizza', chef: 'Chef David', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600', time: '40 min', cuisine: 'Italian' },
-    { name: 'Grilled Salmon', chef: 'Chef Grace', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600', time: '30 min', cuisine: 'International' },
-    { name: 'Nyama Choma', chef: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600', time: '60 min', cuisine: 'Kenyan' }
+    { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', image: 'https:
+    { name: 'Beef Burger', chef: 'Chef John', image: 'https:
+    { name: 'Chicken Fried Rice', chef: 'Chef Mary', image: 'https:
+    { name: 'Margherita Pizza', chef: 'Chef David', image: 'https:
+    { name: 'Grilled Salmon', chef: 'Chef Grace', image: 'https:
+    { name: 'Nyama Choma', chef: 'Chef Wanjiku', image: 'https:
   ];
 
   const chefs = [
-    { name: 'Chef Sarah', specialty: 'Italian Cuisine', image: 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=300', recipes: 18 },
-    { name: 'Chef John', specialty: 'American & French', image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=300', recipes: 15 },
-    { name: 'Chef Mary', specialty: 'Asian Fusion', image: 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=300', recipes: 22 },
-    { name: 'Chef David', specialty: 'Mediterranean', image: 'https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=300', recipes: 20 },
-    { name: 'Chef Grace', specialty: 'International', image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=300', recipes: 17 },
-    { name: 'Chef Wanjiku', specialty: 'Kenyan Traditional', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300', recipes: 25 }
+    { name: 'Chef Sarah', specialty: 'Italian Cuisine', image: 'https:
+    { name: 'Chef John', specialty: 'American & French', image: 'https:
+    { name: 'Chef Mary', specialty: 'Asian Fusion', image: 'https:
+    { name: 'Chef David', specialty: 'Mediterranean', image: 'https:
+    { name: 'Chef Grace', specialty: 'International', image: 'https:
+    { name: 'Chef Wanjiku', specialty: 'Kenyan Traditional', image: 'https:
   ];
 
   return (
@@ -49,7 +49,7 @@ function Home() {
             </div>
           </div>
           <div>
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Cooking" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }} />
+            <img src="https:
           </div>
         </div>
       </section>

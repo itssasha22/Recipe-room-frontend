@@ -15,10 +15,10 @@ const Profile = () => {
   });
 
   const myRecipes = [
-    { name: 'Caesar Salad', image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300', rating: 5 },
-    { name: 'Spaghetti Carbonara', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=300', rating: 5 },
-    { name: 'Tiramisu', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=300', rating: 5 },
-    { name: 'Bruschetta', image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=300', rating: 4 }
+    { name: 'Caesar Salad', image: 'https:
+    { name: 'Spaghetti Carbonara', image: 'https:
+    { name: 'Tiramisu', image: 'https:
+    { name: 'Bruschetta', image: 'https:
   ];
 
   const handleLogout = () => {
@@ -36,7 +36,7 @@ const Profile = () => {
         
         <div style={{ background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6', marginBottom: '2rem' }}>
           <div style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', height: '150px', position: 'relative' }}>
-            <div style={{ position: 'absolute', bottom: '-50px', left: '2rem', width: '120px', height: '120px', borderRadius: '50%', border: '5px solid #fdba74', background: 'url(https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=200) center/cover', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}></div>
+            <div style={{ position: 'absolute', bottom: '-50px', left: '2rem', width: '120px', height: '120px', borderRadius: '50%', border: '5px solid #fdba74', background: 'url(https:
           </div>
 
           <div style={{ padding: '4rem 2rem 2rem 2rem' }}>

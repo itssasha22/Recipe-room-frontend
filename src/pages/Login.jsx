@@ -29,7 +29,7 @@ const Login = () => {
       <div style={{ maxWidth: '900px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.5)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
         
         <div style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Food" style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
+          <img src="https:
           <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', color: 'white' }}>
             <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🍽️</div>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>Recipe Room</h2>

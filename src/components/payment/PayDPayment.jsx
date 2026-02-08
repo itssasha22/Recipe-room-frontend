@@ -9,7 +9,7 @@ const PayDPayment = ({ amount, description, onSuccess, onError }) => {
     try {
       const payment = await paydService.initializePayment(amount, 'USD', description);
       
-      // Redirect to PayD payment page
+      
       window.location.href = payment.payment_url;
       
       onSuccess(payment);

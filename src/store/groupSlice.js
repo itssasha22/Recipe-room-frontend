@@ -9,11 +9,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http:
 
-// ============================================================================
-// ASYNC THUNKS - Group Operations
-// ============================================================================
+
+
+
 
 /**
  * Fetch all groups the current user belongs to
@@ -239,17 +239,17 @@ export const removeRecipeFromGroup = createAsyncThunk(
     }
 );
 
-// ============================================================================
-// SLICE DEFINITION
-// ============================================================================
+
+
+
 
 const initialState = {
-    // Group data
+    
     groups: [],
     currentGroup: null,
-    groupRecipes: {},  // Keyed by group_id
+    groupRecipes: {},  
 
-    // Loading states
+    
     loading: {
         fetchGroups: false,
         fetchGroup: false,
@@ -263,7 +263,7 @@ const initialState = {
         removeRecipe: false
     },
 
-    // Error states
+    
     error: {
         fetchGroups: null,
         fetchGroup: null,
@@ -298,9 +298,9 @@ const groupSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // ========================================================================
-        // FETCH USER GROUPS
-        // ========================================================================
+        
+        
+        
         builder.addCase(fetchUserGroups.pending, (state) => {
             state.loading.fetchGroups = true;
             state.error.fetchGroups = null;
@@ -314,9 +314,9 @@ const groupSlice = createSlice({
             state.error.fetchGroups = action.payload?.message || 'Failed to load groups';
         });
 
-        // ========================================================================
-        // FETCH SINGLE GROUP
-        // ========================================================================
+        
+        
+        
         builder.addCase(fetchGroupById.pending, (state) => {
             state.loading.fetchGroup = true;
             state.error.fetchGroup = null;
@@ -330,9 +330,9 @@ const groupSlice = createSlice({
             state.error.fetchGroup = action.payload?.message || 'Group not found';
         });
 
-        // ========================================================================
-        // CREATE GROUP
-        // ========================================================================
+        
+        
+        
         builder.addCase(createGroup.pending, (state) => {
             state.loading.createGroup = true;
             state.error.createGroup = null;
@@ -347,9 +347,9 @@ const groupSlice = createSlice({
             state.error.createGroup = action.payload?.message || 'Failed to create group';
         });
 
-        // ========================================================================
-        // UPDATE GROUP
-        // ========================================================================
+        
+        
+        
         builder.addCase(updateGroup.pending, (state) => {
             state.loading.updateGroup = true;
             state.error.updateGroup = null;
@@ -371,9 +371,9 @@ const groupSlice = createSlice({
             state.error.updateGroup = action.payload?.message || 'Failed to update group';
         });
 
-        // ========================================================================
-        // DELETE GROUP
-        // ========================================================================
+        
+        
+        
         builder.addCase(deleteGroup.pending, (state) => {
             state.loading.deleteGroup = true;
             state.error.deleteGroup = null;
@@ -391,9 +391,9 @@ const groupSlice = createSlice({
             state.error.deleteGroup = action.payload?.message || 'Failed to delete group';
         });
 
-        // ========================================================================
-        // ADD MEMBER
-        // ========================================================================
+        
+        
+        
         builder.addCase(addGroupMember.pending, (state) => {
             state.loading.addMember = true;
             state.error.addMember = null;
@@ -415,9 +415,9 @@ const groupSlice = createSlice({
             state.error.addMember = action.payload?.message || 'Failed to add member';
         });
 
-        // ========================================================================
-        // REMOVE MEMBER
-        // ========================================================================
+        
+        
+        
         builder.addCase(removeGroupMember.pending, (state) => {
             state.loading.removeMember = true;
             state.error.removeMember = null;
@@ -430,9 +430,9 @@ const groupSlice = createSlice({
             state.error.removeMember = action.payload?.message || 'Failed to remove member';
         });
 
-        // ========================================================================
-        // FETCH GROUP RECIPES
-        // ========================================================================
+        
+        
+        
         builder.addCase(fetchGroupRecipes.pending, (state) => {
             state.loading.fetchRecipes = true;
             state.error.fetchRecipes = null;
@@ -448,19 +448,19 @@ const groupSlice = createSlice({
     }
 });
 
-// Export actions
+
 export const {
     clearCurrentGroup,
     clearGroupErrors,
     clearGroupError
 } = groupSlice.actions;
 
-// Export selectors
+
 export const selectGroups = (state) => state.groups.groups;
 export const selectCurrentGroup = (state) => state.groups.currentGroup;
 export const selectGroupRecipes = (groupId) => (state) => state.groups.groupRecipes[groupId] || [];
 export const selectGroupLoading = (state) => state.groups.loading;
 export const selectGroupErrors = (state) => state.groups.error;
 
-// Export reducer
+
 export default groupSlice.reducer;
