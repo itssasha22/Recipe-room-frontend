@@ -7,74 +7,94 @@ import RecipesPage from './pages/RecipesPage.jsx';
 import RecipeDetail from './pages/RecipeDetail.jsx';
 
 function Home() {
-  const foodImages = [
-    'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400',
-    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
-    'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400',
-    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400',
-    'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400',
-    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400'
+  const featuredRecipes = [
+    { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600', time: '30 min' },
+    { name: 'Grilled Salmon', chef: 'Chef Grace', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600', time: '30 min' },
+    { name: 'Margherita Pizza', chef: 'Chef David', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600', time: '40 min' },
+    { name: 'Chicken Fried Rice', chef: 'Chef Mary', image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600', time: '25 min' }
   ];
 
   return (
-    <div>
-      <section style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%)', padding: '4rem 2rem', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '2.5rem', color: '#8b5cf6', marginBottom: '1rem', fontWeight: '700' }}>Welcome to Recipe Room</h2>
-        <p style={{ fontSize: '1.3rem', color: '#666', maxWidth: '600px', margin: '0 auto 2rem', lineHeight: '1.6' }}>
-          Discover simple, delicious recipes from around the world. Share your culinary creations and connect with food lovers!
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link to="/login" style={{ padding: '14px 32px', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: '600', boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)', transition: 'transform 0.2s' }}>
-            Get Started
-          </Link>
-          <Link to="/register" style={{ padding: '14px 32px', background: '#8b5cf6', color: 'white', textDecoration: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: '600', boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)', transition: 'transform 0.2s' }}>
-            Sign Up Free
-          </Link>
-        </div>
-      </section>
-
-      <section style={{ padding: '3rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        <h3 style={{ fontSize: '2rem', color: '#8b5cf6', textAlign: 'center', marginBottom: '3rem' }}>Why Choose Recipe Room?</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
-          <div style={{ background: 'white', padding: '2rem', borderRadius: '12px', textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #10b981' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🍳</div>
-            <h4 style={{ color: '#8b5cf6', marginBottom: '0.5rem' }}>Simple Recipes</h4>
-            <p style={{ color: '#666' }}>Easy-to-follow recipes for everyday cooking</p>
+    <div style={{ background: '#ffffff' }}>
+      <section style={{ background: '#f8f9fa', padding: '5rem 2rem', borderBottom: '1px solid #e9ecef' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div>
+            <h1 style={{ fontSize: '3rem', color: '#212529', marginBottom: '1.5rem', fontWeight: '700', lineHeight: '1.2' }}>
+              Discover & Share<br/>Authentic Recipes
+            </h1>
+            <p style={{ fontSize: '1.1rem', color: '#6c757d', marginBottom: '2rem', lineHeight: '1.8' }}>
+              Join our community of home cooks and professional chefs. Browse thousands of recipes, save your favorites, and share your culinary creations.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <Link to="/recipes" style={{ padding: '1rem 2rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: '500', border: 'none' }}>
+                Browse Recipes
+              </Link>
+              <Link to="/register" style={{ padding: '1rem 2rem', background: 'white', color: '#10b981', textDecoration: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: '500', border: '2px solid #10b981' }}>
+                Sign Up Free
+              </Link>
+            </div>
           </div>
-          <div style={{ background: 'white', padding: '2rem', borderRadius: '12px', textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #fdba74' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🌍</div>
-            <h4 style={{ color: '#8b5cf6', marginBottom: '0.5rem' }}>Global Cuisine</h4>
-            <p style={{ color: '#666' }}>Explore dishes from around the world</p>
-          </div>
-          <div style={{ background: 'white', padding: '2rem', borderRadius: '12px', textAlign: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', border: '2px solid #10b981' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👥</div>
-            <h4 style={{ color: '#8b5cf6', marginBottom: '0.5rem' }}>Share & Connect</h4>
-            <p style={{ color: '#666' }}>Share your recipes with the community</p>
+          <div>
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Cooking" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }} />
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '3rem 2rem', background: '#f9fafb' }}>
-        <h3 style={{ fontSize: '2rem', color: '#8b5cf6', textAlign: 'center', marginBottom: '2rem' }}>Featured Recipes</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-          {foodImages.map((img, idx) => (
-            <div key={idx} style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: '2px solid #10b981', transition: 'transform 0.3s', cursor: 'pointer' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-              <img src={img} alt={`Recipe ${idx + 1}`} style={{ width: '100%', height: '220px', objectFit: 'cover' }} />
-              <div style={{ padding: '1rem' }}>
-                <h4 style={{ color: '#8b5cf6', marginBottom: '0.5rem' }}>Delicious Recipe {idx + 1}</h4>
-                <p style={{ color: '#666', fontSize: '0.9rem' }}>⭐⭐⭐⭐⭐ • 30 mins</p>
+      <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h2 style={{ fontSize: '2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Featured Recipes</h2>
+          <p style={{ color: '#6c757d' }}>Popular dishes from our community</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          {featuredRecipes.map((recipe, idx) => (
+            <div key={idx} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #e9ecef', transition: 'box-shadow 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)'} onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}>
+              <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+              <div style={{ padding: '1.5rem' }}>
+                <h3 style={{ fontSize: '1.1rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>{recipe.name}</h3>
+                <p style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.75rem' }}>by {recipe.chef}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '0.75rem', borderTop: '1px solid #e9ecef' }}>
+                  <span style={{ color: '#6c757d', fontSize: '0.9rem' }}>🕐 {recipe.time}</span>
+                  <span style={{ color: '#ffc107' }}>★★★★★</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section style={{ padding: '4rem 2rem', textAlign: 'center', background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', color: 'white' }}>
-        <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Ready to Start Cooking?</h3>
-        <p style={{ fontSize: '1.2rem', marginBottom: '2rem', opacity: 0.9 }}>Join thousands of home cooks sharing their favorite recipes</p>
-        <Link to="/register" style={{ padding: '14px 32px', background: '#fdba74', color: 'white', textDecoration: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: '600', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}>
-          Join Recipe Room Today
-        </Link>
+      <section style={{ background: '#f8f9fa', padding: '4rem 2rem', borderTop: '1px solid #e9ecef' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Why Recipe Room?</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📖</div>
+              <h3 style={{ fontSize: '1.2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Thousands of Recipes</h3>
+              <p style={{ color: '#6c757d', lineHeight: '1.6' }}>Browse our extensive collection of recipes from cuisines around the world</p>
+            </div>
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👥</div>
+              <h3 style={{ fontSize: '1.2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Active Community</h3>
+              <p style={{ color: '#6c757d', lineHeight: '1.6' }}>Connect with fellow food lovers and share your cooking experiences</p>
+            </div>
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⭐</div>
+              <h3 style={{ fontSize: '1.2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Rated & Reviewed</h3>
+              <p style={{ color: '#6c757d', lineHeight: '1.6' }}>Read honest reviews and ratings from real home cooks</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '4rem 2rem', textAlign: 'center', background: 'white' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '2rem', color: '#212529', marginBottom: '1rem', fontWeight: '600' }}>Start Your Culinary Journey Today</h2>
+          <p style={{ color: '#6c757d', marginBottom: '2rem', fontSize: '1.1rem' }}>Join thousands of home cooks discovering new recipes every day</p>
+          <Link to="/register" style={{ padding: '1rem 2.5rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontSize: '1.1rem', fontWeight: '500', display: 'inline-block' }}>
+            Create Free Account
+          </Link>
+        </div>
       </section>
     </div>
   );
@@ -84,15 +104,17 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', color: 'white', padding: '1.5rem 2rem', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', position: 'sticky', top: 0, zIndex: 100 }}>
+        <header style={{ background: 'white', borderBottom: '1px solid #e9ecef', padding: '1rem 2rem', position: 'sticky', top: 0, zIndex: 100 }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-              <h1 style={{ margin: 0, fontSize: '1.8rem' }}>🍽️ Recipe Room</h1>
+            <Link to="/" style={{ textDecoration: 'none', color: '#212529', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span style={{ fontSize: '1.5rem' }}>🍽️</span>
+              <span style={{ fontSize: '1.3rem', fontWeight: '700' }}>Recipe Room</span>
             </Link>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <Link to="/login" style={{ color: 'white', textDecoration: 'none', padding: '8px 16px', background: 'rgba(255,255,255,0.2)', borderRadius: '6px', fontWeight: '500' }}>Login</Link>
-              <Link to="/register" style={{ color: 'white', textDecoration: 'none', padding: '8px 16px', background: 'rgba(255,255,255,0.2)', borderRadius: '6px', fontWeight: '500' }}>Register</Link>
-            </div>
+            <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+              <Link to="/recipes" style={{ color: '#6c757d', textDecoration: 'none', fontWeight: '500' }}>Recipes</Link>
+              <Link to="/login" style={{ color: '#6c757d', textDecoration: 'none', fontWeight: '500' }}>Login</Link>
+              <Link to="/register" style={{ padding: '0.5rem 1.25rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontWeight: '500' }}>Sign Up</Link>
+            </nav>
           </div>
         </header>
         
@@ -104,6 +126,13 @@ function App() {
           <Route path="/recipes" element={<RecipesPage />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
         </Routes>
+
+        <footer style={{ background: '#212529', color: 'white', padding: '3rem 2rem', marginTop: '4rem' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+            <p style={{ marginBottom: '1rem', fontSize: '1.1rem', fontWeight: '600' }}>Recipe Room</p>
+            <p style={{ color: '#adb5bd', fontSize: '0.9rem' }}>© 2024 Recipe Room. All rights reserved.</p>
+          </div>
+        </footer>
       </div>
     </Router>
   );
