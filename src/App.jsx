@@ -6,6 +6,7 @@ import Profile from './pages/Profile.jsx';
 import RecipesPage from './pages/RecipesPage.jsx';
 import RecipeDetail from './pages/RecipeDetail.jsx';
 import CreateRecipe from './pages/CreateRecipe.jsx';
+import Groups from './pages/Groups.jsx';
 
 function Home() {
   const featuredRecipes = [
@@ -146,6 +147,7 @@ function App() {
             </Link>
             <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
               <Link to="/recipes" style={{ color: '#aaa', textDecoration: 'none', fontWeight: '500' }}>Recipes</Link>
+              <Link to="/groups" style={{ color: '#aaa', textDecoration: 'none', fontWeight: '500' }}>Groups</Link>
               <Link to="/login" style={{ color: '#aaa', textDecoration: 'none', fontWeight: '500' }}>Login</Link>
               <Link to="/register" style={{ padding: '0.5rem 1.25rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontWeight: '500' }}>Sign Up</Link>
             </nav>
@@ -160,6 +162,7 @@ function App() {
           <Route path="/recipes" element={<RecipesPage />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
           <Route path="/create-recipe" element={<CreateRecipe />} />
+          <Route path="/groups" element={<Groups />} />
         </Routes>
 
         <footer style={{ background: '#212529', color: 'white', padding: '3rem 2rem', marginTop: '4rem' }}>
