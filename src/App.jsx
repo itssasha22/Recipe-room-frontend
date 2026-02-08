@@ -22,7 +22,7 @@ function Home() {
     { name: 'Chef Mary', specialty: 'Asian Fusion', image: 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=300', recipes: 22 },
     { name: 'Chef David', specialty: 'Mediterranean', image: 'https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=300', recipes: 20 },
     { name: 'Chef Grace', specialty: 'International', image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=300', recipes: 17 },
-    { name: 'Chef Wanjiku', specialty: 'Kenyan Traditional', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300', recipes: 25 }
+    { name: 'Chef Wanjiku', specialty: 'Kenyan Traditional', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300', recipes: 25 }
   ];
 
   return (

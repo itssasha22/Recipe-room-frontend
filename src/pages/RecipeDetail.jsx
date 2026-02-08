@@ -4,64 +4,69 @@ const RecipeDetail = () => {
   const { id } = useParams();
   
   const recipes = {
-    1: { name: 'Pilau Rice', chef: 'Chef Sarah', time: '45 mins', servings: 4, rating: 5, ingredients: ['2 cups rice', '500g meat', 'Pilau masala', '2 onions', '3 tomatoes', 'Garlic', 'Ginger'], steps: ['Boil meat with spices until tender', 'Fry onions until golden', 'Add tomatoes, garlic and ginger', 'Add rice and meat stock', 'Simmer until rice is cooked'] },
-    2: { name: 'Biryani', chef: 'Chef Sarah', time: '60 mins', servings: 6, rating: 5, ingredients: ['Basmati rice', 'Chicken', 'Yogurt', 'Saffron', 'Spices', 'Onions'], steps: ['Marinate chicken in yogurt and spices', 'Cook rice halfway', 'Layer rice and chicken', 'Cook on low heat until done'] },
-    3: { name: 'Samosas', chef: 'Chef Sarah', time: '40 mins', servings: 8, rating: 4, ingredients: ['Flour', 'Minced meat', 'Potatoes', 'Peas', 'Spices', 'Oil'], steps: ['Make dough and rest', 'Cook filling with spices', 'Fill and fold samosas', 'Deep fry until golden'] },
+    1: { name: 'Caesar Salad', chef: 'Chef Sarah', time: '15 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=800', ingredients: ['Romaine lettuce', 'Parmesan cheese', 'Croutons', 'Caesar dressing', 'Lemon', 'Black pepper'], steps: ['Wash and chop lettuce', 'Make Caesar dressing', 'Toss lettuce with dressing', 'Add croutons and parmesan', 'Serve immediately'] },
+    2: { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', time: '30 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800', ingredients: ['Spaghetti', 'Eggs', 'Parmesan', 'Pancetta', 'Black pepper', 'Salt'], steps: ['Boil pasta until al dente', 'Fry pancetta until crispy', 'Mix eggs with parmesan', 'Combine hot pasta with egg mixture', 'Add pancetta and serve'] },
+    3: { name: 'Tiramisu', chef: 'Chef Sarah', time: '40 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800', ingredients: ['Ladyfinger biscuits', 'Mascarpone', 'Eggs', 'Coffee', 'Cocoa powder', 'Sugar'], steps: ['Make coffee and let cool', 'Beat eggs with sugar', 'Mix in mascarpone', 'Dip biscuits in coffee', 'Layer biscuits and cream', 'Dust with cocoa powder'] },
     
-    4: { name: 'Chapati', chef: 'Chef John', time: '30 mins', servings: 6, rating: 5, ingredients: ['3 cups flour', 'Water', 'Salt', 'Oil'], steps: ['Mix flour, water and salt', 'Knead until smooth', 'Roll into circles', 'Cook on hot pan with oil'] },
-    5: { name: 'Naan Bread', chef: 'Chef John', time: '35 mins', servings: 8, rating: 5, ingredients: ['Flour', 'Yogurt', 'Yeast', 'Sugar', 'Butter'], steps: ['Mix ingredients and let rise', 'Divide into portions', 'Roll and cook in hot pan', 'Brush with butter'] },
-    6: { name: 'Roti', chef: 'Chef John', time: '25 mins', servings: 6, rating: 4, ingredients: ['Whole wheat flour', 'Water', 'Salt', 'Ghee'], steps: ['Make soft dough', 'Roll thin circles', 'Cook on griddle', 'Apply ghee'] },
+    4: { name: 'French Onion Soup', chef: 'Chef John', time: '45 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800', ingredients: ['Onions', 'Beef broth', 'Butter', 'Bread', 'Gruyere cheese', 'Thyme'], steps: ['Caramelize onions slowly', 'Add beef broth and simmer', 'Toast bread slices', 'Pour soup into bowls', 'Top with bread and cheese', 'Broil until cheese melts'] },
+    5: { name: 'Beef Burger & Fries', chef: 'Chef John', time: '35 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1568901346375-23ac9450c58cd?w=800', ingredients: ['Ground beef', 'Burger buns', 'Lettuce', 'Tomato', 'Cheese', 'Potatoes', 'Oil'], steps: ['Form beef into patties', 'Season with salt and pepper', 'Grill burgers to desired doneness', 'Cut potatoes into fries', 'Deep fry until golden', 'Assemble burgers and serve'] },
+    6: { name: 'Chocolate Lava Cake', chef: 'Chef John', time: '25 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800', ingredients: ['Dark chocolate', 'Butter', 'Eggs', 'Sugar', 'Flour', 'Vanilla'], steps: ['Melt chocolate and butter', 'Beat eggs with sugar', 'Fold in chocolate mixture', 'Add flour gently', 'Pour into ramekins', 'Bake until edges set'] },
     
-    7: { name: 'Ugali & Sukuma', chef: 'Chef Mary', time: '25 mins', servings: 4, rating: 4, ingredients: ['Maize flour', 'Water', 'Kale', 'Tomatoes', 'Onions'], steps: ['Boil water', 'Add flour and stir vigorously', 'Fry kale with tomatoes and onions', 'Serve together'] },
-    8: { name: 'Githeri', chef: 'Chef Mary', time: '50 mins', servings: 6, rating: 5, ingredients: ['Maize', 'Beans', 'Tomatoes', 'Onions', 'Spices'], steps: ['Boil maize and beans', 'Fry onions and tomatoes', 'Mix everything together', 'Simmer for 10 minutes'] },
-    9: { name: 'Mukimo', chef: 'Chef Mary', time: '40 mins', servings: 5, rating: 5, ingredients: ['Potatoes', 'Maize', 'Beans', 'Pumpkin leaves', 'Salt'], steps: ['Boil all ingredients', 'Mash together', 'Add salt to taste', 'Serve hot'] },
+    7: { name: 'Spring Rolls', chef: 'Chef Mary', time: '30 mins', servings: 6, rating: 4, image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800', ingredients: ['Rice paper', 'Shrimp', 'Vegetables', 'Rice noodles', 'Mint', 'Dipping sauce'], steps: ['Cook shrimp and noodles', 'Prepare vegetables', 'Soak rice paper', 'Fill with ingredients', 'Roll tightly', 'Serve with sauce'] },
+    8: { name: 'Chicken Fried Rice', chef: 'Chef Mary', time: '25 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800', ingredients: ['Rice', 'Chicken', 'Eggs', 'Vegetables', 'Soy sauce', 'Garlic'], steps: ['Cook rice and let cool', 'Dice chicken and vegetables', 'Scramble eggs', 'Stir fry chicken', 'Add rice and vegetables', 'Season with soy sauce'] },
+    9: { name: 'Mango Sticky Rice', chef: 'Chef Mary', time: '30 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=800', ingredients: ['Sticky rice', 'Coconut milk', 'Sugar', 'Mango', 'Salt', 'Sesame seeds'], steps: ['Soak rice overnight', 'Steam rice until tender', 'Heat coconut milk with sugar', 'Mix rice with coconut milk', 'Slice fresh mango', 'Serve rice with mango'] },
     
-    10: { name: 'Mandazi', chef: 'Chef David', time: '40 mins', servings: 8, rating: 5, ingredients: ['Flour', 'Sugar', 'Coconut milk', 'Yeast', 'Cardamom'], steps: ['Mix all ingredients', 'Let dough rise for 30 mins', 'Cut into triangles', 'Deep fry until golden brown'] },
-    11: { name: 'Mahamri', chef: 'Chef David', time: '45 mins', servings: 10, rating: 5, ingredients: ['Flour', 'Coconut milk', 'Sugar', 'Yeast', 'Cardamom'], steps: ['Mix and knead dough', 'Let rise', 'Roll and cut into shapes', 'Deep fry'] },
-    12: { name: 'Kaimati', chef: 'Chef David', time: '50 mins', servings: 12, rating: 4, ingredients: ['Flour', 'Yeast', 'Sugar', 'Cardamom', 'Syrup'], steps: ['Make batter and let rise', 'Deep fry small balls', 'Make sugar syrup', 'Coat in syrup'] },
+    10: { name: 'Bruschetta', chef: 'Chef David', time: '20 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=800', ingredients: ['Baguette', 'Tomatoes', 'Basil', 'Garlic', 'Olive oil', 'Balsamic'], steps: ['Slice and toast bread', 'Dice tomatoes', 'Chop fresh basil', 'Mix tomatoes with garlic', 'Top bread with mixture', 'Drizzle with olive oil'] },
+    11: { name: 'Margherita Pizza', chef: 'Chef David', time: '40 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800', ingredients: ['Pizza dough', 'Tomato sauce', 'Mozzarella', 'Basil', 'Olive oil', 'Salt'], steps: ['Roll out pizza dough', 'Spread tomato sauce', 'Add mozzarella slices', 'Bake at high heat', 'Add fresh basil', 'Drizzle with olive oil'] },
+    12: { name: 'Panna Cotta', chef: 'Chef David', time: '35 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800', ingredients: ['Heavy cream', 'Sugar', 'Vanilla', 'Gelatin', 'Berries', 'Mint'], steps: ['Heat cream with sugar', 'Add vanilla extract', 'Dissolve gelatin', 'Mix into cream', 'Pour into molds', 'Chill until set'] },
     
-    13: { name: 'Nyama Choma', chef: 'Chef Grace', time: '60 mins', servings: 6, rating: 5, ingredients: ['2kg goat meat', 'Salt', 'Lemon', 'Chili powder'], steps: ['Season meat with salt and spices', 'Grill over charcoal fire', 'Turn frequently', 'Serve with kachumbari'] },
-    14: { name: 'Fish Fry', chef: 'Chef Grace', time: '35 mins', servings: 4, rating: 5, ingredients: ['Tilapia fish', 'Flour', 'Spices', 'Lemon', 'Oil'], steps: ['Clean and season fish', 'Coat with spiced flour', 'Deep fry until crispy', 'Serve with lemon'] },
-    15: { name: 'Chicken Stew', chef: 'Chef Grace', time: '55 mins', servings: 5, rating: 5, ingredients: ['Chicken pieces', 'Tomatoes', 'Onions', 'Potatoes', 'Spices'], steps: ['Brown chicken pieces', 'Add onions and tomatoes', 'Add potatoes and water', 'Simmer until cooked'] }
+    13: { name: 'Chicken Tacos', chef: 'Chef Grace', time: '25 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800', ingredients: ['Chicken', 'Tortillas', 'Lettuce', 'Cheese', 'Salsa', 'Sour cream'], steps: ['Season and cook chicken', 'Shred chicken', 'Warm tortillas', 'Fill with chicken', 'Add toppings', 'Serve with salsa'] },
+    14: { name: 'Grilled Salmon', chef: 'Chef Grace', time: '30 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800', ingredients: ['Salmon fillets', 'Lemon', 'Dill', 'Garlic', 'Olive oil', 'Salt'], steps: ['Season salmon with salt', 'Marinate with lemon and dill', 'Preheat grill', 'Grill skin side down', 'Flip carefully', 'Serve with lemon wedges'] },
+    15: { name: 'Cheesecake', chef: 'Chef Grace', time: '50 mins', servings: 8, rating: 5, image: 'https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=800', ingredients: ['Cream cheese', 'Graham crackers', 'Sugar', 'Eggs', 'Vanilla', 'Butter'], steps: ['Make graham cracker crust', 'Beat cream cheese with sugar', 'Add eggs one at a time', 'Pour into crust', 'Bake in water bath', 'Chill overnight'] },
+    
+    16: { name: 'Samosas', chef: 'Chef Wanjiku', time: '40 mins', servings: 8, rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800', ingredients: ['Flour', 'Minced meat', 'Potatoes', 'Peas', 'Spices', 'Oil'], steps: ['Make dough and rest', 'Cook filling with spices', 'Roll dough thin', 'Fill and fold samosas', 'Deep fry until golden', 'Serve hot'] },
+    17: { name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', time: '60 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', ingredients: ['Goat meat', 'Salt', 'Lemon', 'Maize flour', 'Water', 'Kachumbari'], steps: ['Season meat with salt', 'Grill over charcoal', 'Turn frequently', 'Boil water for ugali', 'Add flour and stir', 'Serve with kachumbari'] },
+    18: { name: 'Mandazi', chef: 'Chef Wanjiku', time: '35 mins', servings: 10, rating: 5, image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800', ingredients: ['Flour', 'Sugar', 'Coconut milk', 'Yeast', 'Cardamom', 'Oil'], steps: ['Mix dry ingredients', 'Add coconut milk', 'Knead dough', 'Let rise 30 minutes', 'Cut into triangles', 'Deep fry until golden'] }
   };
 
   const recipe = recipes[id] || recipes[1];
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)', padding: '2rem' }}>
+    <div style={{ minHeight: '100vh', background: '#000', padding: '2rem' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-        <Link to="/recipes" style={{ color: '#8b5cf6', textDecoration: 'none', fontWeight: '600', marginBottom: '1rem', display: 'inline-block' }}>
+        <Link to="/recipes" style={{ color: '#fdba74', textDecoration: 'none', fontWeight: '600', marginBottom: '1rem', display: 'inline-block' }}>
           ← Back to Recipes
         </Link>
 
-        <div style={{ background: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', overflow: 'hidden', border: '2px solid #10b981' }}>
-          <div style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', padding: '3rem 2rem', color: 'white', textAlign: 'center' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🍽️</div>
-            <h1 style={{ margin: '0 0 0.5rem 0', fontSize: '2.5rem' }}>{recipe.name}</h1>
-            <p style={{ margin: 0, opacity: 0.9 }}>by {recipe.chef}</p>
+        <div style={{ background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
+          <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
+          
+          <div style={{ padding: '3rem 2rem', textAlign: 'center', background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)' }}>
+            <h1 style={{ margin: '0 0 0.5rem 0', fontSize: '2.5rem', color: 'white' }}>{recipe.name}</h1>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem' }}>by {recipe.chef}</p>
           </div>
 
           <div style={{ padding: '2rem' }}>
             <div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '1.5rem', color: '#8b5cf6', fontWeight: '700' }}>⏱️ {recipe.time}</div>
-                <div style={{ color: '#666', fontSize: '0.9rem' }}>Prep Time</div>
+              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #fdba74' }}>
+                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>⏱️ {recipe.time}</div>
+                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Prep Time</div>
               </div>
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #10b981' }}>
                 <div style={{ fontSize: '1.5rem', color: '#10b981', fontWeight: '700' }}>👥 {recipe.servings}</div>
-                <div style={{ color: '#666', fontSize: '0.9rem' }}>Servings</div>
+                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Servings</div>
               </div>
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #8b5cf6' }}>
                 <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>{'⭐'.repeat(recipe.rating)}</div>
-                <div style={{ color: '#666', fontSize: '0.9rem' }}>Rating</div>
+                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Rating</div>
               </div>
             </div>
 
             <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#8b5cf6', marginBottom: '1rem' }}>📝 Ingredients</h3>
+              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>📝 Ingredients</h3>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {recipe.ingredients.map((ing, idx) => (
-                  <li key={idx} style={{ padding: '0.75rem', background: '#f9fafb', marginBottom: '0.5rem', borderRadius: '8px', border: '2px solid #10b981' }}>
+                  <li key={idx} style={{ padding: '0.75rem', background: '#2a2a2a', marginBottom: '0.5rem', borderRadius: '8px', border: '2px solid #10b981', color: '#aaa' }}>
                     ✓ {ing}
                   </li>
                 ))}
@@ -69,10 +74,10 @@ const RecipeDetail = () => {
             </div>
 
             <div>
-              <h3 style={{ color: '#8b5cf6', marginBottom: '1rem' }}>👨🍳 Instructions</h3>
+              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>👨🍳 Instructions</h3>
               <ol style={{ padding: '0 0 0 1.5rem' }}>
                 {recipe.steps.map((step, idx) => (
-                  <li key={idx} style={{ padding: '0.75rem 0', color: '#666', lineHeight: '1.6', borderBottom: '1px solid #e5e7eb' }}>
+                  <li key={idx} style={{ padding: '0.75rem 0', color: '#aaa', lineHeight: '1.6', borderBottom: '1px solid #2a2a2a' }}>
                     {step}
                   </li>
                 ))}
