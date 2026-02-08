@@ -1,92 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import { useSelector, useDispath } from 'react-redux';
-import {fetchUserProfile} from '../store/authSlice';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import authService from '../services/authService';
 
 const Profile = () => {
-    const {user} = useSelector((state) => state.auth);
-    const dispatch = useDispath();
-    const [editing, setEditing] = useState(false);
-    const [profileData, setProfileData] = useState({
-        name: '',
-        email: '',
-    });
-    useEffect (() => {
-        dispatch(fetchUserProfile());
-    }, [dispatch]);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if(user){
-            setProfileData({
-                name: user.name || '',
-                email: user.email || '',
-            });
-        }
-    }, [user]);
-
-    const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const token = localStorage.getItem('token');
-        await axios.put('http://localhost:5000/profile', 
-          { profile_image: reader.result },
-          { headers: { Authorization: `Bearer ${token}` }}
-        );
-        dispatch(getProfile());
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleLogout = () => {
+    authService.logout();
+    navigate('/login');
   };
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem('token');
-    await axios.put('http://localhost:5000/profile', formData, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    dispatch(getProfile());
-    setEditing(false);
-  };
-
-  if (!user) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>Profile</h2>
-      {user.profile_image && <img src={user.profile_image} alt="Profile" width="100" />}
-      
-      {editing ? (
-        <form onSubmit={handleUpdate}>
-          <input
-            type="text"
-            value={formData.username}
-            onChange={(e) => setFormData({...formData, username: e.target.value})}
-          />
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-          />
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setEditing(false)}>Cancel</button>
-        </form>
-      ) : (
-        <div>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
-          <button onClick={() => setEditing(true)}>Edit</button>
-        </div>
-      )}
-      
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      <button onClick={() => dispatch(logout())}>Logout</button>
+    <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '2rem', background: 'white', borderRadius: '12px', border: '2px solid #10b981' }}>
+      <h2 style={{ color: '#8b5cf6', marginBottom: '1.5rem' }}>My Profile</h2>
+      <div style={{ marginBottom: '1rem' }}>
+        <p><strong>Username:</strong> User</p>
+        <p><strong>Email:</strong> user@example.com</p>
+      </div>
+      <button onClick={handleLogout} style={{ padding: '0.75rem 2rem', background: '#fdba74', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
+        Logout
+      </button>
     </div>
   );
 };
 
 export default Profile;
-    
-
-    
