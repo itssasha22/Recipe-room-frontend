@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const RecipesPage = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState('All');
+  const [selectedChef, setSelectedChef] = useState('All');
   
   const allRecipes = [
     { id: 1, name: 'Caesar Salad', chef: 'Chef Sarah', course: 'Starter', time: '15 mins', rating: 5, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400' },
@@ -29,62 +33,118 @@ const RecipesPage = () => {
     { id: 18, name: 'Tropical Fruit Salad', chef: 'Chef Wanjiku', course: 'Dessert', time: '15 mins', rating: 5, image: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400' }
   ];
 
+  const filteredRecipes = allRecipes.filter(recipe => {
+    const matchesSearch = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCourse = selectedCourse === 'All' || recipe.course === selectedCourse;
+    const matchesChef = selectedChef === 'All' || recipe.chef === selectedChef;
+    return matchesSearch && matchesCourse && matchesChef;
+  });
+
+  const chefs = ['All', 'Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace', 'Chef Wanjiku'];
+  const courses = ['All', 'Starter', 'Main Course', 'Dessert'];
+
   return (
     <div style={{ padding: '2rem', background: '#000', minHeight: '100vh' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <h1 style={{ color: '#fdba74', textAlign: 'center', marginBottom: '0.5rem', fontSize: '2.5rem' }}>Global Three-Course Meals</h1>
-        <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '3rem', fontSize: '1.1rem' }}>Starter • Main Course • Dessert</p>
+        <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '2rem', fontSize: '1.1rem' }}>Starter • Main Course • Dessert</p>
         
-        {['Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace', 'Chef Wanjiku'].map(chefName => {
-          const chefRecipes = allRecipes.filter(r => r.chef === chefName);
-          return (
-            <div key={chefName} style={{ marginBottom: '4rem' }}>
-              <h2 style={{ color: '#10b981', marginBottom: '1.5rem', fontSize: '1.8rem', paddingBottom: '0.5rem', borderBottom: '3px solid #10b981', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span style={{ fontSize: '1.5rem' }}>{chefName}</span>'s Three-Course Menu {chefName === 'Chef Wanjiku' && <span style={{ fontSize: '1rem', background: '#fdba74', color: '#000', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>🇰🇪 Kenyan</span>}
-              </h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                {chefRecipes.map(recipe => (
-                  <div 
-                    key={recipe.id}
-                    onClick={() => navigate(`/recipe/${recipe.id}`)}
-                    style={{ 
-                      background: '#1a1a1a',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
-                      border: '2px solid #8b5cf6',
-                      cursor: 'pointer',
-                      transition: 'transform 0.3s, box-shadow 0.3s'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-8px)';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(16, 185, 129, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.3)';
-                    }}
-                  >
-                    <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-                    <div style={{ padding: '1.25rem' }}>
-                      <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: recipe.course === 'Starter' ? '#fdba74' : recipe.course === 'Main Course' ? '#10b981' : '#8b5cf6', color: 'white', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', marginBottom: '0.75rem' }}>
-                        {recipe.course}
-                      </div>
-                      <h3 style={{ color: '#fdba74', margin: '0 0 0.75rem 0', fontSize: '1.2rem' }}>{recipe.name}</h3>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ color: '#10b981', fontWeight: '600', fontSize: '0.9rem' }}>⏱️ {recipe.time}</span>
-                        <span style={{ color: '#fdba74', fontWeight: '600' }}>{'⭐'.repeat(recipe.rating)}</span>
-                      </div>
-                      <div style={{ marginTop: '1rem', padding: '0.625rem', background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', color: 'white', textAlign: 'center', borderRadius: '8px', fontWeight: '600', fontSize: '0.9rem' }}>
-                        View Recipe →
-                      </div>
+        <div style={{ background: '#1a1a1a', padding: '1.5rem', borderRadius: '12px', marginBottom: '3rem', border: '2px solid #8b5cf6' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+            <div>
+              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>🔍 Search Recipes</label>
+              <input
+                type="text"
+                placeholder="Search by name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #8b5cf6', background: '#2a2a2a', color: 'white', fontSize: '1rem' }}
+              />
+            </div>
+            
+            <div>
+              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>🍽️ Course Type</label>
+              <select
+                value={selectedCourse}
+                onChange={(e) => setSelectedCourse(e.target.value)}
+                style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #8b5cf6', background: '#2a2a2a', color: 'white', fontSize: '1rem' }}
+              >
+                {courses.map(course => (
+                  <option key={course} value={course}>{course}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div>
+              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>👨‍🍳 Chef</label>
+              <select
+                value={selectedChef}
+                onChange={(e) => setSelectedChef(e.target.value)}
+                style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #8b5cf6', background: '#2a2a2a', color: 'white', fontSize: '1rem' }}
+              >
+                {chefs.map(chef => (
+                  <option key={chef} value={chef}>{chef}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          
+          <div style={{ marginTop: '1rem', textAlign: 'center', color: '#10b981', fontWeight: '600' }}>
+            {filteredRecipes.length} recipe{filteredRecipes.length !== 1 ? 's' : ''} found
+          </div>
+        </div>
+
+        {filteredRecipes.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '4rem', color: '#aaa' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🔍</div>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>No recipes found</h3>
+            <p>Try adjusting your filters or search term</p>
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            {filteredRecipes.map(recipe => (
+              <div 
+                key={recipe.id}
+                onClick={() => navigate(`/recipe/${recipe.id}`)}
+                style={{ 
+                  background: '#1a1a1a',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+                  border: '2px solid #8b5cf6',
+                  cursor: 'pointer',
+                  transition: 'transform 0.3s, box-shadow 0.3s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(16, 185, 129, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.3)';
+                }}
+              >
+                <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                <div style={{ padding: '1.25rem' }}>
+                  <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: recipe.course === 'Starter' ? '#fdba74' : recipe.course === 'Main Course' ? '#10b981' : '#8b5cf6', color: 'white', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600' }}>
+                      {recipe.course}
                     </div>
                   </div>
-                ))}
+                  <h3 style={{ color: '#fdba74', margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>{recipe.name}</h3>
+                  <p style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '0.75rem' }}>by {recipe.chef}</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ color: '#10b981', fontWeight: '600', fontSize: '0.9rem' }}>⏱️ {recipe.time}</span>
+                    <span style={{ color: '#fdba74', fontWeight: '600' }}>{'⭐'.repeat(recipe.rating)}</span>
+                  </div>
+                  <div style={{ marginTop: '1rem', padding: '0.625rem', background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', color: 'white', textAlign: 'center', borderRadius: '8px', fontWeight: '600', fontSize: '0.9rem' }}>
+                    View Recipe →
+                  </div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            ))}
+          </div>
+        )}
         
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
           <button onClick={() => navigate('/')} style={{ padding: '1rem 2rem', background: '#8b5cf6', color: 'white', border: 'none', borderRadius: '10px', cursor: 'pointer', fontWeight: '600' }}>
