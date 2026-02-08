@@ -8,90 +8,123 @@ import RecipeDetail from './pages/RecipeDetail.jsx';
 
 function Home() {
   const featuredRecipes = [
-    { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600', time: '30 min' },
-    { name: 'Grilled Salmon', chef: 'Chef Grace', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600', time: '30 min' },
-    { name: 'Margherita Pizza', chef: 'Chef David', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600', time: '40 min' },
-    { name: 'Chicken Fried Rice', chef: 'Chef Mary', image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600', time: '25 min' }
+    { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600', time: '30 min', cuisine: 'Italian' },
+    { name: 'Beef Burger', chef: 'Chef John', image: 'https://images.unsplash.com/photo-1568901346375-23ac9450c58cd?w=600', time: '35 min', cuisine: 'American' },
+    { name: 'Chicken Fried Rice', chef: 'Chef Mary', image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600', time: '25 min', cuisine: 'Asian' },
+    { name: 'Margherita Pizza', chef: 'Chef David', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600', time: '40 min', cuisine: 'Italian' },
+    { name: 'Grilled Salmon', chef: 'Chef Grace', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600', time: '30 min', cuisine: 'International' },
+    { name: 'Nyama Choma', chef: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600', time: '60 min', cuisine: 'Kenyan' }
+  ];
+
+  const chefs = [
+    { name: 'Chef Sarah', specialty: 'Italian Cuisine', image: 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=300', recipes: 18 },
+    { name: 'Chef John', specialty: 'American & French', image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=300', recipes: 15 },
+    { name: 'Chef Mary', specialty: 'Asian Fusion', image: 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?w=300', recipes: 22 },
+    { name: 'Chef David', specialty: 'Mediterranean', image: 'https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=300', recipes: 20 },
+    { name: 'Chef Grace', specialty: 'International', image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=300', recipes: 17 },
+    { name: 'Chef Wanjiku', specialty: 'Kenyan Traditional', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300', recipes: 25 }
   ];
 
   return (
-    <div style={{ background: '#ffffff' }}>
-      <section style={{ background: '#f8f9fa', padding: '5rem 2rem', borderBottom: '1px solid #e9ecef' }}>
+    <div style={{ background: '#000000' }}>
+      <section style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', padding: '5rem 2rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
           <div>
-            <h1 style={{ fontSize: '3rem', color: '#212529', marginBottom: '1.5rem', fontWeight: '700', lineHeight: '1.2' }}>
+            <h1 style={{ fontSize: '3rem', color: 'white', marginBottom: '1.5rem', fontWeight: '700', lineHeight: '1.2' }}>
               Discover & Share<br/>Authentic Recipes
             </h1>
-            <p style={{ fontSize: '1.1rem', color: '#6c757d', marginBottom: '2rem', lineHeight: '1.8' }}>
+            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', lineHeight: '1.8' }}>
               Join our community of home cooks and professional chefs. Browse thousands of recipes, save your favorites, and share your culinary creations.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
-              <Link to="/recipes" style={{ padding: '1rem 2rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: '500', border: 'none' }}>
+              <Link to="/recipes" style={{ padding: '1rem 2rem', background: '#fdba74', color: '#000', textDecoration: 'none', borderRadius: '8px', fontSize: '1rem', fontWeight: '600' }}>
                 Browse Recipes
               </Link>
-              <Link to="/register" style={{ padding: '1rem 2rem', background: 'white', color: '#10b981', textDecoration: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: '500', border: '2px solid #10b981' }}>
+              <Link to="/register" style={{ padding: '1rem 2rem', background: 'white', color: '#8b5cf6', textDecoration: 'none', borderRadius: '8px', fontSize: '1rem', fontWeight: '600' }}>
                 Sign Up Free
               </Link>
             </div>
           </div>
           <div>
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Cooking" style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }} />
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600" alt="Cooking" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 30px rgba(0,0,0,0.3)' }} />
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Featured Recipes</h2>
-          <p style={{ color: '#6c757d' }}>Popular dishes from our community</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-          {featuredRecipes.map((recipe, idx) => (
-            <div key={idx} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #e9ecef', transition: 'box-shadow 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)'} onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}>
-              <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
-              <div style={{ padding: '1.5rem' }}>
-                <h3 style={{ fontSize: '1.1rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>{recipe.name}</h3>
-                <p style={{ color: '#6c757d', fontSize: '0.9rem', marginBottom: '0.75rem' }}>by {recipe.chef}</p>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '0.75rem', borderTop: '1px solid #e9ecef' }}>
-                  <span style={{ color: '#6c757d', fontSize: '0.9rem' }}>🕐 {recipe.time}</span>
-                  <span style={{ color: '#ffc107' }}>★★★★★</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section style={{ background: '#f8f9fa', padding: '4rem 2rem', borderTop: '1px solid #e9ecef' }}>
+      <section style={{ padding: '4rem 2rem', background: '#1a1a1a' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Why Recipe Room?</h2>
+            <h2 style={{ fontSize: '2.5rem', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '700' }}>Featured Recipes</h2>
+            <p style={{ color: '#aaa', fontSize: '1.1rem' }}>Popular dishes from our community</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            {featuredRecipes.map((recipe, idx) => (
+              <div key={idx} style={{ background: '#2a2a2a', borderRadius: '12px', overflow: 'hidden', border: '2px solid #8b5cf6', transition: 'transform 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+                <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+                <div style={{ padding: '1.5rem' }}>
+                  <span style={{ background: '#10b981', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600' }}>{recipe.cuisine}</span>
+                  <h3 style={{ fontSize: '1.2rem', color: 'white', margin: '1rem 0 0.5rem 0', fontWeight: '600' }}>{recipe.name}</h3>
+                  <p style={{ color: '#aaa', fontSize: '0.9rem', marginBottom: '0.75rem' }}>by {recipe.chef}</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '0.75rem', borderTop: '1px solid #444' }}>
+                    <span style={{ color: '#fdba74', fontSize: '0.9rem', fontWeight: '600' }}>🕐 {recipe.time}</span>
+                    <span style={{ color: '#fdba74' }}>★★★★★</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '4rem 2rem', background: '#000' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.5rem', color: '#8b5cf6', marginBottom: '0.5rem', fontWeight: '700' }}>Meet Our Chefs</h2>
+            <p style={{ color: '#aaa', fontSize: '1.1rem' }}>Expert culinary professionals from around the world</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
-            <div style={{ textAlign: 'center', padding: '2rem' }}>
+            {chefs.map((chef, idx) => (
+              <div key={idx} style={{ background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)', borderRadius: '12px', padding: '2rem', textAlign: 'center', border: '2px solid #10b981', transition: 'transform 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
+                <img src={chef.image} alt={chef.name} style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', border: '4px solid #8b5cf6', marginBottom: '1rem' }} />
+                <h3 style={{ color: '#fdba74', fontSize: '1.3rem', fontWeight: '700', marginBottom: '0.5rem' }}>{chef.name}</h3>
+                <p style={{ color: '#10b981', fontSize: '0.95rem', marginBottom: '0.75rem', fontWeight: '600' }}>{chef.specialty}</p>
+                <p style={{ color: '#aaa', fontSize: '0.9rem' }}>{chef.recipes} Recipes</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: '#1a1a1a', padding: '4rem 2rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.5rem', color: '#10b981', marginBottom: '0.5rem', fontWeight: '700' }}>Why Recipe Room?</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+            <div style={{ textAlign: 'center', padding: '2rem', background: '#2a2a2a', borderRadius: '12px', border: '2px solid #8b5cf6' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📖</div>
-              <h3 style={{ fontSize: '1.2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Thousands of Recipes</h3>
-              <p style={{ color: '#6c757d', lineHeight: '1.6' }}>Browse our extensive collection of recipes from cuisines around the world</p>
+              <h3 style={{ fontSize: '1.2rem', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>Thousands of Recipes</h3>
+              <p style={{ color: '#aaa', lineHeight: '1.6' }}>Browse our extensive collection of recipes from cuisines around the world</p>
             </div>
-            <div style={{ textAlign: 'center', padding: '2rem' }}>
+            <div style={{ textAlign: 'center', padding: '2rem', background: '#2a2a2a', borderRadius: '12px', border: '2px solid #10b981' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👥</div>
-              <h3 style={{ fontSize: '1.2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Active Community</h3>
-              <p style={{ color: '#6c757d', lineHeight: '1.6' }}>Connect with fellow food lovers and share your cooking experiences</p>
+              <h3 style={{ fontSize: '1.2rem', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>Active Community</h3>
+              <p style={{ color: '#aaa', lineHeight: '1.6' }}>Connect with fellow food lovers and share your cooking experiences</p>
             </div>
-            <div style={{ textAlign: 'center', padding: '2rem' }}>
+            <div style={{ textAlign: 'center', padding: '2rem', background: '#2a2a2a', borderRadius: '12px', border: '2px solid #fdba74' }}>
               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⭐</div>
-              <h3 style={{ fontSize: '1.2rem', color: '#212529', marginBottom: '0.5rem', fontWeight: '600' }}>Rated & Reviewed</h3>
-              <p style={{ color: '#6c757d', lineHeight: '1.6' }}>Read honest reviews and ratings from real home cooks</p>
+              <h3 style={{ fontSize: '1.2rem', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>Rated & Reviewed</h3>
+              <p style={{ color: '#aaa', lineHeight: '1.6' }}>Read honest reviews and ratings from real home cooks</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '4rem 2rem', textAlign: 'center', background: 'white' }}>
+      <section style={{ padding: '4rem 2rem', textAlign: 'center', background: 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', color: '#212529', marginBottom: '1rem', fontWeight: '600' }}>Start Your Culinary Journey Today</h2>
-          <p style={{ color: '#6c757d', marginBottom: '2rem', fontSize: '1.1rem' }}>Join thousands of home cooks discovering new recipes every day</p>
-          <Link to="/register" style={{ padding: '1rem 2.5rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontSize: '1.1rem', fontWeight: '500', display: 'inline-block' }}>
+          <h2 style={{ fontSize: '2.5rem', color: 'white', marginBottom: '1rem', fontWeight: '700' }}>Start Your Culinary Journey Today</h2>
+          <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '2rem', fontSize: '1.1rem' }}>Join thousands of home cooks discovering new recipes every day</p>
+          <Link to="/register" style={{ padding: '1rem 2.5rem', background: '#fdba74', color: '#000', textDecoration: 'none', borderRadius: '8px', fontSize: '1.1rem', fontWeight: '600', display: 'inline-block' }}>
             Create Free Account
           </Link>
         </div>
