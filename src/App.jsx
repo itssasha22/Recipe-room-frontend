@@ -3,6 +3,8 @@ import './App.css';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Profile from './pages/Profile.jsx';
+import RecipesPage from './pages/RecipesPage.jsx';
+import RecipeDetail from './pages/RecipeDetail.jsx';
 
 function Home() {
   const foodImages = [
@@ -99,6 +101,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/recipes" element={<RecipesPage />} />
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
         </Routes>
       </div>
     </Router>
