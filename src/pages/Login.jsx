@@ -25,8 +25,8 @@ const Login = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div style={{ maxWidth: '450px', width: '100%', background: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', overflow: 'hidden', border: '2px solid #10b981' }}>
+    <div style={{ minHeight: '100vh', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+      <div style={{ maxWidth: '450px', width: '100%', background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.5)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
         
         <div style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', padding: '2rem', textAlign: 'center', color: 'white' }}>
           <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🍽️</div>
@@ -44,7 +44,7 @@ const Login = () => {
 
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+              <label style={{ display: 'block', color: '#fdba74', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
                 📧 Email Address
               </label>
               <input
@@ -53,14 +53,14 @@ const Login = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-                onBlur={(e) => e.target.style.borderColor = '#10b981'}
+                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #8b5cf6', fontSize: '1rem', transition: 'all 0.3s', outline: 'none', background: '#2a2a2a', color: 'white' }}
+                onFocus={(e) => e.target.style.borderColor = '#10b981'}
+                onBlur={(e) => e.target.style.borderColor = '#8b5cf6'}
               />
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+              <label style={{ display: 'block', color: '#fdba74', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
                 🔒 Password
               </label>
               <input
@@ -69,9 +69,9 @@ const Login = () => {
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-                onBlur={(e) => e.target.style.borderColor = '#10b981'}
+                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #8b5cf6', fontSize: '1rem', transition: 'all 0.3s', outline: 'none', background: '#2a2a2a', color: 'white' }}
+                onFocus={(e) => e.target.style.borderColor = '#10b981'}
+                onBlur={(e) => e.target.style.borderColor = '#8b5cf6'}
               />
             </div>
 
@@ -86,9 +86,9 @@ const Login = () => {
             </button>
           </form>
 
-          <div style={{ marginTop: '1.5rem', textAlign: 'center', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
-            <p style={{ color: '#666', marginBottom: '0.5rem' }}>Don't have an account?</p>
-            <Link to="/register" style={{ color: '#8b5cf6', textDecoration: 'none', fontWeight: '600', fontSize: '1.05rem' }}>
+          <div style={{ marginTop: '1.5rem', textAlign: 'center', paddingTop: '1.5rem', borderTop: '1px solid #2a2a2a' }}>
+            <p style={{ color: '#aaa', marginBottom: '0.5rem' }}>Don't have an account?</p>
+            <Link to="/register" style={{ color: '#fdba74', textDecoration: 'none', fontWeight: '600', fontSize: '1.05rem' }}>
               Create Account →
             </Link>
           </div>

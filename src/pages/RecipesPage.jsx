@@ -9,7 +9,7 @@ const RecipesPage = () => {
     { id: 3, name: 'Tiramisu', chef: 'Chef Sarah', course: 'Dessert', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400' },
     
     { id: 4, name: 'French Onion Soup', chef: 'Chef John', course: 'Starter', time: '45 mins', rating: 5, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400' },
-    { id: 5, name: 'Beef Burger & Fries', chef: 'Chef John', course: 'Main Course', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400' },
+    { id: 5, name: 'Beef Burger & Fries', chef: 'Chef John', course: 'Main Course', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1568901346375-23ac9450c58cd?w=400' },
     { id: 6, name: 'Chocolate Lava Cake', chef: 'Chef John', course: 'Dessert', time: '25 mins', rating: 5, image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400' },
     
     { id: 7, name: 'Spring Rolls', chef: 'Chef Mary', course: 'Starter', time: '30 mins', rating: 4, image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400' },
@@ -30,17 +30,17 @@ const RecipesPage = () => {
   ];
 
   return (
-    <div style={{ padding: '2rem', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)', minHeight: '100vh' }}>
+    <div style={{ padding: '2rem', background: '#000', minHeight: '100vh' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <h1 style={{ color: '#8b5cf6', textAlign: 'center', marginBottom: '0.5rem', fontSize: '2.5rem' }}>Global Three-Course Meals</h1>
-        <p style={{ textAlign: 'center', color: '#666', marginBottom: '3rem', fontSize: '1.1rem' }}>Starter • Main Course • Dessert</p>
+        <h1 style={{ color: '#fdba74', textAlign: 'center', marginBottom: '0.5rem', fontSize: '2.5rem' }}>Global Three-Course Meals</h1>
+        <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '3rem', fontSize: '1.1rem' }}>Starter • Main Course • Dessert</p>
         
         {['Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace', 'Chef Wanjiku'].map(chefName => {
           const chefRecipes = allRecipes.filter(r => r.chef === chefName);
           return (
             <div key={chefName} style={{ marginBottom: '4rem' }}>
               <h2 style={{ color: '#10b981', marginBottom: '1.5rem', fontSize: '1.8rem', paddingBottom: '0.5rem', borderBottom: '3px solid #10b981' }}>
-                👨🍳 {chefName}'s Three-Course Menu {chefName === 'Chef Wanjiku' && <span style={{ fontSize: '1rem', background: '#fdba74', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>🇰🇪 Kenyan</span>}
+                👨🍳 {chefName}'s Three-Course Menu {chefName === 'Chef Wanjiku' && <span style={{ fontSize: '1rem', background: '#fdba74', color: '#000', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>🇰🇪 Kenyan</span>}
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                 {chefRecipes.map(recipe => (
@@ -48,21 +48,21 @@ const RecipesPage = () => {
                     key={recipe.id}
                     onClick={() => navigate(`/recipe/${recipe.id}`)}
                     style={{ 
-                      background: 'white',
+                      background: '#1a1a1a',
                       borderRadius: '16px',
                       overflow: 'hidden',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                      border: '2px solid #10b981',
+                      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+                      border: '2px solid #8b5cf6',
                       cursor: 'pointer',
                       transition: 'transform 0.3s, box-shadow 0.3s'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-8px)';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.3)';
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(16, 185, 129, 0.5)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.3)';
                     }}
                   >
                     <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
@@ -70,7 +70,7 @@ const RecipesPage = () => {
                       <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: recipe.course === 'Starter' ? '#fdba74' : recipe.course === 'Main Course' ? '#10b981' : '#8b5cf6', color: 'white', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', marginBottom: '0.75rem' }}>
                         {recipe.course}
                       </div>
-                      <h3 style={{ color: '#8b5cf6', margin: '0 0 0.75rem 0', fontSize: '1.2rem' }}>{recipe.name}</h3>
+                      <h3 style={{ color: '#fdba74', margin: '0 0 0.75rem 0', fontSize: '1.2rem' }}>{recipe.name}</h3>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ color: '#10b981', fontWeight: '600', fontSize: '0.9rem' }}>⏱️ {recipe.time}</span>
                         <span style={{ color: '#fdba74', fontWeight: '600' }}>{'⭐'.repeat(recipe.rating)}</span>
