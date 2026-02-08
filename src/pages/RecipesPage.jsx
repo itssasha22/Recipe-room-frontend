@@ -39,8 +39,8 @@ const RecipesPage = () => {
           const chefRecipes = allRecipes.filter(r => r.chef === chefName);
           return (
             <div key={chefName} style={{ marginBottom: '4rem' }}>
-              <h2 style={{ color: '#10b981', marginBottom: '1.5rem', fontSize: '1.8rem', paddingBottom: '0.5rem', borderBottom: '3px solid #10b981' }}>
-                👨🍳 {chefName}'s Three-Course Menu {chefName === 'Chef Wanjiku' && <span style={{ fontSize: '1rem', background: '#fdba74', color: '#000', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>🇰🇪 Kenyan</span>}
+              <h2 style={{ color: '#10b981', marginBottom: '1.5rem', fontSize: '1.8rem', paddingBottom: '0.5rem', borderBottom: '3px solid #10b981', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{ fontSize: '1.5rem' }}>{chefName}</span>'s Three-Course Menu {chefName === 'Chef Wanjiku' && <span style={{ fontSize: '1rem', background: '#fdba74', color: '#000', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>🇰🇪 Kenyan</span>}
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                 {chefRecipes.map(recipe => (

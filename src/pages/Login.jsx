@@ -26,15 +26,20 @@ const Login = () => {
 
   return (
     <div style={{ minHeight: '100vh', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div style={{ maxWidth: '450px', width: '100%', background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.5)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
+      <div style={{ maxWidth: '900px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.5)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
         
-        <div style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', padding: '2rem', textAlign: 'center', color: 'white' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🍽️</div>
-          <h2 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>Welcome Back!</h2>
-          <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>Login to continue your culinary journey</p>
+        <div style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Food" style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
+          <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', color: 'white' }}>
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🍽️</div>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>Recipe Room</h2>
+            <p style={{ fontSize: '1.1rem', opacity: 0.95 }}>Discover amazing recipes from chefs around the world</p>
+          </div>
         </div>
 
-        <div style={{ padding: '2rem' }}>
+        <div style={{ padding: '3rem 2rem' }}>
+          <h2 style={{ color: '#fdba74', fontSize: '1.8rem', marginBottom: '0.5rem' }}>Welcome Back!</h2>
+          <p style={{ color: '#aaa', marginBottom: '2rem' }}>Login to continue your culinary journey</p>
           {error && (
             <div style={{ background: '#fee2e2', border: '1px solid #fecaca', borderRadius: '8px', padding: '1rem', marginBottom: '1.5rem', color: '#991b1b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span>⚠️</span>
