@@ -26,7 +26,7 @@ const RecipesPage = () => {
     
     { id: 16, name: 'Samosas', chef: 'Chef Wanjiku', course: 'Starter', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
     { id: 17, name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', course: 'Main Course', time: '60 mins', rating: 5, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400' },
-    { id: 18, name: 'Kashata', chef: 'Chef Wanjiku', course: 'Dessert', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=400' }
+    { id: 18, name: 'Tropical Fruit Salad', chef: 'Chef Wanjiku', course: 'Dessert', time: '15 mins', rating: 5, image: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400' }
   ];
 
   return (
