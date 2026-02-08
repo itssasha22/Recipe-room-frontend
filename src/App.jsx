@@ -5,6 +5,7 @@ import Register from './pages/Register.jsx';
 import Profile from './pages/Profile.jsx';
 import RecipesPage from './pages/RecipesPage.jsx';
 import RecipeDetail from './pages/RecipeDetail.jsx';
+import CreateRecipe from './pages/CreateRecipe.jsx';
 
 function Home() {
   const featuredRecipes = [
@@ -158,6 +159,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/recipes" element={<RecipesPage />} />
           <Route path="/recipe/:id" element={<RecipeDetail />} />
+          <Route path="/create-recipe" element={<CreateRecipe />} />
         </Routes>
 
         <footer style={{ background: '#212529', color: 'white', padding: '3rem 2rem', marginTop: '4rem' }}>
