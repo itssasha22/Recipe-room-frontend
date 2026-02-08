@@ -41,12 +41,12 @@ const GroupDetail = () => {
       members: [
         { id: 13, name: 'Chef Wanjiku', role: 'Admin', avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100', recipes: 4 },
         { id: 14, name: 'Kamau Njoroge', role: 'Member', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100', recipes: 1 },
-        { id: 15, name: 'Akinyi Odhiambo', role: 'Member', avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100', recipes: 0 },
-        { id: 16, name: 'Mwangi Kariuki', role: 'Member', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100', recipes: 0 },
-        { id: 17, name: 'Njeri Wambui', role: 'Member', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100', recipes: 0 },
-        { id: 18, name: 'Otieno Omondi', role: 'Member', avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100', recipes: 0 },
-        { id: 19, name: 'Wangari Muthoni', role: 'Member', avatar: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100', recipes: 0 },
-        { id: 20, name: 'Kipchoge Kimani', role: 'Member', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100', recipes: 0 }
+        { id: 15, name: 'Akinyi Odhiambo', role: 'Member', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100', recipes: 0 },
+        { id: 16, name: 'Mwangi Kariuki', role: 'Member', avatar: 'https://images.unsplash.com/photo-1619194617062-5a83b0c4a92a?w=100', recipes: 0 },
+        { id: 17, name: 'Njeri Wambui', role: 'Member', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100', recipes: 0 },
+        { id: 18, name: 'Otieno Omondi', role: 'Member', avatar: 'https://images.unsplash.com/photo-1614644147798-f8c0fc9da7f6?w=100', recipes: 0 },
+        { id: 19, name: 'Wangari Muthoni', role: 'Member', avatar: 'https://images.unsplash.com/photo-1598550487031-0d6eaf2e4b4b?w=100', recipes: 0 },
+        { id: 20, name: 'Kipchoge Kimani', role: 'Member', avatar: 'https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?w=100', recipes: 0 }
       ],
       recipes: [
         { id: 16, name: 'Samosas', author: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
