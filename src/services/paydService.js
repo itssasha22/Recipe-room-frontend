@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-
-
+// Get PayD API key from environment variables
+// To get your API key: https://payd.com/developers/api-keys
 const PAYD_PUBLIC_KEY = import.meta.env.VITE_PAYD_PUBLIC_KEY || '';
-const API_URL = import.meta.env.VITE_API_URL || 'http:
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 const MOCK_MODE = !PAYD_PUBLIC_KEY;
 
 class PayDService {
   async initiatePayment(amount, description) {
-    
+    // Mock mode when API key is not configured
     if (MOCK_MODE) {
       console.warn('PayD API key not configured. Using mock payment.');
       return {
@@ -34,7 +34,7 @@ class PayDService {
   }
 
   async getPaymentStatus(paymentId) {
-    
+    // Mock mode
     if (MOCK_MODE) {
       return { status: 'completed', paymentId };
     }

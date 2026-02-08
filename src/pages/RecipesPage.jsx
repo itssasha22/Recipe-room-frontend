@@ -27,29 +27,29 @@ const RecipesPage = () => {
   };
 
   const allRecipes = [
-    { id: 1, name: 'Caesar Salad', chef: 'Chef Sarah', course: 'Starter', time: '15 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Romaine lettuce', 'Parmesan', 'Croutons'], image: 'https:
-    { id: 2, name: 'Spaghetti Carbonara', chef: 'Chef Sarah', course: 'Main Course', time: '30 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Spaghetti', 'Eggs', 'Pancetta'], image: 'https:
-    { id: 3, name: 'Tiramisu', chef: 'Chef Sarah', course: 'Dessert', time: '40 mins', rating: 5, servings: 6, country: 'Italy', ingredients: ['Mascarpone', 'Coffee', 'Ladyfingers'], image: 'https:
+    { id: 1, name: 'Caesar Salad', chef: 'Chef Sarah', course: 'Starter', time: '15 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Romaine lettuce', 'Parmesan', 'Croutons'], image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400', createdAt: '2024-01-15' },
+    { id: 2, name: 'Spaghetti Carbonara', chef: 'Chef Sarah', course: 'Main Course', time: '30 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Spaghetti', 'Eggs', 'Pancetta'], image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400', createdAt: '2024-01-16' },
+    { id: 3, name: 'Tiramisu', chef: 'Chef Sarah', course: 'Dessert', time: '40 mins', rating: 5, servings: 6, country: 'Italy', ingredients: ['Mascarpone', 'Coffee', 'Ladyfingers'], image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400', createdAt: '2024-01-17' },
     
-    { id: 4, name: 'French Onion Soup', chef: 'Chef John', course: 'Starter', time: '45 mins', rating: 5, servings: 4, country: 'France', ingredients: ['Onions', 'Beef broth', 'Gruyere'], image: 'https:
-    { id: 5, name: 'Beef Burger & Fries', chef: 'Chef John', course: 'Main Course', time: '35 mins', rating: 5, servings: 4, country: 'USA', ingredients: ['Beef', 'Buns', 'Potatoes'], image: 'https:
-    { id: 6, name: 'Chocolate Lava Cake', chef: 'Chef John', course: 'Dessert', time: '25 mins', rating: 5, servings: 4, country: 'France', ingredients: ['Chocolate', 'Butter', 'Eggs'], image: 'https:
+    { id: 4, name: 'French Onion Soup', chef: 'Chef John', course: 'Starter', time: '45 mins', rating: 5, servings: 4, country: 'France', ingredients: ['Onions', 'Beef broth', 'Gruyere'], image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400', createdAt: '2024-01-18' },
+    { id: 5, name: 'Beef Burger & Fries', chef: 'Chef John', course: 'Main Course', time: '35 mins', rating: 5, servings: 4, country: 'USA', ingredients: ['Beef', 'Buns', 'Potatoes'], image: 'https://images.unsplash.com/photo-1568901346375-23ac9450c58cd?w=400', createdAt: '2024-01-19' },
+    { id: 6, name: 'Chocolate Lava Cake', chef: 'Chef John', course: 'Dessert', time: '25 mins', rating: 5, servings: 4, country: 'France', ingredients: ['Chocolate', 'Butter', 'Eggs'], image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400', createdAt: '2024-01-20' },
     
-    { id: 7, name: 'Spring Rolls', chef: 'Chef Mary', course: 'Starter', time: '30 mins', rating: 4, servings: 6, country: 'Vietnam', ingredients: ['Rice paper', 'Shrimp', 'Vegetables'], image: 'https:
-    { id: 8, name: 'Chicken Fried Rice', chef: 'Chef Mary', course: 'Main Course', time: '25 mins', rating: 5, servings: 4, country: 'China', ingredients: ['Rice', 'Chicken', 'Soy sauce'], image: 'https:
-    { id: 9, name: 'Mango Sticky Rice', chef: 'Chef Mary', course: 'Dessert', time: '30 mins', rating: 5, servings: 4, country: 'Thailand', ingredients: ['Sticky rice', 'Mango', 'Coconut milk'], image: 'https:
+    { id: 7, name: 'Spring Rolls', chef: 'Chef Mary', course: 'Starter', time: '30 mins', rating: 4, servings: 6, country: 'Vietnam', ingredients: ['Rice paper', 'Shrimp', 'Vegetables'], image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400', createdAt: '2024-01-21' },
+    { id: 8, name: 'Chicken Fried Rice', chef: 'Chef Mary', course: 'Main Course', time: '25 mins', rating: 5, servings: 4, country: 'China', ingredients: ['Rice', 'Chicken', 'Soy sauce'], image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400', createdAt: '2024-01-22' },
+    { id: 9, name: 'Mango Sticky Rice', chef: 'Chef Mary', course: 'Dessert', time: '30 mins', rating: 5, servings: 4, country: 'Thailand', ingredients: ['Sticky rice', 'Mango', 'Coconut milk'], image: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=400', createdAt: '2024-01-23' },
     
-    { id: 10, name: 'Bruschetta', chef: 'Chef David', course: 'Starter', time: '20 mins', rating: 5, servings: 6, country: 'Italy', ingredients: ['Tomatoes', 'Basil', 'Bread'], image: 'https:
-    { id: 11, name: 'Margherita Pizza', chef: 'Chef David', course: 'Main Course', time: '40 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Dough', 'Mozzarella', 'Tomato sauce'], image: 'https:
-    { id: 12, name: 'Panna Cotta', chef: 'Chef David', course: 'Dessert', time: '35 mins', rating: 5, servings: 6, country: 'Italy', ingredients: ['Cream', 'Sugar', 'Gelatin'], image: 'https:
+    { id: 10, name: 'Bruschetta', chef: 'Chef David', course: 'Starter', time: '20 mins', rating: 5, servings: 6, country: 'Italy', ingredients: ['Tomatoes', 'Basil', 'Bread'], image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400', createdAt: '2024-01-24' },
+    { id: 11, name: 'Margherita Pizza', chef: 'Chef David', course: 'Main Course', time: '40 mins', rating: 5, servings: 4, country: 'Italy', ingredients: ['Dough', 'Mozzarella', 'Tomato sauce'], image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400', createdAt: '2024-01-25' },
+    { id: 12, name: 'Panna Cotta', chef: 'Chef David', course: 'Dessert', time: '35 mins', rating: 5, servings: 6, country: 'Italy', ingredients: ['Cream', 'Sugar', 'Gelatin'], image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400', createdAt: '2024-01-26' },
     
-    { id: 13, name: 'Chicken Tacos', chef: 'Chef Grace', course: 'Starter', time: '25 mins', rating: 5, servings: 4, country: 'Mexico', ingredients: ['Chicken', 'Tortillas', 'Salsa'], image: 'https:
-    { id: 14, name: 'Grilled Salmon', chef: 'Chef Grace', course: 'Main Course', time: '30 mins', rating: 5, servings: 4, country: 'Norway', ingredients: ['Salmon', 'Lemon', 'Dill'], image: 'https:
-    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, servings: 8, country: 'USA', ingredients: ['Cream cheese', 'Graham crackers', 'Sugar'], image: 'https:
+    { id: 13, name: 'Chicken Tacos', chef: 'Chef Grace', course: 'Starter', time: '25 mins', rating: 5, servings: 4, country: 'Mexico', ingredients: ['Chicken', 'Tortillas', 'Salsa'], image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400', createdAt: '2024-01-27' },
+    { id: 14, name: 'Grilled Salmon', chef: 'Chef Grace', course: 'Main Course', time: '30 mins', rating: 5, servings: 4, country: 'Norway', ingredients: ['Salmon', 'Lemon', 'Dill'], image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400', createdAt: '2024-01-28' },
+    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, servings: 8, country: 'USA', ingredients: ['Cream cheese', 'Graham crackers', 'Sugar'], image: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=400', createdAt: '2024-01-29' },
     
-    { id: 16, name: 'Samosas', chef: 'Chef Wanjiku', course: 'Starter', time: '40 mins', rating: 5, servings: 8, country: 'Kenya', ingredients: ['Flour', 'Potatoes', 'Peas'], image: 'https:
-    { id: 17, name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', course: 'Main Course', time: '60 mins', rating: 5, servings: 6, country: 'Kenya', ingredients: ['Goat meat', 'Maize flour', 'Salt'], image: 'https:
-    { id: 18, name: 'Tropical Fruit Salad', chef: 'Chef Wanjiku', course: 'Dessert', time: '15 mins', rating: 5, servings: 6, country: 'Kenya', ingredients: ['Pineapple', 'Mango', 'Papaya'], image: 'https:
+    { id: 16, name: 'Samosas', chef: 'Chef Wanjiku', course: 'Starter', time: '40 mins', rating: 5, servings: 8, country: 'Kenya', ingredients: ['Flour', 'Potatoes', 'Peas'], image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400', createdAt: '2024-01-30' },
+    { id: 17, name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', course: 'Main Course', time: '60 mins', rating: 5, servings: 6, country: 'Kenya', ingredients: ['Goat meat', 'Maize flour', 'Salt'], image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400', createdAt: '2024-01-31' },
+    { id: 18, name: 'Tropical Fruit Salad', chef: 'Chef Wanjiku', course: 'Dessert', time: '15 mins', rating: 5, servings: 6, country: 'Kenya', ingredients: ['Pineapple', 'Mango', 'Papaya'], image: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400', createdAt: '2024-02-01' }
   ];
 
   const filteredRecipes = allRecipes.filter(recipe => {

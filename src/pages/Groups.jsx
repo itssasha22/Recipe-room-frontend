@@ -7,10 +7,10 @@ const Groups = () => {
   const [newGroupName, setNewGroupName] = useState('');
 
   const groups = [
-    { id: 1, name: 'Italian Cuisine Lovers', members: 12, recipes: 8, image: 'https:
-    { id: 2, name: 'Kenyan Food Masters', members: 8, recipes: 5, image: 'https:
-    { id: 3, name: 'Dessert Enthusiasts', members: 15, recipes: 12, image: 'https:
-    { id: 4, name: 'Quick Meals', members: 20, recipes: 15, image: 'https:
+    { id: 1, name: 'Italian Cuisine Lovers', members: 12, recipes: 8, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400' },
+    { id: 2, name: 'Kenyan Food Masters', members: 8, recipes: 5, image: 'https://images.unsplash.com/photo-1604909052743-94e838986d24?w=400' },
+    { id: 3, name: 'Dessert Enthusiasts', members: 15, recipes: 12, image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400' },
+    { id: 4, name: 'Quick Meals', members: 20, recipes: 15, image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400' }
   ];
 
   const handleCreateGroup = () => {

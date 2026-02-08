@@ -7,24 +7,24 @@ const RecipeDetail = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   
   const recipes = {
-    1: { name: 'Caesar Salad', chef: 'Chef Sarah', time: '15 mins', servings: 4, rating: 5, image: 'https:
-    2: { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', time: '30 mins', servings: 4, rating: 5, image: 'https:
-    3: { name: 'Tiramisu', chef: 'Chef Sarah', time: '40 mins', servings: 6, rating: 5, image: 'https:
-    4: { name: 'French Onion Soup', chef: 'Chef John', time: '45 mins', servings: 4, rating: 5, image: 'https:
-    5: { name: 'Beef Burger & Fries', chef: 'Chef John', time: '35 mins', servings: 4, rating: 5, image: 'https:
-    6: { name: 'Chocolate Lava Cake', chef: 'Chef John', time: '25 mins', servings: 4, rating: 5, image: 'https:
-    7: { name: 'Spring Rolls', chef: 'Chef Mary', time: '30 mins', servings: 6, rating: 4, image: 'https:
-    8: { name: 'Chicken Fried Rice', chef: 'Chef Mary', time: '25 mins', servings: 4, rating: 5, image: 'https:
-    9: { name: 'Mango Sticky Rice', chef: 'Chef Mary', time: '30 mins', servings: 4, rating: 5, image: 'https:
-    10: { name: 'Bruschetta', chef: 'Chef David', time: '20 mins', servings: 6, rating: 5, image: 'https:
-    11: { name: 'Margherita Pizza', chef: 'Chef David', time: '40 mins', servings: 4, rating: 5, image: 'https:
-    12: { name: 'Panna Cotta', chef: 'Chef David', time: '35 mins', servings: 6, rating: 5, image: 'https:
-    13: { name: 'Chicken Tacos', chef: 'Chef Grace', time: '25 mins', servings: 4, rating: 5, image: 'https:
-    14: { name: 'Grilled Salmon', chef: 'Chef Grace', time: '30 mins', servings: 4, rating: 5, image: 'https:
-    15: { name: 'Cheesecake', chef: 'Chef Grace', time: '50 mins', servings: 8, rating: 5, image: 'https:
-    16: { name: 'Samosas', chef: 'Chef Wanjiku', time: '40 mins', servings: 8, rating: 5, image: 'https:
-    17: { name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', time: '60 mins', servings: 6, rating: 5, image: 'https:
-    18: { name: 'Tropical Fruit Salad', chef: 'Chef Wanjiku', time: '15 mins', servings: 6, rating: 5, image: 'https:
+    1: { name: 'Caesar Salad', chef: 'Chef Sarah', time: '15 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=800', ingredients: ['Romaine lettuce', 'Parmesan cheese', 'Croutons', 'Caesar dressing', 'Lemon', 'Black pepper'], steps: ['Wash and chop lettuce', 'Make Caesar dressing', 'Toss lettuce with dressing', 'Add croutons and parmesan', 'Serve immediately'] },
+    2: { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', time: '30 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800', ingredients: ['Spaghetti', 'Eggs', 'Parmesan', 'Pancetta', 'Black pepper', 'Salt'], steps: ['Boil pasta until al dente', 'Fry pancetta until crispy', 'Mix eggs with parmesan', 'Combine hot pasta with egg mixture', 'Add pancetta and serve'] },
+    3: { name: 'Tiramisu', chef: 'Chef Sarah', time: '40 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800', ingredients: ['Ladyfinger biscuits', 'Mascarpone', 'Eggs', 'Coffee', 'Cocoa powder', 'Sugar'], steps: ['Make coffee and let cool', 'Beat eggs with sugar', 'Mix in mascarpone', 'Dip biscuits in coffee', 'Layer biscuits and cream', 'Dust with cocoa powder'] },
+    4: { name: 'French Onion Soup', chef: 'Chef John', time: '45 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800', ingredients: ['Onions', 'Beef broth', 'Butter', 'Bread', 'Gruyere cheese', 'Thyme'], steps: ['Caramelize onions slowly', 'Add beef broth and simmer', 'Toast bread slices', 'Pour soup into bowls', 'Top with bread and cheese', 'Broil until cheese melts'] },
+    5: { name: 'Beef Burger & Fries', chef: 'Chef John', time: '35 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1568901346375-23ac9450c58cd?w=800', ingredients: ['Ground beef', 'Burger buns', 'Lettuce', 'Tomato', 'Cheese', 'Potatoes', 'Oil'], steps: ['Form beef into patties', 'Season with salt and pepper', 'Grill burgers to desired doneness', 'Cut potatoes into fries', 'Deep fry until golden', 'Assemble burgers and serve'] },
+    6: { name: 'Chocolate Lava Cake', chef: 'Chef John', time: '25 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800', ingredients: ['Dark chocolate', 'Butter', 'Eggs', 'Sugar', 'Flour', 'Vanilla'], steps: ['Melt chocolate and butter', 'Beat eggs with sugar', 'Fold in chocolate mixture', 'Add flour gently', 'Pour into ramekins', 'Bake until edges set'] },
+    7: { name: 'Spring Rolls', chef: 'Chef Mary', time: '30 mins', servings: 6, rating: 4, image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800', ingredients: ['Rice paper', 'Shrimp', 'Vegetables', 'Rice noodles', 'Mint', 'Dipping sauce'], steps: ['Cook shrimp and noodles', 'Prepare vegetables', 'Soak rice paper', 'Fill with ingredients', 'Roll tightly', 'Serve with sauce'] },
+    8: { name: 'Chicken Fried Rice', chef: 'Chef Mary', time: '25 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800', ingredients: ['Rice', 'Chicken', 'Eggs', 'Vegetables', 'Soy sauce', 'Garlic'], steps: ['Cook rice and let cool', 'Dice chicken and vegetables', 'Scramble eggs', 'Stir fry chicken', 'Add rice and vegetables', 'Season with soy sauce'] },
+    9: { name: 'Mango Sticky Rice', chef: 'Chef Mary', time: '30 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=800', ingredients: ['Sticky rice', 'Coconut milk', 'Sugar', 'Mango', 'Salt', 'Sesame seeds'], steps: ['Soak rice overnight', 'Steam rice until tender', 'Heat coconut milk with sugar', 'Mix rice with coconut milk', 'Slice fresh mango', 'Serve rice with mango'] },
+    10: { name: 'Bruschetta', chef: 'Chef David', time: '20 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=800', ingredients: ['Baguette', 'Tomatoes', 'Basil', 'Garlic', 'Olive oil', 'Balsamic'], steps: ['Slice and toast bread', 'Dice tomatoes', 'Chop fresh basil', 'Mix tomatoes with garlic', 'Top bread with mixture', 'Drizzle with olive oil'] },
+    11: { name: 'Margherita Pizza', chef: 'Chef David', time: '40 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800', ingredients: ['Pizza dough', 'Tomato sauce', 'Mozzarella', 'Basil', 'Olive oil', 'Salt'], steps: ['Roll out pizza dough', 'Spread tomato sauce', 'Add mozzarella slices', 'Bake at high heat', 'Add fresh basil', 'Drizzle with olive oil'] },
+    12: { name: 'Panna Cotta', chef: 'Chef David', time: '35 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800', ingredients: ['Heavy cream', 'Sugar', 'Vanilla', 'Gelatin', 'Berries', 'Mint'], steps: ['Heat cream with sugar', 'Add vanilla extract', 'Dissolve gelatin', 'Mix into cream', 'Pour into molds', 'Chill until set'] },
+    13: { name: 'Chicken Tacos', chef: 'Chef Grace', time: '25 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800', ingredients: ['Chicken', 'Tortillas', 'Lettuce', 'Cheese', 'Salsa', 'Sour cream'], steps: ['Season and cook chicken', 'Shred chicken', 'Warm tortillas', 'Fill with chicken', 'Add toppings', 'Serve with salsa'] },
+    14: { name: 'Grilled Salmon', chef: 'Chef Grace', time: '30 mins', servings: 4, rating: 5, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800', ingredients: ['Salmon fillets', 'Lemon', 'Dill', 'Garlic', 'Olive oil', 'Salt'], steps: ['Season salmon with salt', 'Marinate with lemon and dill', 'Preheat grill', 'Grill skin side down', 'Flip carefully', 'Serve with lemon wedges'] },
+    15: { name: 'Cheesecake', chef: 'Chef Grace', time: '50 mins', servings: 8, rating: 5, image: 'https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=800', ingredients: ['Cream cheese', 'Graham crackers', 'Sugar', 'Eggs', 'Vanilla', 'Butter'], steps: ['Make graham cracker crust', 'Beat cream cheese with sugar', 'Add eggs one at a time', 'Pour into crust', 'Bake in water bath', 'Chill overnight'] },
+    16: { name: 'Samosas', chef: 'Chef Wanjiku', time: '40 mins', servings: 8, rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800', ingredients: ['Flour', 'Minced meat', 'Potatoes', 'Peas', 'Spices', 'Oil'], steps: ['Make dough and rest', 'Cook filling with spices', 'Roll dough thin', 'Fill and fold samosas', 'Deep fry until golden', 'Serve hot'] },
+    17: { name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', time: '60 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', ingredients: ['Goat meat', 'Salt', 'Lemon', 'Maize flour', 'Water', 'Kachumbari'], steps: ['Season meat with salt', 'Grill over charcoal', 'Turn frequently', 'Boil water for ugali', 'Add flour and stir', 'Serve with kachumbari'] },
+    18: { name: 'Tropical Fruit Salad', chef: 'Chef Wanjiku', time: '15 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=800', ingredients: ['Pineapple', 'Mango', 'Papaya', 'Watermelon', 'Passion fruit', 'Lime juice', 'Mint leaves'], steps: ['Dice all fruits into bite-sized pieces', 'Mix fruits in a large bowl', 'Squeeze lime juice over fruits', 'Toss gently to combine', 'Garnish with fresh mint', 'Chill and serve'] }
   };
 
   const recipe = recipes[id] || recipes[1];
@@ -32,15 +32,15 @@ const RecipeDetail = () => {
   const recipeText = `Check out this amazing recipe: ${recipe.name}`;
 
   const shareOnFacebook = () => {
-    window.open(`https:
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(recipeUrl)}`, '_blank');
   };
 
   const shareOnTwitter = () => {
-    window.open(`https:
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(recipeText)}&url=${encodeURIComponent(recipeUrl)}`, '_blank');
   };
 
   const shareOnWhatsApp = () => {
-    window.open(`https:
+    window.open(`https://wa.me/?text=${encodeURIComponent(recipeText + ' ' + recipeUrl)}`, '_blank');
   };
 
   const toggleBookmark = () => {
