@@ -4,25 +4,25 @@ const RecipesPage = () => {
   const navigate = useNavigate();
   
   const recipes = [
-    { id: 1, name: 'Samosas', chef: 'Chef Sarah', course: 'Starter', time: '40 mins', rating: 4, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
-    { id: 2, name: 'Pilau Rice', chef: 'Chef Sarah', course: 'Main Course', time: '45 mins', rating: 5, image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99?w=400' },
-    { id: 3, name: 'Kheer (Rice Pudding)', chef: 'Chef Sarah', course: 'Dessert', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400' },
+    { id: 1, name: 'Caesar Salad', chef: 'Chef Sarah', course: 'Starter', time: '15 mins', rating: 5, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400' },
+    { id: 2, name: 'Spaghetti Carbonara', chef: 'Chef Sarah', course: 'Main Course', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400' },
+    { id: 3, name: 'Tiramisu', chef: 'Chef Sarah', course: 'Dessert', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400' },
     
-    { id: 4, name: 'Vegetable Soup', chef: 'Chef John', course: 'Starter', time: '25 mins', rating: 4, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400' },
-    { id: 5, name: 'Chapati & Curry', chef: 'Chef John', course: 'Main Course', time: '50 mins', rating: 5, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400' },
-    { id: 6, name: 'Gulab Jamun', chef: 'Chef John', course: 'Dessert', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400' },
+    { id: 4, name: 'French Onion Soup', chef: 'Chef John', course: 'Starter', time: '45 mins', rating: 5, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400' },
+    { id: 5, name: 'Beef Burger & Fries', chef: 'Chef John', course: 'Main Course', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400' },
+    { id: 6, name: 'Chocolate Lava Cake', chef: 'Chef John', course: 'Dessert', time: '25 mins', rating: 5, image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400' },
     
-    { id: 7, name: 'Kachumbari Salad', chef: 'Chef Mary', course: 'Starter', time: '15 mins', rating: 4, image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400' },
-    { id: 8, name: 'Ugali & Sukuma Wiki', chef: 'Chef Mary', course: 'Main Course', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400' },
-    { id: 9, name: 'Fruit Salad', chef: 'Chef Mary', course: 'Dessert', time: '20 mins', rating: 4, image: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400' },
+    { id: 7, name: 'Spring Rolls', chef: 'Chef Mary', course: 'Starter', time: '30 mins', rating: 4, image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400' },
+    { id: 8, name: 'Chicken Fried Rice', chef: 'Chef Mary', course: 'Main Course', time: '25 mins', rating: 5, image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400' },
+    { id: 9, name: 'Mango Sticky Rice', chef: 'Chef Mary', course: 'Dessert', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=400' },
     
-    { id: 10, name: 'Bhajia', chef: 'Chef David', course: 'Starter', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
-    { id: 11, name: 'Biryani', chef: 'Chef David', course: 'Main Course', time: '60 mins', rating: 5, image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400' },
-    { id: 12, name: 'Mandazi', chef: 'Chef David', course: 'Dessert', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400' },
+    { id: 10, name: 'Bruschetta', chef: 'Chef David', course: 'Starter', time: '20 mins', rating: 5, image: 'https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=400' },
+    { id: 11, name: 'Margherita Pizza', chef: 'Chef David', course: 'Main Course', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400' },
+    { id: 12, name: 'Panna Cotta', chef: 'Chef David', course: 'Dessert', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400' },
     
-    { id: 13, name: 'Chicken Wings', chef: 'Chef Grace', course: 'Starter', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400' },
-    { id: 14, name: 'Nyama Choma', chef: 'Chef Grace', course: 'Main Course', time: '60 mins', rating: 5, image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400' },
-    { id: 15, name: 'Ice Cream Sundae', chef: 'Chef Grace', course: 'Dessert', time: '10 mins', rating: 5, image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400' }
+    { id: 13, name: 'Chicken Tacos', chef: 'Chef Grace', course: 'Starter', time: '25 mins', rating: 5, image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400' },
+    { id: 14, name: 'Grilled Salmon', chef: 'Chef Grace', course: 'Main Course', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400' },
+    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, image: 'https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=400' }
   ];
 
   const chefs = ['Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace'];
@@ -31,7 +31,7 @@ const RecipesPage = () => {
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)', padding: '2rem' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h1 style={{ color: '#8b5cf6', fontSize: '2.5rem', marginBottom: '0.5rem' }}>Three-Course Meals</h1>
+          <h1 style={{ color: '#8b5cf6', fontSize: '2.5rem', marginBottom: '0.5rem' }}>Global Three-Course Meals</h1>
           <p style={{ color: '#666', fontSize: '1.1rem' }}>Starter • Main Course • Dessert</p>
         </div>
 
