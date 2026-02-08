@@ -1,13 +1,111 @@
+:root {
+  --violet: #8b5cf6;
+  --emerald: #10b981;
+  --light-orange: #fdba74;
+  --white: #ffffff;
+  --light-gray: #f9fafb;
+  --dark-text: #1f2937;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+  color: var(--dark-text);
+}
+
 .App {
-  text-align: center;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, var(--violet) 0%, var(--emerald) 100%);
+  color: var(--white);
   padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-  color: #333;
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
 header p {
-  color: #666;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+button, .btn-primary {
+  background: var(--emerald);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+button:hover, .btn-primary:hover {
+  background: var(--violet);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.btn-secondary {
+  background: var(--light-orange);
+  color: var(--dark-text);
+}
+
+.btn-secondary:hover {
+  background: var(--violet);
+  color: var(--white);
+}
+
+a {
+  color: var(--violet);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--emerald);
+}
+
+input, textarea, select {
+  border: 2px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--emerald);
+}
+
+.error {
+  border-color: #ef4444 !important;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
