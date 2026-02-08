@@ -56,7 +56,7 @@ const RecipesPage = () => {
     const matchesSearch = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCourse = selectedCourse === 'All' || recipe.course === selectedCourse;
     const matchesChef = selectedChef === 'All' || recipe.chef === selectedChef;
-    const matchesCountry = selectedCountry === 'All' || recipe.country === selectedCountry;
+    const matchesCountry = selectedCountry === 'All' || selectedCountry.includes(recipe.country);
     const matchesRating = recipe.rating >= minRating;
     const matchesServings = recipe.servings <= maxServings;
     const matchesIngredient = !searchIngredient || recipe.ingredients.some(ing => ing.toLowerCase().includes(searchIngredient.toLowerCase()));
@@ -65,7 +65,7 @@ const RecipesPage = () => {
 
   const chefs = ['All', 'Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace', 'Chef Wanjiku'];
   const courses = ['All', 'Starter', 'Main Course', 'Dessert'];
-  const countries = ['All', 'Italy', 'France', 'USA', 'China', 'Thailand', 'Vietnam', 'Mexico', 'Norway', 'Kenya'];
+  const countries = ['All', '🇮🇹 Italy', '🇫🇷 France', '🇺🇸 USA', '🇨🇳 China', '🇹🇭 Thailand', '🇻🇳 Vietnam', '🇲🇽 Mexico', '🇳🇴 Norway', '🇰🇪 Kenya'];
 
   return (
     <div style={{ padding: '2rem', background: '#2c2c2c', minHeight: '100vh' }}>
