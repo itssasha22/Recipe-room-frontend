@@ -9,7 +9,7 @@ import RecipeDetail from './pages/RecipeDetail.jsx';
 function Home() {
   const featuredRecipes = [
     { name: 'Spaghetti Carbonara', chef: 'Chef Sarah', image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600', time: '30 min', cuisine: 'Italian' },
-    { name: 'Beef Burger', chef: 'Chef John', image: 'https://images.unsplash.com/photo-1568901346375-23ac9450c58cd?w=600', time: '35 min', cuisine: 'American' },
+    { name: 'Beef Burger', chef: 'Chef John', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600', time: '35 min', cuisine: 'American' },
     { name: 'Chicken Fried Rice', chef: 'Chef Mary', image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600', time: '25 min', cuisine: 'Asian' },
     { name: 'Margherita Pizza', chef: 'Chef David', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600', time: '40 min', cuisine: 'Italian' },
     { name: 'Grilled Salmon', chef: 'Chef Grace', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600', time: '30 min', cuisine: 'International' },
@@ -137,15 +137,15 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header style={{ background: 'white', borderBottom: '1px solid #e9ecef', padding: '1rem 2rem', position: 'sticky', top: 0, zIndex: 100 }}>
+        <header style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)', borderBottom: '2px solid #8b5cf6', padding: '1rem 2rem', position: 'sticky', top: 0, zIndex: 100 }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link to="/" style={{ textDecoration: 'none', color: '#212529', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: '#fdba74', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '1.5rem' }}>🍽️</span>
               <span style={{ fontSize: '1.3rem', fontWeight: '700' }}>Recipe Room</span>
             </Link>
             <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-              <Link to="/recipes" style={{ color: '#6c757d', textDecoration: 'none', fontWeight: '500' }}>Recipes</Link>
-              <Link to="/login" style={{ color: '#6c757d', textDecoration: 'none', fontWeight: '500' }}>Login</Link>
+              <Link to="/recipes" style={{ color: '#aaa', textDecoration: 'none', fontWeight: '500' }}>Recipes</Link>
+              <Link to="/login" style={{ color: '#aaa', textDecoration: 'none', fontWeight: '500' }}>Login</Link>
               <Link to="/register" style={{ padding: '0.5rem 1.25rem', background: '#10b981', color: 'white', textDecoration: 'none', borderRadius: '6px', fontWeight: '500' }}>Sign Up</Link>
             </nav>
           </div>
