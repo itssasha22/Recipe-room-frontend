@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h2>Welcome to FlavorHub</h2>
+      <h2>Welcome to Recipe Room</h2>
       <p>Share and discover simple recipes</p>
       <div style={{ marginTop: '30px' }}>
         <Link to="/recipes" style={{ margin: '10px', padding: '10px 20px', background: '#007bff', color: 'white', textDecoration: 'none', borderRadius: '5px' }}>

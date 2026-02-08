@@ -38,7 +38,7 @@ const Register = () => {
         
         <div style={{ background: 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', padding: '2rem', textAlign: 'center', color: 'white' }}>
           <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🍽️</div>
-          <h2 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>Join FlavorHub</h2>
+          <h2 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>Join Recipe Room</h2>
           <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>Start sharing your culinary creations</p>
         </div>
 
