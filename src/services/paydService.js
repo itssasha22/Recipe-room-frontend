@@ -1,14 +1,29 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api';
+// Get PayD API key from environment variables
+// To get your API key: https://payd.com/developers/api-keys
+const PAYD_PUBLIC_KEY = import.meta.env.VITE_PAYD_PUBLIC_KEY || '';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const MOCK_MODE = !PAYD_PUBLIC_KEY;
 
 class PayDService {
   async initiatePayment(amount, description) {
+    // Mock mode when API key is not configured
+    if (MOCK_MODE) {
+      console.warn('PayD API key not configured. Using mock payment.');
+      return {
+        success: true,
+        paymentId: 'mock_' + Date.now(),
+        message: 'Mock payment initiated (configure VITE_PAYD_PUBLIC_KEY in .env)'
+      };
+    }
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(`${API_URL}/payments/initiate`, {
         amount,
-        description
+        description,
+        paydApiKey: PAYD_PUBLIC_KEY
       }, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -19,6 +34,11 @@ class PayDService {
   }
 
   async getPaymentStatus(paymentId) {
+    // Mock mode
+    if (MOCK_MODE) {
+      return { status: 'completed', paymentId };
+    }
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(`${API_URL}/payments/status/${paymentId}`, {

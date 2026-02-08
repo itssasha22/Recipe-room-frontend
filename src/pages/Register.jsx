@@ -7,62 +7,139 @@ const Register = () => {
     username: '',
     email: '',
     password: '',
+    confirmPassword: ''
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    
+    setLoading(true);
     try {
       await authService.register(formData);
       navigate('/login');
     } catch (err) {
       setError('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '2rem', background: 'white', borderRadius: '12px', border: '2px solid #10b981' }}>
-      <h2 style={{ color: '#8b5cf6', marginBottom: '1.5rem' }}>Register</h2>
-      {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '1rem' }}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={formData.username}
-            onChange={(e) => setFormData({...formData, username: e.target.value})}
-            required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #10b981' }}
-          />
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+      <div style={{ maxWidth: '450px', width: '100%', background: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', overflow: 'hidden', border: '2px solid #10b981' }}>
+        
+        <div style={{ background: 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', padding: '2rem', textAlign: 'center', color: 'white' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🍽️</div>
+          <h2 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>Join Recipe Room</h2>
+          <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>Start sharing your culinary creations</p>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #10b981' }}
-          />
+
+        <div style={{ padding: '2rem' }}>
+          {error && (
+            <div style={{ background: '#fee2e2', border: '1px solid #fecaca', borderRadius: '8px', padding: '1rem', marginBottom: '1.5rem', color: '#991b1b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span>⚠️</span>
+              <span>{error}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+                👤 Username
+              </label>
+              <input
+                type="text"
+                placeholder="Choose a username"
+                value={formData.username}
+                onChange={(e) => setFormData({...formData, username: e.target.value})}
+                required
+                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
+                onBlur={(e) => e.target.style.borderColor = '#10b981'}
+              />
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+                📧 Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                required
+                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
+                onBlur={(e) => e.target.style.borderColor = '#10b981'}
+              />
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+                🔒 Password
+              </label>
+              <input
+                type="password"
+                placeholder="Create a password"
+                value={formData.password}
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                required
+                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
+                onBlur={(e) => e.target.style.borderColor = '#10b981'}
+              />
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
+                🔒 Confirm Password
+              </label>
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                required
+                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
+                onBlur={(e) => e.target.style.borderColor = '#10b981'}
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={loading}
+              style={{ width: '100%', padding: '1rem', background: loading ? '#9ca3af' : 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: '600', cursor: loading ? 'not-allowed' : 'pointer', boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)', transition: 'transform 0.2s' }}
+              onMouseEnter={(e) => !loading && (e.target.style.transform = 'translateY(-2px)')}
+              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+              {loading ? '🔄 Creating Account...' : '🚀 Create Account'}
+            </button>
+          </form>
+
+          <div style={{ marginTop: '1.5rem', textAlign: 'center', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
+            <p style={{ color: '#666', marginBottom: '0.5rem' }}>Already have an account?</p>
+            <Link to="/login" style={{ color: '#8b5cf6', textDecoration: 'none', fontWeight: '600', fontSize: '1.05rem' }}>
+              Login →
+            </Link>
+          </div>
+
+          <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+            <Link to="/" style={{ color: '#10b981', textDecoration: 'none', fontSize: '0.9rem' }}>
+              ← Back to Home
+            </Link>
+          </div>
         </div>
-        <div style={{ marginBottom: '1rem' }}>
-          <input
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-            required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #10b981' }}
-          />
-        </div>
-        <button type="submit" style={{ width: '100%', padding: '0.75rem', background: '#10b981', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
-          Register
-        </button>
-      </form>
-      <p style={{ marginTop: '1rem', textAlign: 'center' }}>
-        Already have an account? <Link to="/login" style={{ color: '#8b5cf6' }}>Login</Link>
-      </p>
+      </div>
     </div>
   );
 };
