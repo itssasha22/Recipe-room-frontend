@@ -22,10 +22,14 @@ const RecipesPage = () => {
     
     { id: 13, name: 'Chicken Tacos', chef: 'Chef Grace', course: 'Starter', time: '25 mins', rating: 5, image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400' },
     { id: 14, name: 'Grilled Salmon', chef: 'Chef Grace', course: 'Main Course', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400' },
-    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, image: 'https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=400' }
+    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, image: 'https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=400' },
+    
+    { id: 16, name: 'Samosas', chef: 'Chef Wanjiku', course: 'Starter', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
+    { id: 17, name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', course: 'Main Course', time: '60 mins', rating: 5, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400' },
+    { id: 18, name: 'Mandazi', chef: 'Chef Wanjiku', course: 'Dessert', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400' }
   ];
 
-  const chefs = ['Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace'];
+  const chefs = ['Chef Sarah', 'Chef John', 'Chef Mary', 'Chef David', 'Chef Grace', 'Chef Wanjiku'];
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)', padding: '2rem' }}>
@@ -38,7 +42,7 @@ const RecipesPage = () => {
         {chefs.map((chef) => (
           <div key={chef} style={{ marginBottom: '4rem' }}>
             <h2 style={{ color: '#10b981', fontSize: '1.8rem', marginBottom: '1.5rem', paddingBottom: '0.5rem', borderBottom: '3px solid #10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              👨🍳 {chef}'s Three-Course Menu
+              👨🍳 {chef}'s Three-Course Menu {chef === 'Chef Wanjiku' && <span style={{ fontSize: '1rem', background: '#fdba74', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '20px' }}>🇰🇪 Kenyan</span>}
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
               {recipes.filter(r => r.chef === chef).map((recipe) => (
