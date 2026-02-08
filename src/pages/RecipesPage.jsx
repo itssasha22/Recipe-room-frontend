@@ -53,12 +53,12 @@ const RecipesPage = () => {
   const countries = ['All', 'Italy', 'France', 'USA', 'China', 'Thailand', 'Vietnam', 'Mexico', 'Norway', 'Kenya'];
 
   return (
-    <div style={{ padding: '2rem', background: '#000', minHeight: '100vh' }}>
+    <div style={{ padding: '2rem', background: '#2c2c2c', minHeight: '100vh' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <h1 style={{ color: '#fdba74', textAlign: 'center', marginBottom: '0.5rem', fontSize: '2.5rem' }}>Global Recipe Collection</h1>
         <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '2rem', fontSize: '1.1rem' }}>Search, Filter & Discover Amazing Recipes</p>
         
-        <div style={{ background: '#1a1a1a', padding: '1.5rem', borderRadius: '12px', marginBottom: '3rem', border: '2px solid #8b5cf6' }}>
+        <div style={{ background: '#1e1e1e', padding: '1.5rem', borderRadius: '12px', marginBottom: '3rem', border: '2px solid #8b5cf6' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
             <div>
               <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>🔍 Search Name</label>
@@ -160,7 +160,7 @@ const RecipesPage = () => {
                 key={recipe.id}
                 onClick={() => navigate(`/recipe/${recipe.id}`)}
                 style={{ 
-                  background: '#1a1a1a',
+                  background: '#1e1e1e',
                   borderRadius: '16px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',

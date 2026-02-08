@@ -22,7 +22,7 @@ const Groups = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000', padding: '2rem' }}>
+    <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <div>
@@ -40,7 +40,7 @@ const Groups = () => {
               key={group.id}
               onClick={() => navigate(`/group/${group.id}`)}
               style={{ 
-                background: '#1a1a1a',
+                background: '#1e1e1e',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 border: '2px solid #8b5cf6',
@@ -68,7 +68,7 @@ const Groups = () => {
 
         {showCreateModal && (
           <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-            <div style={{ background: '#1a1a1a', padding: '2rem', borderRadius: '16px', border: '2px solid #8b5cf6', maxWidth: '500px', width: '90%' }}>
+            <div style={{ background: '#1e1e1e', padding: '2rem', borderRadius: '16px', border: '2px solid #8b5cf6', maxWidth: '500px', width: '90%' }}>
               <h2 style={{ color: '#fdba74', marginBottom: '1.5rem' }}>Create New Group</h2>
               <input
                 type="text"

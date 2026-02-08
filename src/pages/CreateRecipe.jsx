@@ -62,12 +62,12 @@ const CreateRecipe = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000', padding: '2rem' }}>
+    <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1 style={{ color: '#fdba74', marginBottom: '0.5rem', fontSize: '2.5rem' }}>Create New Recipe</h1>
         <p style={{ color: '#aaa', marginBottom: '2rem' }}>Share your culinary creation with the world</p>
 
-        <form onSubmit={handleSubmit} style={{ background: '#1a1a1a', padding: '2rem', borderRadius: '16px', border: '2px solid #8b5cf6' }}>
+        <form onSubmit={handleSubmit} style={{ background: '#1e1e1e', padding: '2rem', borderRadius: '16px', border: '2px solid #8b5cf6' }}>
           
           <div style={{ marginBottom: '1.5rem' }}>
             <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>Recipe Name *</label>

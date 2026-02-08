@@ -31,10 +31,10 @@ const Profile = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000', padding: '2rem' }}>
+    <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         
-        <div style={{ background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6', marginBottom: '2rem' }}>
+        <div style={{ background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6', marginBottom: '2rem' }}>
           <div style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)', height: '150px', position: 'relative' }}>
             <div style={{ position: 'absolute', bottom: '-50px', left: '2rem', width: '120px', height: '120px', borderRadius: '50%', border: '5px solid #fdba74', background: 'url(https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=200) center/cover', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}></div>
           </div>
@@ -83,7 +83,7 @@ const Profile = () => {
                 <textarea
                   value={profileData.bio}
                   onChange={(e) => setProfileData({...profileData, bio: e.target.value})}
-                  style={{ width: '100%', padding: '0.75rem', border: '2px solid #10b981', borderRadius: '8px', fontSize: '1rem', minHeight: '80px', background: '#1a1a1a', color: 'white' }}
+                  style={{ width: '100%', padding: '0.75rem', border: '2px solid #10b981', borderRadius: '8px', fontSize: '1rem', minHeight: '80px', background: '#1e1e1e', color: 'white' }}
                   placeholder="Tell us about yourself..."
                 />
               ) : (
@@ -110,7 +110,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <div style={{ background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(16, 185, 129, 0.3)', padding: '2rem', border: '2px solid #10b981', marginBottom: '2rem' }}>
+        <div style={{ background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(16, 185, 129, 0.3)', padding: '2rem', border: '2px solid #10b981', marginBottom: '2rem' }}>
           <h3 style={{ color: '#fdba74', marginBottom: '1.5rem', fontSize: '1.5rem' }}>My Recent Recipes</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
             {myRecipes.map((recipe, idx) => (

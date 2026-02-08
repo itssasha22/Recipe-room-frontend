@@ -56,7 +56,7 @@ const RecipeDetail = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#000', padding: '2rem' }}>
+    <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
           <Link to="/recipes" style={{ color: '#fdba74', textDecoration: 'none', fontWeight: '600' }}>
@@ -75,7 +75,7 @@ const RecipeDetail = () => {
           </div>
         </div>
 
-        <div style={{ background: '#1a1a1a', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
+        <div style={{ background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
           <img src={recipe.image} alt={recipe.name} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
           
           <div style={{ padding: '3rem 2rem', textAlign: 'center', background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)' }}>
