@@ -26,7 +26,7 @@ const RecipeDetail = () => {
     
     16: { name: 'Samosas', chef: 'Chef Wanjiku', time: '40 mins', servings: 8, rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800', ingredients: ['Flour', 'Minced meat', 'Potatoes', 'Peas', 'Spices', 'Oil'], steps: ['Make dough and rest', 'Cook filling with spices', 'Roll dough thin', 'Fill and fold samosas', 'Deep fry until golden', 'Serve hot'] },
     17: { name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', time: '60 mins', servings: 6, rating: 5, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800', ingredients: ['Goat meat', 'Salt', 'Lemon', 'Maize flour', 'Water', 'Kachumbari'], steps: ['Season meat with salt', 'Grill over charcoal', 'Turn frequently', 'Boil water for ugali', 'Add flour and stir', 'Serve with kachumbari'] },
-    18: { name: 'Mandazi', chef: 'Chef Wanjiku', time: '35 mins', servings: 10, rating: 5, image: 'https://images.unsplash.com/photo-1612182062631-c6f5f2e0d6c3?w=800', ingredients: ['Flour', 'Sugar', 'Coconut milk', 'Yeast', 'Cardamom', 'Oil'], steps: ['Mix dry ingredients', 'Add coconut milk', 'Knead dough', 'Let rise 30 minutes', 'Cut into triangles', 'Deep fry until golden'] }
+    18: { name: 'Kashata', chef: 'Chef Wanjiku', time: '30 mins', servings: 12, rating: 5, image: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=800', ingredients: ['Grated coconut', 'Sugar', 'Water', 'Cardamom', 'Food coloring (optional)'], steps: ['Mix sugar and water in pan', 'Heat until sugar dissolves', 'Add grated coconut', 'Stir continuously until thick', 'Add cardamom', 'Pour into greased tray and cut into squares'] }
   };
 
   const recipe = recipes[id] || recipes[1];

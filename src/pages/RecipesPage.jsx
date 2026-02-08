@@ -22,11 +22,11 @@ const RecipesPage = () => {
     
     { id: 13, name: 'Chicken Tacos', chef: 'Chef Grace', course: 'Starter', time: '25 mins', rating: 5, image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400' },
     { id: 14, name: 'Grilled Salmon', chef: 'Chef Grace', course: 'Main Course', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400' },
-    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, image: 'https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=400' },
+    { id: 15, name: 'Cheesecake', chef: 'Chef Grace', course: 'Dessert', time: '50 mins', rating: 5, image: 'https://images.unsplash.com/photo-1508737027454-e6454ef45afd?w=400' },
     
     { id: 16, name: 'Samosas', chef: 'Chef Wanjiku', course: 'Starter', time: '40 mins', rating: 5, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
     { id: 17, name: 'Nyama Choma & Ugali', chef: 'Chef Wanjiku', course: 'Main Course', time: '60 mins', rating: 5, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400' },
-    { id: 18, name: 'Mandazi', chef: 'Chef Wanjiku', course: 'Dessert', time: '35 mins', rating: 5, image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400' }
+    { id: 18, name: 'Kashata', chef: 'Chef Wanjiku', course: 'Dessert', time: '30 mins', rating: 5, image: 'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=400' }
   ];
 
   return (
