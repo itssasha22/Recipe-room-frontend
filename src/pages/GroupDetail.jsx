@@ -52,7 +52,7 @@ const GroupDetail = () => {
         { id: 16, name: 'Samosas', author: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400' },
         { id: 17, name: 'Nyama Choma & Ugali', author: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400' },
         { id: 18, name: 'Tropical Fruit Salad', author: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400' },
-        { id: 21, name: 'Chapati', author: 'Kamau Njoroge', image: 'https://images.unsplash.com/photo-1593759608136-45eb2ad9507d?w=400' },
+        { id: 21, name: 'Chapati', author: 'Kamau Njoroge', image: 'https://images.unsplash.com/photo-1619221882018-04f8f7539bc9?w=400' },
         { id: 22, name: 'Githeri', author: 'Chef Wanjiku', image: 'https://images.unsplash.com/photo-1587486937736-e7c6b76da0e9?w=400' }
       ]
     },
