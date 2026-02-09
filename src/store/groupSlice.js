@@ -1,19 +1,8 @@
-/**
- * Recipe-Room Frontend - Group Recipe Redux Slice
- * Author: Alex Maingi
- * Role: Recipes CRUD & Group Recipes
- * 
- * Redux Toolkit slice for managing group recipe collaboration.
- */
-
+//Redux Toolkit slice for managing group recipe collaboration.
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
-
-// ============================================================================
-// ASYNC THUNKS - Group Operations
-// ============================================================================
 
 /**
  * Fetch all groups the current user belongs to
@@ -34,9 +23,7 @@ export const fetchUserGroups = createAsyncThunk(
     }
 );
 
-/**
- * Fetch single group by ID
- */
+//Fetch single group by ID
 export const fetchGroupById = createAsyncThunk(
     'groups/fetchGroupById',
     async (groupId, { rejectWithValue, getState }) => {
@@ -53,9 +40,7 @@ export const fetchGroupById = createAsyncThunk(
     }
 );
 
-/**
- * Create a new group
- */
+//create 
 export const createGroup = createAsyncThunk(
     'groups/createGroup',
     async (groupData, { rejectWithValue, getState }) => {
@@ -79,9 +64,7 @@ export const createGroup = createAsyncThunk(
     }
 );
 
-/**
- * Update group details
- */
+//update
 export const updateGroup = createAsyncThunk(
     'groups/updateGroup',
     async ({ groupId, updates }, { rejectWithValue, getState }) => {
@@ -105,9 +88,7 @@ export const updateGroup = createAsyncThunk(
     }
 );
 
-/**
- * Delete a group
- */
+//delete
 export const deleteGroup = createAsyncThunk(
     'groups/deleteGroup',
     async (groupId, { rejectWithValue, getState }) => {
@@ -150,9 +131,7 @@ export const addGroupMember = createAsyncThunk(
     }
 );
 
-/**
- * Remove member from group
- */
+//remove a member
 export const removeGroupMember = createAsyncThunk(
     'groups/removeMember',
     async ({ groupId, userId }, { rejectWithValue, getState }) => {
@@ -172,9 +151,7 @@ export const removeGroupMember = createAsyncThunk(
     }
 );
 
-/**
- * Fetch recipes for a specific group
- */
+//fetch
 export const fetchGroupRecipes = createAsyncThunk(
     'groups/fetchGroupRecipes',
     async (groupId, { rejectWithValue, getState }) => {
@@ -194,9 +171,7 @@ export const fetchGroupRecipes = createAsyncThunk(
     }
 );
 
-/**
- * Add recipe to group
- */
+//Add
 export const addRecipeToGroup = createAsyncThunk(
     'groups/addRecipeToGroup',
     async ({ groupId, recipeId }, { rejectWithValue, getState }) => {
@@ -217,9 +192,7 @@ export const addRecipeToGroup = createAsyncThunk(
     }
 );
 
-/**
- * Remove recipe from group
- */
+//rmov rcipe
 export const removeRecipeFromGroup = createAsyncThunk(
     'groups/removeRecipeFromGroup',
     async ({ groupId, recipeId }, { rejectWithValue, getState }) => {
@@ -239,10 +212,7 @@ export const removeRecipeFromGroup = createAsyncThunk(
     }
 );
 
-// ============================================================================
-// SLICE DEFINITION
-// ============================================================================
-
+//Slice 
 const initialState = {
     // Group data
     groups: [],
@@ -298,9 +268,7 @@ const groupSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // ========================================================================
-        // FETCH USER GROUPS
-        // ========================================================================
+        //fetch user groups
         builder.addCase(fetchUserGroups.pending, (state) => {
             state.loading.fetchGroups = true;
             state.error.fetchGroups = null;
@@ -314,9 +282,7 @@ const groupSlice = createSlice({
             state.error.fetchGroups = action.payload?.message || 'Failed to load groups';
         });
 
-        // ========================================================================
-        // FETCH SINGLE GROUP
-        // ========================================================================
+        //fetch single group
         builder.addCase(fetchGroupById.pending, (state) => {
             state.loading.fetchGroup = true;
             state.error.fetchGroup = null;
@@ -330,9 +296,7 @@ const groupSlice = createSlice({
             state.error.fetchGroup = action.payload?.message || 'Group not found';
         });
 
-        // ========================================================================
-        // CREATE GROUP
-        // ========================================================================
+        // create
         builder.addCase(createGroup.pending, (state) => {
             state.loading.createGroup = true;
             state.error.createGroup = null;
@@ -347,9 +311,7 @@ const groupSlice = createSlice({
             state.error.createGroup = action.payload?.message || 'Failed to create group';
         });
 
-        // ========================================================================
-        // UPDATE GROUP
-        // ========================================================================
+        // update
         builder.addCase(updateGroup.pending, (state) => {
             state.loading.updateGroup = true;
             state.error.updateGroup = null;
@@ -371,9 +333,7 @@ const groupSlice = createSlice({
             state.error.updateGroup = action.payload?.message || 'Failed to update group';
         });
 
-        // ========================================================================
-        // DELETE GROUP
-        // ========================================================================
+        //Delete
         builder.addCase(deleteGroup.pending, (state) => {
             state.loading.deleteGroup = true;
             state.error.deleteGroup = null;
@@ -391,9 +351,7 @@ const groupSlice = createSlice({
             state.error.deleteGroup = action.payload?.message || 'Failed to delete group';
         });
 
-        // ========================================================================
-        // ADD MEMBER
-        // ========================================================================
+        // ADD Member
         builder.addCase(addGroupMember.pending, (state) => {
             state.loading.addMember = true;
             state.error.addMember = null;
@@ -415,9 +373,7 @@ const groupSlice = createSlice({
             state.error.addMember = action.payload?.message || 'Failed to add member';
         });
 
-        // ========================================================================
-        // REMOVE MEMBER
-        // ========================================================================
+        // Remove member
         builder.addCase(removeGroupMember.pending, (state) => {
             state.loading.removeMember = true;
             state.error.removeMember = null;
@@ -430,9 +386,7 @@ const groupSlice = createSlice({
             state.error.removeMember = action.payload?.message || 'Failed to remove member';
         });
 
-        // ========================================================================
-        // FETCH GROUP RECIPES
-        // ========================================================================
+        // fetch group
         builder.addCase(fetchGroupRecipes.pending, (state) => {
             state.loading.fetchRecipes = true;
             state.error.fetchRecipes = null;
