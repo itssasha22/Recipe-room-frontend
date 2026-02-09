@@ -1,13 +1,59 @@
 .App {
-  text-align: center;
-  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header h1 {
-  color: #333;
-  margin-bottom: 0.5rem;
+main {
+  flex: 1;
+  padding-top: 80px; /* Account for fixed header */
 }
 
-header p {
-  color: #666;
+/* Loading animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  main {
+    padding-top: 70px;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
+/* Error states */
+.error-message {
+  background: #fee;
+  color: #c53030;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid #fed7d7;
+  margin: 1rem 0;
+}
+
+.success-message {
+  background: #f0fff4;
+  color: #22543d;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid #c6f6d5;
+  margin: 1rem 0;
 }
