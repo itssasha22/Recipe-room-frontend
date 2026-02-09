@@ -144,7 +144,7 @@ function App() {
           <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Link to="/" style={{ textDecoration: 'none', color: '#fdba74', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <span style={{ fontSize: '1.5rem' }}>🍽️</span>
-              <span style={{ fontSize: '1.3rem', fontWeight: '700' }}>Recipe Room</span>
+              <span style={{ fontSize: '1.3rem', fontWeight: '700' }}>FlavorHub</span>
             </Link>
             <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
               <Link to="/recipes" style={{ color: '#aaa', textDecoration: 'none', fontWeight: '500' }}>Recipes</Link>
@@ -169,8 +169,8 @@ function App() {
 
         <footer style={{ background: '#212529', color: 'white', padding: '3rem 2rem', marginTop: '4rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-            <p style={{ marginBottom: '1rem', fontSize: '1.1rem', fontWeight: '600' }}>Recipe Room</p>
-            <p style={{ color: '#adb5bd', fontSize: '0.9rem' }}>© 2024 Recipe Room. All rights reserved.</p>
+            <p style={{ marginBottom: '1rem', fontSize: '1.1rem', fontWeight: '600' }}>FlavorHub</p>
+            <p style={{ color: '#adb5bd', fontSize: '0.9rem' }}>© 2024 FlavorHub. All rights reserved.</p>
           </div>
         </footer>
       </div>

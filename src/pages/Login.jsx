@@ -32,7 +32,7 @@ const Login = () => {
           <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Food" style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
           <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', color: 'white' }}>
             <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🍽️</div>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>Recipe Room</h2>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>FlavorHub</h2>
             <p style={{ fontSize: '1.1rem', opacity: 0.95 }}>Discover amazing recipes from chefs around the world</p>
           </div>
         </div>
