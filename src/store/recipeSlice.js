@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Base API URL (configure based on environment)
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
-// ASYNC THUNKS - API calls
+// ASYNC  - API calls
 //etch all recipes with pagination
 export const fetchRecipes = createAsyncThunk(
     'recipes/fetchRecipes',
@@ -177,7 +177,6 @@ const recipeSlice = createSlice({
         clearCurrentRecipe: (state) => {
             state.currentRecipe = null;
         },
-
         //to update filter state
         setFilters: (state, action) => {
             state.filters = { ...state.filters, ...action.payload };
@@ -202,9 +201,7 @@ const recipeSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // ========================================================================
-        // FETCH ALL RECIPES
-        // ========================================================================
+        //ftch all recipe
         builder.addCase(fetchRecipes.pending, (state) => {
             state.loading.fetchAll = true;
             state.error.fetchAll = null;
@@ -219,9 +216,7 @@ const recipeSlice = createSlice({
             state.error.fetchAll = action.payload?.message || 'Failed to load recipes';
         });
 
-        // ========================================================================
-        // FETCH SINGLE RECIPE
-        // ========================================================================
+        // fetch only one recipe
         builder.addCase(fetchRecipeById.pending, (state) => {
             state.loading.fetchSingle = true;
             state.error.fetchSingle = null;
