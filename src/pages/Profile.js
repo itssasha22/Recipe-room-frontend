@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector, useDispath } from 'react-redux';
-import {fetchUserProfile} from '../store/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {fetchUserProfile, logout} from '../store/authSlice';
 import axios from 'axios';
 
 const Profile = () => {
     const {user} = useSelector((state) => state.auth);
-    const dispatch = useDispath();
+    const dispatch = useDispatch();
     const [editing, setEditing] = useState(false);
     const [profileData, setProfileData] = useState({
         name: '',
@@ -34,7 +34,7 @@ const Profile = () => {
           { profile_image: reader.result },
           { headers: { Authorization: `Bearer ${token}` }}
         );
-        dispatch(getProfile());
+        dispatch(fetchUserProfile());
       };
       reader.readAsDataURL(file);
     }
@@ -43,10 +43,10 @@ const Profile = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    await axios.put('http://localhost:5000/profile', formData, {
+    await axios.put('http://localhost:5000/profile', profileData, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    dispatch(getProfile());
+    dispatch(fetchUserProfile());
     setEditing(false);
   };
 
@@ -61,13 +61,13 @@ const Profile = () => {
         <form onSubmit={handleUpdate}>
           <input
             type="text"
-            value={formData.username}
-            onChange={(e) => setFormData({...formData, username: e.target.value})}
+            value={profileData.name}
+            onChange={(e) => setProfileData({...profileData, name: e.target.value})}
           />
           <input
             type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            value={profileData.email}
+            onChange={(e) => setProfileData({...profileData, email: e.target.value})}
           />
           <button type="submit">Save</button>
           <button type="button" onClick={() => setEditing(false)}>Cancel</button>
