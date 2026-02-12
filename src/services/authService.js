@@ -3,6 +3,22 @@ import { API_BASE_URL, API_ENDPOINTS } from '../config/api.config';
 
 const API_URL = API_BASE_URL;
 
+// Add response interceptor to handle 422 errors (invalid token)
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 422 && error.config.url.includes('/auth/profile')) {
+      // Invalid token - clear it and redirect only if not already on login page
+      const currentPath = window.location.pathname;
+      if (currentPath !== '/login' && currentPath !== '/register') {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 const authService = {
   login: async (credentials) => {
     const response = await axios.post(`${API_URL}/auth/login`, credentials);
@@ -21,6 +37,9 @@ const authService = {
 
   getProfile: async () => {
     const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No token found');
+    }
     const response = await axios.get(`${API_URL}/auth/profile`, {
       headers: { Authorization: `Bearer ${token}` }
     });
