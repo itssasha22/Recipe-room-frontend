@@ -11,6 +11,8 @@ import CreateRecipe from './pages/CreateRecipe.jsx';
 import Groups from './pages/Groups.jsx';
 import GroupDetail from './pages/GroupDetail.jsx';
 import Bookmarks from './pages/Bookmarks.jsx';
+import PremiumRecipes from './pages/PremiumRecipes.jsx';
+import PaymentSuccess from './pages/PaymentSuccess.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import authService from './services/authService';
 
@@ -42,6 +44,7 @@ function Header() {
           {isLoggedIn ? (
             <>
               <li><Link to="/recipes" className="nav-link">Recipes</Link></li>
+              <li><Link to="/premium" className="nav-link">Premium</Link></li>
               <li><Link to="/create-recipe" className="nav-link">Share Recipe</Link></li>
               <li><Link to="/bookmarks" className="nav-link">My Saved</Link></li>
               <li><Link to="/profile" className="nav-link">Profile</Link></li>
@@ -152,6 +155,15 @@ function App() {
                 </ProtectedRoute>
               } 
             />
+            <Route 
+              path="/premium" 
+              element={
+                <ProtectedRoute>
+                  <PremiumRecipes />
+                </ProtectedRoute>
+              } 
+            />
+            <Route path="/payment/success" element={<PaymentSuccess />} />
           </Routes>
         </main>
         <Footer />
