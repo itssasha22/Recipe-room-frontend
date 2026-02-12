@@ -1,111 +1,260 @@
-:root {
-  --violet: #8b5cf6;
-  --emerald: #10b981;
-  --light-orange: #fdba74;
-  --white: #ffffff;
-  --light-gray: #f9fafb;
-  --dark-text: #1f2937;
-}
-
+/* Base styles - clean slate for food-focused design */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  /* Color palette inspired by fresh ingredients */
+  --spice-orange: #ff6b35;
+  --cream-white: #fff8f0;
+  --herb-green: #2d6a4f;
+  --tomato-red: #e63946;
+  --golden-yellow: #fcbf49;
+  --charcoal-black: #1a1a1a;
+  --stone-gray: #6c757d;
+  --pure-white: #ffffff;
+  --olive-green: #52796f;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
-  color: var(--dark-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--cream-white);
+  color: var(--charcoal-black);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
 .App {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream-white);
 }
 
-header {
-  background: linear-gradient(135deg, var(--violet) 0%, var(--emerald) 100%);
-  color: var(--white);
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Typography */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
 }
 
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--charcoal-black);
 }
 
-header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-button, .btn-primary {
-  background: var(--emerald);
-  color: var(--white);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s;
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
 }
 
-button:hover, .btn-primary:hover {
-  background: var(--violet);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+p {
+  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+  color: var(--charcoal-black);
 }
 
-.btn-secondary {
-  background: var(--light-orange);
-  color: var(--dark-text);
-}
-
-.btn-secondary:hover {
-  background: var(--violet);
-  color: var(--white);
-}
-
+/* Links */
 a {
-  color: var(--violet);
+  color: var(--spice-orange);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.25s ease;
 }
 
 a:hover {
-  color: var(--emerald);
+  color: var(--tomato-red);
 }
 
-input, textarea, select {
-  border: 2px solid var(--light-gray);
+/* Button styles with personality */
+button, .btn-primary {
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
   border-radius: 8px;
-  padding: 10px;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  background: linear-gradient(135deg, var(--spice-orange), var(--tomato-red));
+  color: white;
+}
+
+button:hover, .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+button:active, .btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--herb-green);
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--spice-orange);
+  color: var(--spice-orange);
+}
+
+/* Form elements */
+input, textarea, select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  background: white;
 }
 
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: var(--violet);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  border-color: var(--spice-orange);
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
 }
 
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--charcoal-black);
+}
+
+/* Container for content */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container-narrow {
+  max-width: 900px;
+}
+
+/* Card component */
 .card {
-  background: var(--white);
+  background: white;
   border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid var(--emerald);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
 
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Loading states */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--spice-orange);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-orange {
+  background: var(--spice-orange);
+  color: white;
+}
+
+.badge-green {
+  background: var(--herb-green);
+  color: white;
+}
+
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Error states */
 .error {
-  border-color: #ef4444 !important;
+  border-color: var(--tomato-red) !important;
 }
 
 .error-text {
-  color: #ef4444;
+  color: var(--tomato-red);
   font-size: 0.875rem;
   margin-top: 0.25rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Image handling */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

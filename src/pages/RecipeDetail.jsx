@@ -24,11 +24,9 @@ const RecipeDetail = () => {
       setLoading(true);
       setError(null);
       
-      // Fetch recipe details
       const recipeData = await recipeService.getRecipeById(id);
       setRecipe(recipeData);
       
-      // Fetch comments
       try {
         const commentsData = await recipeService.getRecipeComments(id);
         setComments(commentsData);
@@ -36,7 +34,6 @@ const RecipeDetail = () => {
         console.error('Error fetching comments:', err);
       }
       
-      // Check bookmark status (only if logged in)
       try {
         const bookmarkStatus = await recipeService.checkBookmark(id);
         setIsBookmarked(bookmarkStatus.is_bookmarked);
@@ -44,7 +41,6 @@ const RecipeDetail = () => {
         console.error('Bookmark check failed:', err);
       }
       
-      // Get user's rating (only if logged in)
       try {
         const ratingData = await recipeService.getUserRating(id);
         setUserRating(ratingData.user_rating);
@@ -81,7 +77,6 @@ const RecipeDetail = () => {
       await recipeService.rateRecipe(id, rating);
       setUserRating(rating);
       
-      // Refresh recipe to get updated average rating
       const updatedRecipe = await recipeService.getRecipeById(id);
       setRecipe(updatedRecipe);
     } catch (err) {
@@ -102,7 +97,6 @@ const RecipeDetail = () => {
       setComments([...comments, comment]);
       setNewComment('');
       
-      // Refresh recipe to get updated comment count
       const updatedRecipe = await recipeService.getRecipeById(id);
       setRecipe(updatedRecipe);
     } catch (err) {
@@ -126,259 +120,367 @@ const RecipeDetail = () => {
     }
   };
 
-  const shareOnFacebook = () => {
-    const recipeUrl = window.location.href;
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(recipeUrl)}`, '_blank');
-  };
-
-  const shareOnTwitter = () => {
+  const shareRecipe = (platform) => {
     const recipeUrl = window.location.href;
     const recipeText = `Check out this amazing recipe: ${recipe.title}`;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(recipeText)}&url=${encodeURIComponent(recipeUrl)}`, '_blank');
-  };
-
-  const shareOnWhatsApp = () => {
-    const recipeUrl = window.location.href;
-    const recipeText = `Check out this amazing recipe: ${recipe.title} ${recipeUrl}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(recipeText)}`, '_blank');
+    
+    const urls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(recipeUrl)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(recipeText)}&url=${encodeURIComponent(recipeUrl)}`,
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(recipeText + ' ' + recipeUrl)}`
+    };
+    
+    window.open(urls[platform], '_blank');
   };
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ color: '#fdba74', fontSize: '1.5rem' }}>Loading recipe...</div>
+      <div style={{ minHeight: '100vh', background: 'var(--cream-white)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div>
+          <div className="loading-spinner" />
+          <p style={{ color: 'var(--stone-gray)', marginTop: '1.5rem', fontSize: '1.2rem', textAlign: 'center' }}>
+            Loading recipe...
+          </p>
+        </div>
       </div>
     );
   }
 
   if (error || !recipe) {
     return (
-      <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ background: '#1e1e1e', padding: '3rem', borderRadius: '16px', border: '2px solid #ef4444' }}>
-            <h2 style={{ color: '#ef4444', marginBottom: '1rem' }}>Recipe Not Found</h2>
-            <p style={{ color: '#aaa', marginBottom: '2rem' }}>{error || 'The recipe you are looking for does not exist.'}</p>
-            <Link to="/recipes" style={{ padding: '1rem 2rem', background: '#8b5cf6', color: 'white', textDecoration: 'none', borderRadius: '8px', fontWeight: '600' }}>
-              Back to Recipes
-            </Link>
-          </div>
+      <div style={{ minHeight: '100vh', background: 'var(--cream-white)', padding: '4rem 2rem' }}>
+        <div className="card" style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center', padding: '4rem 2rem' }}>
+          <div style={{ fontSize: '5rem', marginBottom: '1.5rem' }}>😕</div>
+          <h2 style={{ color: 'var(--charcoal-black)', marginBottom: '1rem', fontSize: '2rem' }}>
+            Recipe Not Found
+          </h2>
+          <p style={{ color: 'var(--stone-gray)', marginBottom: '2rem', fontSize: '1.1rem' }}>
+            {error || 'The recipe you are looking for does not exist.'}
+          </p>
+          <Link to="/recipes" className="btn btn-primary">
+            Back to Recipes
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#2c2c2c', padding: '2rem' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <Link to="/recipes" style={{ color: '#fdba74', textDecoration: 'none', fontWeight: '600', fontSize: '1.1rem' }}>
-            ← Back to Recipes
-          </Link>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button onClick={toggleBookmark} style={{ padding: '0.5rem 1rem', background: isBookmarked ? '#fdba74' : '#2a2a2a', color: 'white', border: '2px solid #fdba74', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', transition: 'all 0.2s' }}>
-              {isBookmarked ? '❤️ Saved' : '🤍 Save'}
-            </button>
-            <button onClick={handleDelete} style={{ padding: '0.5rem 1rem', background: '#ef4444', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
-              🗑️ Delete
-            </button>
+    <div style={{ background: 'var(--cream-white)', minHeight: '100vh' }}>
+      {/* Hero Section with Image */}
+      <div style={{ position: 'relative', height: '450px', overflow: 'hidden' }}>
+        <img 
+          src={recipe.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1600&q=80'} 
+          alt={recipe.title}
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover'
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))',
+          display: 'flex',
+          alignItems: 'flex-end',
+          padding: '3rem 2rem'
+        }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+            <Link 
+              to="/recipes" 
+              style={{ 
+                color: 'white', 
+                textDecoration: 'none', 
+                fontWeight: '600',
+                fontSize: '1.1rem',
+                display: 'inline-block',
+                marginBottom: '1.5rem',
+                padding: '0.5rem 1rem',
+                background: 'rgba(255,255,255,0.2)',
+                borderRadius: '8px',
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              ← All Recipes
+            </Link>
+            <h1 style={{ 
+              color: 'white', 
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontWeight: '800',
+              marginBottom: '0.75rem',
+              textShadow: '2px 2px 8px rgba(0,0,0,0.4)'
+            }}>
+              {recipe.title}
+            </h1>
+            <p style={{ 
+              color: 'rgba(255,255,255,0.95)', 
+              fontSize: '1.2rem',
+              textShadow: '1px 1px 3px rgba(0,0,0,0.4)'
+            }}>
+              by {recipe.author || 'Community Chef'}
+            </p>
           </div>
         </div>
+      </div>
 
-        <div style={{ background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.3)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
-          <img src={recipe.image_url || 'https://via.placeholder.com/800'} alt={recipe.title} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
-          
-          <div style={{ padding: '3rem 2rem', textAlign: 'center', background: 'linear-gradient(135deg, #8b5cf6 0%, #10b981 100%)' }}>
-            <h1 style={{ margin: '0 0 0.5rem 0', fontSize: '2.5rem', color: 'white', fontWeight: '800' }}>{recipe.title}</h1>
-            <p style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem' }}>by {recipe.author || 'Unknown'}</p>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '3rem 2rem' }}>
+        {/* Quick Info Cards */}
+        <div className="grid-2" style={{ gap: '1.5rem', marginBottom: '3rem' }}>
+          <div className="card">
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <div style={{ flex: 1, textAlign: 'center', padding: '1rem', background: 'var(--cream-white)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '2rem', color: 'var(--spice-orange)', fontWeight: '700', marginBottom: '0.25rem' }}>
+                  {recipe.prep_time} min
+                </div>
+                <div style={{ color: 'var(--stone-gray)', fontSize: '0.9rem' }}>Prep Time</div>
+              </div>
+              
+              <div style={{ flex: 1, textAlign: 'center', padding: '1rem', background: 'var(--cream-white)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '2rem', color: 'var(--tomato-red)', fontWeight: '700', marginBottom: '0.25rem' }}>
+                  {recipe.cook_time} min
+                </div>
+                <div style={{ color: 'var(--stone-gray)', fontSize: '0.9rem' }}>Cook Time</div>
+              </div>
+              
+              <div style={{ flex: 1, textAlign: 'center', padding: '1rem', background: 'var(--cream-white)', borderRadius: '8px' }}>
+                <div style={{ fontSize: '2rem', color: 'var(--herb-green)', fontWeight: '700', marginBottom: '0.25rem' }}>
+                  {recipe.servings}
+                </div>
+                <div style={{ color: 'var(--stone-gray)', fontSize: '0.9rem' }}>Servings</div>
+              </div>
+            </div>
+            
+            {/* Rating Display */}
+            <div style={{ textAlign: 'center', padding: '1.5rem', background: 'var(--cream-white)', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '0.25rem', marginBottom: '0.5rem' }}>
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} style={{ color: i < Math.round(recipe.avg_rating || 0) ? '#fcbf49' : '#ddd', fontSize: '1.8rem' }}>
+                    ★
+                  </span>
+                ))}
+              </div>
+              <div style={{ color: 'var(--stone-gray)', fontSize: '1rem' }}>
+                {recipe.avg_rating?.toFixed(1) || '0.0'} ({recipe.rating_count || 0} ratings)
+              </div>
+            </div>
           </div>
 
-          <div style={{ padding: '2rem' }}>
-            {/* Share buttons */}
-            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.2rem' }}>Share this recipe</h3>
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <button onClick={shareOnFacebook} style={{ padding: '0.75rem 1.5rem', background: '#1877f2', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
+          {/* Actions Card */}
+          <div className="card">
+            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: 'var(--charcoal-black)' }}>
+              Recipe Actions
+            </h3>
+            
+            <button 
+              onClick={toggleBookmark} 
+              className="btn"
+              style={{ 
+                width: '100%',
+                marginBottom: '1rem',
+                background: isBookmarked ? 'var(--herb-green)' : 'white',
+                color: isBookmarked ? 'white' : 'var(--charcoal-black)',
+                border: isBookmarked ? 'none' : '2px solid var(--spice-orange)'
+              }}
+            >
+              {isBookmarked ? '❤️ Saved to Bookmarks' : '🤍 Save Recipe'}
+            </button>
+            
+            <div style={{ marginBottom: '1.5rem' }}>
+              <p style={{ color: 'var(--stone-gray)', fontSize: '0.95rem', marginBottom: '0.75rem' }}>
+                Share this recipe:
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
+                <button onClick={() => shareRecipe('facebook')} style={{ padding: '0.75rem', background: '#1877f2', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' }}>
                   Facebook
                 </button>
-                <button onClick={shareOnTwitter} style={{ padding: '0.75rem 1.5rem', background: '#1da1f2', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
+                <button onClick={() => shareRecipe('twitter')} style={{ padding: '0.75rem', background: '#1da1f2', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' }}>
                   Twitter
                 </button>
-                <button onClick={shareOnWhatsApp} style={{ padding: '0.75rem 1.5rem', background: '#25d366', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
+                <button onClick={() => shareRecipe('whatsapp')} style={{ padding: '0.75rem', background: '#25d366', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.9rem' }}>
                   WhatsApp
                 </button>
               </div>
             </div>
+            
+            <button 
+              onClick={handleDelete}
+              style={{ 
+                width: '100%',
+                padding: '0.75rem',
+                background: '#ef4444',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontWeight: '600'
+              }}
+            >
+              🗑️ Delete Recipe
+            </button>
+          </div>
+        </div>
 
-            {/* Recipe stats */}
-            <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #fdba74', minWidth: '120px' }}>
-                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>{recipe.prep_time}m</div>
-                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Prep Time</div>
-              </div>
-              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #fdba74', minWidth: '120px' }}>
-                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>{recipe.cook_time}m</div>
-                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Cook Time</div>
-              </div>
-              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #10b981', minWidth: '120px' }}>
-                <div style={{ fontSize: '1.5rem', color: '#10b981', fontWeight: '700' }}>{recipe.servings}</div>
-                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Servings</div>
-              </div>
-              <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #8b5cf6', minWidth: '120px' }}>
-                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>
-                  {recipe.avg_rating ? recipe.avg_rating.toFixed(1) : '0.0'}/5
-                </div>
-                <div style={{ color: '#aaa', fontSize: '0.9rem' }}>({recipe.rating_count || 0} ratings)</div>
-              </div>
-            </div>
+        {/* Your Rating Section */}
+        <div className="card" style={{ marginBottom: '3rem', textAlign: 'center' }}>
+          <h3 style={{ color: 'var(--charcoal-black)', marginTop: 0, marginBottom: '1rem' }}>
+            Rate This Recipe
+          </h3>
+          <p style={{ color: 'var(--stone-gray)', marginBottom: '1.5rem' }}>
+            {userRating > 0 ? 'You rated this recipe:' : 'How would you rate this recipe?'}
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+            {[1, 2, 3, 4, 5].map(star => (
+              <button
+                key={star}
+                onClick={() => handleRating(star)}
+                disabled={submittingRating}
+                style={{
+                  fontSize: '2.5rem',
+                  background: 'none',
+                  border: 'none',
+                  cursor: submittingRating ? 'wait' : 'pointer',
+                  color: star <= userRating ? '#fcbf49' : '#ddd',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => !submittingRating && (e.currentTarget.style.transform = 'scale(1.2)')}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+        </div>
 
-            {/* Rate this recipe */}
-            <div style={{ marginBottom: '2rem', textAlign: 'center', background: '#2a2a2a', padding: '1.5rem', borderRadius: '12px', border: '2px solid #8b5cf6' }}>
-              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.2rem' }}>Rate this recipe</h3>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-                {[1, 2, 3, 4, 5].map(star => (
-                  <button
-                    key={star}
-                    onClick={() => handleRating(star)}
-                    disabled={submittingRating}
-                    style={{
-                      fontSize: '2rem',
-                      background: 'none',
-                      border: 'none',
-                      cursor: submittingRating ? 'wait' : 'pointer',
-                      color: star <= userRating ? '#fbbf24' : '#555',
-                      transition: 'all 0.2s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.2)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  >
-                    {star <= userRating ? '⭐' : '☆'}
-                  </button>
-                ))}
-              </div>
-              {userRating > 0 && (
-                <p style={{ color: '#10b981', marginTop: '0.5rem', fontSize: '0.9rem' }}>
-                  Your rating: {userRating} star{userRating !== 1 ? 's' : ''}
-                </p>
-              )}
-            </div>
-
-            {/* Description */}
-            {recipe.description && (
-              <div style={{ marginBottom: '2rem', background: '#2a2a2a', padding: '1.5rem', borderRadius: '12px', border: '2px solid #8b5cf6' }}>
-                <h3 style={{ color: '#fdba74', marginBottom: '0.75rem', fontSize: '1.3rem' }}>About</h3>
-                <p style={{ color: '#aaa', lineHeight: '1.6', margin: 0 }}>{recipe.description}</p>
-              </div>
-            )}
-
-            {/* Ingredients */}
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>Ingredients</h3>
-              <div style={{ background: '#2a2a2a', padding: '1.5rem', borderRadius: '12px', border: '2px solid #10b981' }}>
-                <pre style={{ 
-                  whiteSpace: 'pre-wrap', 
-                  color: '#aaa', 
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-                  margin: 0,
-                  lineHeight: '2'
-                }}>
-                  {recipe.ingredients}
-                </pre>
-              </div>
-            </div>
-
-            {/* Instructions */}
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>Instructions</h3>
-              <div style={{ background: '#2a2a2a', padding: '1.5rem', borderRadius: '12px', border: '2px solid #8b5cf6' }}>
-                <pre style={{ 
-                  whiteSpace: 'pre-wrap', 
-                  color: '#aaa', 
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-                  margin: 0,
-                  lineHeight: '1.8'
-                }}>
-                  {recipe.instructions}
-                </pre>
-              </div>
-            </div>
-
-            {/* Comments Section */}
-            <div style={{ marginTop: '3rem' }}>
-              <h3 style={{ color: '#fdba74', marginBottom: '1.5rem', fontSize: '1.5rem' }}>
-                Comments ({comments.length})
-              </h3>
-              
-              {/* Add Comment Form */}
-              <form onSubmit={handleAddComment} style={{ marginBottom: '2rem' }}>
-                <textarea
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                  placeholder="Share your thoughts about this recipe..."
-                  style={{
-                    width: '100%',
-                    minHeight: '100px',
-                    padding: '1rem',
-                    background: '#2a2a2a',
-                    border: '2px solid #8b5cf6',
-                    borderRadius: '12px',
-                    color: 'white',
-                    fontSize: '1rem',
-                    fontFamily: 'inherit',
-                    resize: 'vertical',
-                    marginBottom: '1rem'
-                  }}
-                />
-                <button
-                  type="submit"
-                  disabled={submittingComment || !newComment.trim()}
-                  style={{
-                    padding: '0.75rem 2rem',
-                    background: submittingComment || !newComment.trim() ? '#555' : 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    cursor: submittingComment || !newComment.trim() ? 'not-allowed' : 'pointer',
-                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.4)'
+        {/* Two Column Layout for Ingredients & Instructions */}
+        <div className="grid-2" style={{ gap: '2rem', marginBottom: '3rem', alignItems: 'start' }}>
+          {/* Ingredients */}
+          <div className="card">
+            <h2 style={{ color: 'var(--spice-orange)', marginTop: 0, marginBottom: '1.5rem', fontSize: '1.8rem' }}>
+              Ingredients
+            </h2>
+            <div style={{ color: 'var(--charcoal-black)', lineHeight: '2', fontSize: '1.05rem' }}>
+              {recipe.ingredients?.split('\n').map((ingredient, index) => (
+                <div 
+                  key={index} 
+                  style={{ 
+                    padding: '0.75rem',
+                    background: index % 2 === 0 ? 'var(--cream-white)' : 'transparent',
+                    borderRadius: '6px',
+                    marginBottom: '0.25rem'
                   }}
                 >
-                  {submittingComment ? 'Posting...' : 'Post Comment'}
-                </button>
-              </form>
-
-              {/* Comments List */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {comments.length === 0 ? (
-                  <div style={{ textAlign: 'center', color: '#888', padding: '2rem', background: '#2a2a2a', borderRadius: '12px', border: '2px solid #444' }}>
-                    No comments yet. Be the first to comment!
-                  </div>
-                ) : (
-                  comments.map(comment => (
-                    <div key={comment.id} style={{ background: '#2a2a2a', padding: '1.5rem', borderRadius: '12px', border: '2px solid #444' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.75rem' }}>
-                        <div>
-                          <div style={{ color: '#fdba74', fontWeight: '600', fontSize: '1.1rem' }}>
-                            {comment.author || 'Anonymous'}
-                          </div>
-                          <div style={{ color: '#888', fontSize: '0.85rem' }}>
-                            {new Date(comment.created_at).toLocaleDateString('en-US', { 
-                              year: 'numeric', 
-                              month: 'long', 
-                              day: 'numeric' 
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                      <p style={{ color: '#aaa', margin: 0, lineHeight: '1.6' }}>
-                        {comment.content}
-                      </p>
-                    </div>
-                  ))
-                )}
-              </div>
+                  • {ingredient}
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* Instructions */}
+          <div className="card">
+            <h2 style={{ color: 'var(--herb-green)', marginTop: 0, marginBottom: '1.5rem', fontSize: '1.8rem' }}>
+              Instructions
+            </h2>
+            <div style={{ color: 'var(--charcoal-black)', lineHeight: '1.8', fontSize: '1.05rem' }}>
+              {recipe.instructions?.split('\n').map((step, index) => (
+                <div 
+                  key={index} 
+                  style={{ 
+                    marginBottom: '1.5rem',
+                    paddingLeft: '2.5rem',
+                    position: 'relative'
+                  }}
+                >
+                  <span style={{ 
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    width: '1.8rem',
+                    height: '1.8rem',
+                    borderRadius: '50%',
+                    background: 'var(--spice-orange)',
+                    color: 'white',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: '700',
+                    fontSize: '0.95rem'
+                  }}>
+                    {index + 1}
+                  </span>
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Comments Section */}
+        <div className="card">
+          <h2 style={{ color: 'var(--charcoal-black)', marginTop: 0, marginBottom: '1.5rem', fontSize: '1.8rem' }}>
+            Comments ({comments.length})
+          </h2>
+          
+          {/* Add Comment Form */}
+          <form onSubmit={handleAddComment} style={{ marginBottom: '2rem' }}>
+            <textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Share your thoughts, tips, or variations..."
+              className="form-input"
+              style={{ minHeight: '100px', resize: 'vertical' }}
+            />
+            <button 
+              type="submit" 
+              disabled={submittingComment || !newComment.trim()}
+              className="btn btn-primary"
+              style={{ marginTop: '1rem' }}
+            >
+              {submittingComment ? 'Posting...' : 'Post Comment'}
+            </button>
+          </form>
+          
+          {/* Comment List */}
+          {comments.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '3rem', background: 'var(--cream-white)', borderRadius: '8px' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>💬</div>
+              <p style={{ color: 'var(--stone-gray)', fontSize: '1.1rem' }}>
+                No comments yet. Be the first to share your thoughts!
+              </p>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {comments.map((comment) => (
+                <div 
+                  key={comment.id} 
+                  style={{ 
+                    padding: '1.5rem',
+                    background: 'var(--cream-white)',
+                    borderRadius: '12px',
+                    borderLeft: '4px solid var(--spice-orange)'
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.75rem' }}>
+                    <div>
+                      <div style={{ fontWeight: '700', color: 'var(--charcoal-black)', fontSize: '1.05rem' }}>
+                        {comment.user_name || 'Anonymous'}
+                      </div>
+                      <div style={{ color: 'var(--stone-gray)', fontSize: '0.85rem' }}>
+                        {new Date(comment.created_at).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                  <p style={{ color: 'var(--charcoal-black)', margin: 0, lineHeight: '1.7', fontSize: '1.05rem' }}>
+                    {comment.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
