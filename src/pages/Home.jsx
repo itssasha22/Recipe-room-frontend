@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const contributors = [
-    { name: 'Derrick Koome', country: 'Kenya', role: 'Lead Developer & Chef' },
-    { name: 'Sasha Lisha', country: 'Kenya', role: 'Backend Engineer' },
-    { name: 'Ian Nassore', country: 'Kenya', role: 'Frontend Developer' },
-    { name: 'Alex Mureti', country: 'Kenya', role: 'Payment Integration' },
-    { name: 'Joy Kori', country: 'Kenya', role: 'Recipe Curator' }
+    { name: 'Derrick Koome', country: 'Kenya', role: 'Kenyan Cuisine Specialist' },
+    { name: 'Sasha Lisha', country: 'Kenya', role: 'Coastal Recipes Expert' },
+    { name: 'Ian Nassore', country: 'Kenya', role: 'Traditional Chef' },
+    { name: 'Alex Mureti', country: 'Kenya', role: 'Nyama Choma Master' },
+    { name: 'Joy Kori', country: 'Kenya', role: 'Pastry & Baking Chef' }
   ];
 
   return (
@@ -172,14 +172,14 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Contributors Section */}
+      {/* Featured Chefs Section */}
       <section style={{ padding: '60px 20px', background: 'var(--warm-brown)', color: 'white' }}>
         <div className="container">
           <h2 style={{ textAlign: 'center', marginBottom: '15px', color: 'white' }}>
-            Meet Our Team
+            Featured Chefs
           </h2>
           <p style={{ textAlign: 'center', marginBottom: '40px', color: 'rgba(255, 255, 255, 0.85)', fontSize: '1.1rem' }}>
-            Built with passion by talented developers from Kenya 🇰🇪
+            Discover authentic recipes from our talented Kenyan chefs 🇰🇪
           </p>
           
           <div style={{ 
@@ -209,7 +209,7 @@ const Home = () => {
                 }}
               >
                 <div style={{ fontSize: '3rem', marginBottom: '15px' }}>
-                  {index === 0 ? '👨‍💻' : index === 1 ? '🔧' : index === 2 ? '🎨' : index === 3 ? '💳' : '📝'}
+                  👨‍🍳
                 </div>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '5px', color: 'white' }}>
                   {contributor.name}
