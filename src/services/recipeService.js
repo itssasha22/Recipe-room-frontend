@@ -4,17 +4,28 @@
  */
 
 import api from './api';
-import { API_ENDPOINTS } from '../config/api.config';
+
+const API_BASE = '/recipes';
+const COMMENTS_BASE = '/comments';
+const RATINGS_BASE = '/ratings';
+const BOOKMARKS_BASE = '/bookmarks';
 
 export const recipeService = {
   /**
-   * Get all recipes with pagination
-   * @param {number} page - Page number (default: 1)
-   * @param {number} perPage - Items per page (default: 20)
+   * Get all recipes with optional filters
+   * @param {Object} filters - Filter parameters
+   * @param {string} filters.search - Search term for recipe name
+   * @param {string} filters.country - Filter by country
+   * @param {number} filters.min_rating - Minimum average rating
+   * @param {number} filters.max_servings - Maximum servings
+   * @param {string} filters.ingredient - Search for ingredient
+   * @param {string} filters.sort_by - Sort by (created_at, rating, title)
    */
-  getAllRecipes: async (page = 1, perPage = 20) => {
+  getAllRecipes: async (filters = {}) => {
     try {
-      const response = await api.get(`${API_ENDPOINTS.RECIPES}?page=${page}&per_page=${perPage}`);
+      const params = new URLSearchParams(filters).toString();
+      const url = params ? `${API_BASE}?${params}` : API_BASE;
+      const response = await api.get(url);
       return response.data;
     } catch (error) {
       console.error('Error fetching recipes:', error);
@@ -27,7 +38,7 @@ export const recipeService = {
    */
   getRecipeById: async (recipeId) => {
     try {
-      const response = await api.get(API_ENDPOINTS.RECIPE_BY_ID(recipeId));
+      const response = await api.get(`${API_BASE}/${recipeId}`);
       return response.data;
     } catch (error) {
       console.error(`Error fetching recipe ${recipeId}:`, error);
@@ -38,9 +49,9 @@ export const recipeService = {
   /**
    * Get all recipes by a specific user
    */
-  getRecipesByUser: async (userId, page = 1, perPage = 20) => {
+  getRecipesByUser: async (userId) => {
     try {
-      const response = await api.get(`${API_ENDPOINTS.USER_RECIPES(userId)}?page=${page}&per_page=${perPage}`);
+      const response = await api.get(`${API_BASE}/user/${userId}`);
       return response.data;
     } catch (error) {
       console.error(`Error fetching recipes for user ${userId}:`, error);
@@ -50,22 +61,10 @@ export const recipeService = {
 
   /**
    * Create a new recipe
-   * @param {Object} recipeData - Recipe information
-   * @param {string} recipeData.title - Recipe title (required)
-   * @param {string} recipeData.description - Recipe description (optional)
-   * @param {string} recipeData.country - Country of origin (optional)
-   * @param {Array} recipeData.ingredients - Array of ingredient objects (required)
-   *   Each ingredient: { name: string, quantity: string, notes?: string }
-   * @param {Array} recipeData.procedure - Array of step objects (required)
-   *   Each step: { step: number, instruction: string, notes?: string }
-   * @param {number} recipeData.people_served - Number of servings (required)
-   * @param {number} recipeData.prep_time - Prep time in minutes (optional)
-   * @param {number} recipeData.cook_time - Cook time in minutes (optional)
-   * @param {string} recipeData.image - Base64 image or URL (optional)
    */
   createRecipe: async (recipeData) => {
     try {
-      const response = await api.post(API_ENDPOINTS.RECIPES, recipeData);
+      const response = await api.post(API_BASE, recipeData);
       return response.data;
     } catch (error) {
       console.error('Error creating recipe:', error);
@@ -78,7 +77,7 @@ export const recipeService = {
    */
   updateRecipe: async (recipeId, updateData) => {
     try {
-      const response = await api.put(API_ENDPOINTS.RECIPE_BY_ID(recipeId), updateData);
+      const response = await api.put(`${API_BASE}/${recipeId}`, updateData);
       return response.data;
     } catch (error) {
       console.error(`Error updating recipe ${recipeId}:`, error);
@@ -87,11 +86,11 @@ export const recipeService = {
   },
 
   /**
-   * Delete a recipe (soft delete)
+   * Delete a recipe
    */
   deleteRecipe: async (recipeId) => {
     try {
-      const response = await api.delete(API_ENDPOINTS.RECIPE_BY_ID(recipeId));
+      const response = await api.delete(`${API_BASE}/${recipeId}`);
       return response.data;
     } catch (error) {
       console.error(`Error deleting recipe ${recipeId}:`, error);
@@ -99,35 +98,69 @@ export const recipeService = {
     }
   },
 
+  // Comment Methods
   /**
-   * Get recipe edit history
+   * Get all comments for a recipe
    */
-  getRecipeHistory: async (recipeId) => {
+  getRecipeComments: async (recipeId) => {
     try {
-      const response = await api.get(`${API_ENDPOINTS.RECIPE_BY_ID(recipeId)}/history`);
+      const response = await api.get(`${COMMENTS_BASE}/recipe/${recipeId}`);
       return response.data;
     } catch (error) {
-      console.error(`Error fetching history for recipe ${recipeId}:`, error);
+      console.error(`Error fetching comments for recipe ${recipeId}:`, error);
       throw error;
     }
   },
 
   /**
-   * Discover recipes with filters
-   * @param {Object} filters - Filter parameters
-   * @param {string} filters.name - Recipe name
-   * @param {string} filters.ingredient - Ingredient to search for
-   * @param {number} filters.people_served - Number of servings
-   * @param {string} filters.country - Country
-   * @param {number} filters.rating - Minimum rating
+   * Add a comment to a recipe
    */
-  discoverRecipes: async (filters = {}) => {
+  addComment: async (recipeId, content) => {
     try {
-      const params = new URLSearchParams(filters).toString();
-      const response = await api.get(`${API_ENDPOINTS.RECIPES}/discover?${params}`);
+      const response = await api.post(COMMENTS_BASE, { recipe_id: recipeId, content });
       return response.data;
     } catch (error) {
-      console.error('Error discovering recipes:', error);
+      console.error(`Error adding comment to recipe ${recipeId}:`, error);
+      throw error;
+    }
+  },
+
+  /**
+   * Update a comment
+   */
+  updateComment: async (commentId, content) => {
+    try {
+      const response = await api.put(`${COMMENTS_BASE}/${commentId}`, { content });
+      return response.data;
+    } catch (error) {
+      console.error(`Error updating comment ${commentId}:`, error);
+      throw error;
+    }
+  },
+
+  /**
+   * Delete a comment
+   */
+  deleteComment: async (commentId) => {
+    try {
+      const response = await api.delete(`${COMMENTS_BASE}/${commentId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error deleting comment ${commentId}:`, error);
+      throw error;
+    }
+  },
+
+  // Rating Methods
+  /**
+   * Get ratings for a recipe
+   */
+  getRecipeRatings: async (recipeId) => {
+    try {
+      const response = await api.get(`${RATINGS_BASE}/recipe/${recipeId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching ratings for recipe ${recipeId}:`, error);
       throw error;
     }
   },
@@ -135,11 +168,9 @@ export const recipeService = {
   /**
    * Rate a recipe (1-5 stars)
    */
-  rateRecipe: async (recipeId, ratingValue) => {
+  rateRecipe: async (recipeId, rating) => {
     try {
-      const response = await api.post(`${API_ENDPOINTS.RECIPE_BY_ID(recipeId)}/rate`, {
-        value: ratingValue
-      });
+      const response = await api.post(RATINGS_BASE, { recipe_id: recipeId, rating });
       return response.data;
     } catch (error) {
       console.error(`Error rating recipe ${recipeId}:`, error);
@@ -148,14 +179,41 @@ export const recipeService = {
   },
 
   /**
-   * Get recipe rating
+   * Get current user's rating for a recipe
    */
-  getRecipeRating: async (recipeId) => {
+  getUserRating: async (recipeId) => {
     try {
-      const response = await api.get(`${API_ENDPOINTS.RECIPE_BY_ID(recipeId)}/rating`);
+      const response = await api.get(`${RATINGS_BASE}/user/${recipeId}`);
       return response.data;
     } catch (error) {
-      console.error(`Error fetching rating for recipe ${recipeId}:`, error);
+      console.error(`Error fetching user rating for recipe ${recipeId}:`, error);
+      throw error;
+    }
+  },
+
+  /**
+   * Delete a rating
+   */
+  deleteRating: async (ratingId) => {
+    try {
+      const response = await api.delete(`${RATINGS_BASE}/${ratingId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error deleting rating ${ratingId}:`, error);
+      throw error;
+    }
+  },
+
+  // Bookmark Methods
+  /**
+   * Get all bookmarked recipes for current user
+   */
+  getBookmarks: async () => {
+    try {
+      const response = await api.get(BOOKMARKS_BASE);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching bookmarks:', error);
       throw error;
     }
   },
@@ -165,7 +223,7 @@ export const recipeService = {
    */
   bookmarkRecipe: async (recipeId) => {
     try {
-      const response = await api.post(`${API_ENDPOINTS.RECIPE_BY_ID(recipeId)}/bookmark`);
+      const response = await api.post(BOOKMARKS_BASE, { recipe_id: recipeId });
       return response.data;
     } catch (error) {
       console.error(`Error bookmarking recipe ${recipeId}:`, error);
@@ -178,10 +236,23 @@ export const recipeService = {
    */
   removeBookmark: async (recipeId) => {
     try {
-      const response = await api.delete(`${API_ENDPOINTS.RECIPE_BY_ID(recipeId)}/bookmark`);
+      const response = await api.delete(`${BOOKMARKS_BASE}/${recipeId}`);
       return response.data;
     } catch (error) {
       console.error(`Error removing bookmark from recipe ${recipeId}:`, error);
+      throw error;
+    }
+  },
+
+  /**
+   * Check if recipe is bookmarked
+   */
+  checkBookmark: async (recipeId) => {
+    try {
+      const response = await api.get(`${BOOKMARKS_BASE}/check/${recipeId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error checking bookmark for recipe ${recipeId}:`, error);
       throw error;
     }
   },
