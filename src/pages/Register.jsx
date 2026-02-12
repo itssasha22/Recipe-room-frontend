@@ -37,7 +37,6 @@ const Register = () => {
       <div style={{ maxWidth: '450px', width: '100%', background: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', overflow: 'hidden', border: '2px solid #10b981' }}>
         
         <div style={{ background: 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', padding: '2rem', textAlign: 'center', color: 'white' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🍽️</div>
           <h2 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>Join FlavorHub</h2>
           <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>Start sharing your culinary creations</p>
         </div>
@@ -53,7 +52,7 @@ const Register = () => {
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                👤 Username
+                Username
               </label>
               <input
                 type="text"
@@ -69,7 +68,7 @@ const Register = () => {
 
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                📧 Email Address
+                Email Address
               </label>
               <input
                 type="email"
@@ -85,7 +84,7 @@ const Register = () => {
 
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                🔒 Password
+                Password
               </label>
               <input
                 type="password"
@@ -101,7 +100,7 @@ const Register = () => {
 
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                🔒 Confirm Password
+                Confirm Password
               </label>
               <input
                 type="password"
@@ -122,7 +121,7 @@ const Register = () => {
               onMouseEnter={(e) => !loading && (e.target.style.transform = 'translateY(-2px)')}
               onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
             >
-              {loading ? '🔄 Creating Account...' : '🚀 Create Account'}
+              {loading ? 'Creating Account...' : 'Create Account'}
             </button>
           </form>
 

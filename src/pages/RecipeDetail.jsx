@@ -88,45 +88,45 @@ const RecipeDetail = () => {
               <h3 style={{ color: '#fdba74', marginBottom: '1rem' }}>Share this recipe</h3>
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
                 <button onClick={shareOnFacebook} style={{ padding: '0.75rem 1.5rem', background: '#1877f2', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
-                  📘 Facebook
+                  Facebook
                 </button>
                 <button onClick={shareOnTwitter} style={{ padding: '0.75rem 1.5rem', background: '#1da1f2', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
-                  🐦 Twitter
+                  Twitter
                 </button>
                 <button onClick={shareOnWhatsApp} style={{ padding: '0.75rem 1.5rem', background: '#25d366', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600' }}>
-                  💬 WhatsApp
+                  WhatsApp
                 </button>
               </div>
             </div>
 
             <div style={{ display: 'flex', gap: '2rem', marginBottom: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
               <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #fdba74' }}>
-                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>⏱️ {recipe.time}</div>
+                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>{recipe.time}</div>
                 <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Prep Time</div>
               </div>
               <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #10b981' }}>
-                <div style={{ fontSize: '1.5rem', color: '#10b981', fontWeight: '700' }}>👥 {recipe.servings}</div>
+                <div style={{ fontSize: '1.5rem', color: '#10b981', fontWeight: '700' }}>{recipe.servings}</div>
                 <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Servings</div>
               </div>
               <div style={{ textAlign: 'center', background: '#2a2a2a', padding: '1rem 2rem', borderRadius: '10px', border: '2px solid #8b5cf6' }}>
-                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>{'⭐'.repeat(recipe.rating)}</div>
+                <div style={{ fontSize: '1.5rem', color: '#fdba74', fontWeight: '700' }}>{recipe.rating}/5</div>
                 <div style={{ color: '#aaa', fontSize: '0.9rem' }}>Rating</div>
               </div>
             </div>
 
             <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>📝 Ingredients</h3>
+              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>Ingredients</h3>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {recipe.ingredients.map((ing, idx) => (
                   <li key={idx} style={{ padding: '0.75rem', background: '#2a2a2a', marginBottom: '0.5rem', borderRadius: '8px', border: '2px solid #10b981', color: '#aaa' }}>
-                    ✓ {ing}
+                    • {ing}
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>👨🍳 Instructions</h3>
+              <h3 style={{ color: '#fdba74', marginBottom: '1rem', fontSize: '1.5rem' }}>Instructions</h3>
               <ol style={{ padding: '0 0 0 1.5rem' }}>
                 {recipe.steps.map((step, idx) => (
                   <li key={idx} style={{ padding: '0.75rem 0', color: '#aaa', lineHeight: '1.6', borderBottom: '1px solid #2a2a2a' }}>

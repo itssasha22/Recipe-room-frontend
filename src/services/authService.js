@@ -1,12 +1,15 @@
 import axios from 'axios';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api.config';
 
-const API_URL = 'http://localhost:8000/api';
+const API_URL = API_BASE_URL;
 
 const authService = {
   login: async (credentials) => {
     const response = await axios.post(`${API_URL}/auth/login`, credentials);
-    if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
+    // Backend returns 'access_token' not 'token'
+    const token = response.data.access_token || response.data.token;
+    if (token) {
+      localStorage.setItem('token', token);
     }
     return response.data;
   },

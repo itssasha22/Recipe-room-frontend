@@ -1,9 +1,8 @@
 //a simple redux for managing recipes
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api.config';
 
-// Base API URL (configure based on environment)
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 // ASYNC THUNKS - API calls
 //etch all recipes with pagination
 export const fetchRecipes = createAsyncThunk(

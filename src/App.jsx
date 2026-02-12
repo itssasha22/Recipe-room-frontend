@@ -110,12 +110,23 @@ function Home() {
               <p style={{ color: '#aaa', lineHeight: '1.6' }}>Browse our extensive collection of recipes from cuisines around the world</p>
             </div>
             <div style={{ textAlign: 'center', padding: '2rem', background: '#2a2a2a', borderRadius: '12px', border: '2px solid #10b981' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👥</div>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ display: 'inline-block' }}>
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
               <h3 style={{ fontSize: '1.2rem', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>Active Community</h3>
               <p style={{ color: '#aaa', lineHeight: '1.6' }}>Connect with fellow food lovers and share your cooking experiences</p>
             </div>
             <div style={{ textAlign: 'center', padding: '2rem', background: '#2a2a2a', borderRadius: '12px', border: '2px solid #fdba74' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⭐</div>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline-block' }}>
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
               <h3 style={{ fontSize: '1.2rem', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600' }}>Rated & Reviewed</h3>
               <p style={{ color: '#aaa', lineHeight: '1.6' }}>Read honest reviews and ratings from real home cooks</p>
             </div>
@@ -170,7 +181,7 @@ function App() {
         <footer style={{ background: '#212529', color: 'white', padding: '3rem 2rem', marginTop: '4rem' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
             <p style={{ marginBottom: '1rem', fontSize: '1.1rem', fontWeight: '600' }}>FlavorHub</p>
-            <p style={{ color: '#adb5bd', fontSize: '0.9rem' }}>© 2024 FlavorHub. All rights reserved.</p>
+            <p style={{ color: '#adb5bd', fontSize: '0.9rem' }}>© 2026 FlavorHub. All rights reserved.</p>
           </div>
         </footer>
       </div>

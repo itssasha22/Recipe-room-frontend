@@ -109,7 +109,7 @@ const RecipesPage = () => {
             </div>
             
             <div>
-              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>👨🍳 Chef</label>
+              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>Chef</label>
               <select
                 value={selectedChef}
                 onChange={(e) => setSelectedChef(e.target.value)}
@@ -131,7 +131,7 @@ const RecipesPage = () => {
             </div>
             
             <div>
-              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>⭐ Min Rating</label>
+              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>Min Rating</label>
               <select
                 value={minRating}
                 onChange={(e) => setMinRating(Number(e.target.value))}
@@ -145,7 +145,7 @@ const RecipesPage = () => {
             </div>
             
             <div>
-              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>👥 Max Servings</label>
+              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>Max Servings</label>
               <input
                 type="number"
                 value={maxServings}
@@ -164,7 +164,6 @@ const RecipesPage = () => {
 
         {filteredRecipes.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '4rem', color: '#aaa' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🔍</div>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>No recipes found</h3>
             <p>Try adjusting your filters or search terms</p>
           </div>
@@ -205,10 +204,10 @@ const RecipesPage = () => {
                   <h3 style={{ color: '#fdba74', margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>{recipe.name}</h3>
                   <p style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '0.75rem' }}>by {recipe.chef}</p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <span style={{ color: '#10b981', fontWeight: '600', fontSize: '0.85rem' }}>⏱️ {recipe.time}</span>
-                    <span style={{ color: '#fdba74', fontWeight: '600', fontSize: '0.85rem' }}>{'⭐'.repeat(recipe.rating)}</span>
+                    <span style={{ color: '#10b981', fontWeight: '600', fontSize: '0.85rem' }}>{recipe.time}</span>
+                    <span style={{ color: '#fdba74', fontWeight: '600', fontSize: '0.85rem' }}>{recipe.rating}/5</span>
                   </div>
-                  <div style={{ color: '#aaa', fontSize: '0.8rem' }}>👥 Serves {recipe.servings}</div>
+                  <div style={{ color: '#aaa', fontSize: '0.8rem' }}>Serves {recipe.servings}</div>
                 </div>
               </div>
             ))}

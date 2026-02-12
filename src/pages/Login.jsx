@@ -31,7 +31,6 @@ const Login = () => {
         <div style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
           <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Food" style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
           <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', color: 'white' }}>
-            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🍽️</div>
             <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>FlavorHub</h2>
             <p style={{ fontSize: '1.1rem', opacity: 0.95 }}>Discover amazing recipes from chefs around the world</p>
           </div>
@@ -50,7 +49,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#fdba74', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                📧 Email Address
+                Email Address
               </label>
               <input
                 type="email"
@@ -66,7 +65,7 @@ const Login = () => {
 
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#fdba74', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                🔒 Password
+                Password
               </label>
               <input
                 type="password"
@@ -87,7 +86,7 @@ const Login = () => {
               onMouseEnter={(e) => !loading && (e.target.style.transform = 'translateY(-2px)')}
               onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
             >
-              {loading ? '🔄 Logging in...' : '🚀 Login'}
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </form>
 
