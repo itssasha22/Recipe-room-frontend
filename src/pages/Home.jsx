@@ -6,6 +6,9 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container">
+          <div style={{ marginBottom: '30px', display: 'flex', justifyContent: 'center' }}>
+            <img src="/flavorhub-logo.png" alt="FlavorHub Logo" style={{ height: '120px', width: 'auto' }} />
+          </div>
           <h1 className="hero-title">Welcome to FlavorHub</h1>
           <p className="hero-subtitle" style={{ letterSpacing: '2px', fontWeight: '500' }}>
             TASTE THE WORLD

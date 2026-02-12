@@ -33,7 +33,8 @@ function Header() {
   return (
     <header className="site-header">
       <nav className="site-nav">
-        <Link to="/" className="site-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <Link to="/" className="site-logo" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img src="/flavorhub-logo.png" alt="FlavorHub Logo" style={{ height: '50px', width: 'auto' }} />
           <span style={{ fontSize: '28px', fontWeight: '800' }}>FLAVORHUB</span>
         </Link>
         
