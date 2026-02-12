@@ -308,13 +308,13 @@ textarea.form-input {
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
-  margin-white;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.95
-  color: var(--medium-gray);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 30px;
 }
 
