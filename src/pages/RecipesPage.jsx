@@ -13,10 +13,10 @@ const RecipesPage = () => {
   const [maxServings, setMaxServings] = useState(100);
   const [searchIngredient, setSearchIngredient] = useState('');
   
-  // Fetch recipes from backend
+  // Fetch recipes from backend with real-time filtering
   useEffect(() => {
     fetchRecipes();
-  }, []);
+  }, [searchTerm, selectedCountry, minRating, maxServings, searchIngredient]);
   
   const fetchRecipes = async () => {
     try {
@@ -49,20 +49,45 @@ const RecipesPage = () => {
   
   const getCountryFlag = (country) => {
     const flags = {
-      'Italy': '🇮🇹',
-      'France': '🇫🇷',
-      'USA': '🇺🇸',
-      'China': '🇨🇳',
-      'Thailand': '🇹🇭',
-      'Vietnam': '🇻🇳',
-      'Mexico': '🇲🇽',
-      'Norway': '🇳🇴',
-      'Kenya': '🇰🇪'
+      // Africa
+      'Algeria': '🇩🇿', 'Egypt': '🇪🇬', 'Ethiopia': '🇪🇹', 'Ghana': '🇬🇭', 'Kenya': '🇰🇪',
+      'Morocco': '🇲🇦', 'Nigeria': '🇳🇬', 'South Africa': '🇿🇦', 'Tanzania': '🇹🇿', 'Tunisia': '🇹🇳',
+      // Asia
+      'China': '🇨🇳', 'India': '🇮🇳', 'Indonesia': '🇮🇩', 'Japan': '🇯🇵', 'Korea': '🇰🇷',
+      'Lebanon': '🇱🇧', 'Malaysia': '🇲🇾', 'Pakistan': '🇵🇰', 'Philippines': '🇵🇭', 'Singapore': '🇸🇬',
+      'Thailand': '🇹🇭', 'Turkey': '🇹🇷', 'Vietnam': '🇻🇳', 'Saudi Arabia': '🇸🇦', 'UAE': '🇦🇪',
+      // Europe
+      'France': '🇫🇷', 'Germany': '🇩🇪', 'Greece': '🇬🇷', 'Italy': '🇮🇹', 'Spain': '🇪🇸',
+      'UK': '🇬🇧', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Russia': '🇷🇺', 'Sweden': '🇸🇪',
+      'Norway': '🇳🇴', 'Denmark': '🇩🇰', 'Netherlands': '🇳🇱', 'Belgium': '🇧🇪', 'Switzerland': '🇨🇭',
+      // Americas
+      'Argentina': '🇦🇷', 'Brazil': '🇧🇷', 'Canada': '🇨🇦', 'Chile': '🇨🇱', 'Colombia': '🇨🇴',
+      'Cuba': '🇨🇺', 'Jamaica': '🇯🇲', 'Mexico': '🇲🇽', 'Peru': '🇵🇪', 'USA': '🇺🇸',
+      // Oceania
+      'Australia': '🇦🇺', 'New Zealand': '🇳🇿'
     };
     return flags[country] || '🌍';
   };
 
-  const countries = ['All', '🇮🇹 Italy', '🇫🇷 France', '🇺🇸 USA', '🇨🇳 China', '🇹🇭 Thailand', '🇻🇳 Vietnam', '🇲🇽 Mexico', '🇳🇴 Norway', '🇰🇪 Kenya'];
+  const countries = [
+    'All',
+    // Africa
+    '🇩🇿 Algeria', '🇪🇬 Egypt', '🇪🇹 Ethiopia', '🇬🇭 Ghana', '🇰🇪 Kenya',
+    '🇲🇦 Morocco', '🇳🇬 Nigeria', '🇿🇦 South Africa', '🇹🇿 Tanzania', '🇹🇳 Tunisia',
+    // Asia
+    '🇨🇳 China', '🇮🇳 India', '🇮🇩 Indonesia', '🇯🇵 Japan', '🇰🇷 Korea',
+    '🇱🇧 Lebanon', '🇲🇾 Malaysia', '🇵🇰 Pakistan', '🇵🇭 Philippines', '🇸🇬 Singapore',
+    '🇹🇭 Thailand', '🇹🇷 Turkey', '🇻🇳 Vietnam', '🇸🇦 Saudi Arabia', '🇦🇪 UAE',
+    // Europe
+    '🇫🇷 France', '🇩🇪 Germany', '🇬🇷 Greece', '🇮🇹 Italy', '🇪🇸 Spain',
+    '🇬🇧 UK', '🇵🇱 Poland', '🇵🇹 Portugal', '🇷🇺 Russia', '🇸🇪 Sweden',
+    '🇳🇴 Norway', '🇩🇰 Denmark', '🇳🇱 Netherlands', '🇧🇪 Belgium', '🇨🇭 Switzerland',
+    // Americas
+    '🇦🇷 Argentina', '🇧🇷 Brazil', '🇨🇦 Canada', '🇨🇱 Chile', '🇨🇴 Colombia',
+    '🇨🇺 Cuba', '🇯🇲 Jamaica', '🇲🇽 Mexico', '🇵🇪 Peru', '🇺🇸 USA',
+    // Oceania
+    '🇦🇺 Australia', '🇳🇿 New Zealand'
+  ];
 
   return (
     <div style={{ padding: '2rem', background: '#2c2c2c', minHeight: '100vh' }}>
@@ -108,23 +133,46 @@ const RecipesPage = () => {
             
             <div>
               <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>⭐ Min Rating</label>
-              <select
-                value={minRating}
-                onChange={(e) => setMinRating(Number(e.target.value))}
-                style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid #8b5cf6', background: '#2a2a2a', color: 'white', fontSize: '0.95rem' }}
-              >
-                <option value={0}>All Ratings</option>
-                <option value={3}>3+ Stars</option>
-                <option value={4}>4+ Stars</option>
-                <option value={5}>5 Stars</option>
-              </select>
-            </div>
+           div style={{ marginTop: '1rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <button 
+              onClick={handleSearch} 
+              style={{ 
+                flex: 1,
+                padding: '0.75rem', 
+                background: 'linear-gradient(135deg, #8b5cf6, #fdba74)', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '8px', 
+                fontSize: '1rem', 
+                fontWeight: '700', 
+                cursor: 'pointer' 
+              }}
+            >
+              🔍 Search Now
+            </button>
             
-            <div>
-              <label style={{ display: 'block', color: '#fdba74', marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>👥 Max Servings</label>
-              <input
-                type="number"
-                value={maxServings}
+            <button 
+              onClick={() => {
+                setSearchTerm('');
+                setSearchIngredient('');
+                setSelectedCountry('All');
+                setMinRating(0);
+                setMaxServings(100);
+              }}
+              style={{ 
+                padding: '0.75rem 1.5rem', 
+                background: '#444', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '8px', 
+                fontSize: '1rem', 
+                fontWeight: '700', 
+                cursor: 'pointer' 
+              }}
+            >
+              🔄 Reset
+            </button>
+          </divlue={maxServings}
                 onChange={(e) => setMaxServings(Number(e.target.value))}
                 min="1"
                 max="100"
