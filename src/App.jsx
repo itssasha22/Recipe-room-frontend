@@ -33,8 +33,8 @@ function Header() {
   return (
     <header className="site-header">
       <nav className="site-nav">
-        <Link to="/" className="site-logo">
-          RecipeTin Room
+        <Link to="/" className="site-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '28px', fontWeight: '800' }}>FLAVORHUB</span>
         </Link>
         
         <ul className="nav-links">
@@ -74,9 +74,9 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
-        <p>&copy; 2026 RecipeTin Room. All rights reserved.</p>
-        <p style={{ marginTop: '10px', fontSize: '13px' }}>
-          Made with ❤️ for food lovers everywhere
+        <p>&copy; 2026 FlavorHub. All rights reserved.</p>
+        <p style={{ marginTop: '10px', fontSize: '13px', letterSpacing: '1px' }}>
+          TASTE THE WORLD
         </p>
       </div>
     </footer>

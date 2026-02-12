@@ -1,14 +1,16 @@
-/* RecipeTin Eats Color Scheme - Clean & Minimal */
+/* FlavorHub Color Scheme - Warm & Earthy */
 :root {
-  --coral-accent: #ff6347;
+  --olive-green: #9c9957;
+  --warm-brown: #4a3728;
+  --rust-orange: #c85a3c;
   --pure-white: #ffffff;
-  --off-white: #f9f9f9;
-  --black: #000000;
+  --cream-bg: #faf8f5;
+  --black: #1a1a1a;
   --dark-gray: #333333;
   --medium-gray: #666666;
   --light-gray: #999999;
-  --border-gray: #dddddd;
-  --hover-orange: #ff7f50;
+  --border-gray: #e5e2dc;
+  --hover-orange: #d66b4d;
 }
 
 * {
@@ -19,7 +21,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background: var(--pure-white);
+  background: var(--cream-bg);
   color: var(--dark-gray);
   line-height: 1.6;
   font-size: 16px;
@@ -37,7 +39,7 @@ h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
 a {
-  color: var(--coral-accent);
+  color: var(--rust-orange);
   text-decoration: none;
 }
 
@@ -58,7 +60,7 @@ a:hover {
   text-decoration: none;
   display: inline-block;
   text-align: center;
-  background: var(--coral-accent);
+  background: var(--rust-orange);
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -70,7 +72,7 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--coral-accent);
+  background: var(--rust-orange);
 }
 
 .btn-secondary {
@@ -104,7 +106,7 @@ a:hover {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--coral-accent);
+  border-color: var(--rust-orange);
 }
 
 textarea.form-input {
@@ -147,7 +149,7 @@ textarea.form-input {
   width: 40px;
   height: 40px;
   border: 4px solid var(--border-gray);
-  border-top-color: var(--coral-accent);
+  border-top-color: var(--rust-orange);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 0 auto;
@@ -169,7 +171,7 @@ textarea.form-input {
 }
 
 .badge-orange {
-  background: var(--coral-accent);
+  background: var(--rust-orange);
   color: white;
 }
 
@@ -258,7 +260,7 @@ textarea.form-input {
 
 .site-logo:hover {
   text-decoration: none;
-  color: var(--coral-accent);
+  color: var(--rust-orange);
 }
 
 .nav-links {
@@ -280,18 +282,18 @@ textarea.form-input {
 }
 
 .nav-link:hover {
-  color: var(--coral-accent);
+  color: var(--rust-orange);
   text-decoration: none;
 }
 
 /* Footer */
 .site-footer {
-  background: var(--off-white);
-  border-top: 1px solid var(--border-gray);
+  background: var(--warm-brown);
+  border-top: 3px solid var(--rust-orange);
   padding: 40px 20px;
   margin-top: 60px;
   text-align: center;
-  color: var(--medium-gray);
+  color: var(--cream-bg);
   font-size: 14px;
 }
 
@@ -299,18 +301,19 @@ textarea.form-input {
 .hero-section {
   text-align: center;
   padding: 60px 20px;
-  background: var(--off-white);
+  background: linear-gradient(135deg, var(--olive-green), var(--warm-brown));
+  color: white;
 }
 
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--black);
+  margin-white;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.95
   color: var(--medium-gray);
   margin-bottom: 30px;
 }

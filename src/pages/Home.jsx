@@ -6,9 +6,9 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container">
-          <h1 className="hero-title">Welcome to RecipeTin Room</h1>
-          <p className="hero-subtitle">
-            Discover and share authentic recipes from around the world
+          <h1 className="hero-title">Welcome to FlavorHub</h1>
+          <p className="hero-subtitle" style={{ letterSpacing: '2px', fontWeight: '500' }}>
+            TASTE THE WORLD
           </p>
           <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '30px' }}>
             <Link to="/register" className="btn btn-primary">
@@ -25,7 +25,7 @@ const Home = () => {
       <section style={{ padding: '60px 20px', background: 'white' }}>
         <div className="container">
           <h2 style={{ textAlign: 'center', marginBottom: '50px' }}>
-            Why Join RecipeTin Room?
+            Why Join FlavorHub?
           </h2>
           
           <div className="grid-3">
