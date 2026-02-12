@@ -1,16 +1,32 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api.config';
 
-const PAYD_API_URL = process.env.REACT_APP_PAYD_API_URL || 'https://api.payd.com';
-const PAYD_PUBLIC_KEY = process.env.REACT_APP_PAYD_PUBLIC_KEY;
+// Get PayD API key from environment variables
+// To get your API key: https://payd.com/developers/api-keys
+const PAYD_PUBLIC_KEY = import.meta.env.VITE_PAYD_PUBLIC_KEY || '';
+const API_URL = API_BASE_URL;
+const MOCK_MODE = !PAYD_PUBLIC_KEY;
 
 class PayDService {
-  async initializePayment(amount, currency = 'USD', description) {
+  async initiatePayment(amount, description) {
+    // Mock mode when API key is not configured
+    if (MOCK_MODE) {
+      console.warn('PayD API key not configured. Using mock payment.');
+      return {
+        success: true,
+        paymentId: 'mock_' + Date.now(),
+        message: 'Mock payment initiated (configure VITE_PAYD_PUBLIC_KEY in .env)'
+      };
+    }
+
     try {
-      const response = await axios.post(`${PAYD_API_URL}/payments/initialize`, {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`${API_URL}/payments/initiate`, {
         amount,
-        currency,
         description,
-        public_key: PAYD_PUBLIC_KEY
+        paydApiKey: PAYD_PUBLIC_KEY
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
       });
       return response.data;
     } catch (error) {
@@ -18,12 +34,20 @@ class PayDService {
     }
   }
 
-  async verifyPayment(paymentId) {
+  async getPaymentStatus(paymentId) {
+    // Mock mode
+    if (MOCK_MODE) {
+      return { status: 'completed', paymentId };
+    }
+
     try {
-      const response = await axios.get(`${PAYD_API_URL}/payments/${paymentId}/verify`);
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`${API_URL}/payments/status/${paymentId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       return response.data;
     } catch (error) {
-      throw new Error('Payment verification failed');
+      throw new Error('Payment status check failed');
     }
   }
 }
