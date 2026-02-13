@@ -15,6 +15,7 @@ const Login = () => {
   
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -118,21 +119,50 @@ const Login = () => {
             }}>
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="Enter your password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="Enter your password"
+                style={{ paddingRight: '45px' }}
+              />
+              <button
+                type="button"
+                onMouseDown={() => setShowPassword(true)}
+                onMouseUp={() => setShowPassword(false)}
+                onMouseLeave={() => setShowPassword(false)}
+                onTouchStart={() => setShowPassword(true)}
+                onTouchEnd={() => setShowPassword(false)}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '18px',
+                  padding: '5px'
+                }}
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           <button 
             type="submit" 
             className="btn-primary"
             disabled={loading}
-            style={{ width: '100%', marginBottom: '20px' }}
+            style={{ 
+              width: '100%', 
+              marginBottom: '20px',
+              padding: '18px 30px',
+              fontSize: '18px'
+            }}
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>

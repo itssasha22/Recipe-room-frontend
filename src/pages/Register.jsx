@@ -17,6 +17,8 @@ const Register = () => {
   
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -155,14 +157,38 @@ const Register = () => {
             }}>
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="At least 6 characters"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="At least 6 characters"
+                style={{ paddingRight: '45px' }}
+              />
+              <button
+                type="button"
+                onMouseDown={() => setShowPassword(true)}
+                onMouseUp={() => setShowPassword(false)}
+                onMouseLeave={() => setShowPassword(false)}
+                onTouchStart={() => setShowPassword(true)}
+                onTouchEnd={() => setShowPassword(false)}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '18px',
+                  padding: '5px'
+                }}
+              >
+                {showPassword ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           <div style={{ marginBottom: '25px' }}>
@@ -174,21 +200,50 @@ const Register = () => {
             }}>
               Confirm Password
             </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="Re-enter your password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="Re-enter your password"
+                style={{ paddingRight: '45px' }}
+              />
+              <button
+                type="button"
+                onMouseDown={() => setShowConfirmPassword(true)}
+                onMouseUp={() => setShowConfirmPassword(false)}
+                onMouseLeave={() => setShowConfirmPassword(false)}
+                onTouchStart={() => setShowConfirmPassword(true)}
+                onTouchEnd={() => setShowConfirmPassword(false)}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '18px',
+                  padding: '5px'
+                }}
+              >
+                {showConfirmPassword ? '🙈' : '👁️'}
+              </button>
+            </div>
           </div>
 
           <button 
             type="submit" 
             className="btn-primary"
             disabled={loading}
-            style={{ width: '100%', marginBottom: '20px' }}
+            style={{ 
+              width: '100%', 
+              marginBottom: '20px',
+              padding: '18px 30px',
+              fontSize: '18px'
+            }}
           >
             {loading ? 'Creating account...' : 'Create Account'}
           </button>
