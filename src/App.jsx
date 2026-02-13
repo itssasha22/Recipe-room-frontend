@@ -60,12 +60,12 @@ function Header() {
             <Link to="/" className="site-logo">
               <img src="/flavorhub-logo.png" alt="FlavorHub Logo" />
               <span style={{ 
-                fontSize: '32px', 
                 fontWeight: '900',
                 background: 'linear-gradient(135deg, #ff6347 0%, #ff9a56 50%, #ffd700 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
+                backgroundClip: 'text',
+                textShadow: 'none'
               }}>FlavorHub</span>
             </Link>
             
