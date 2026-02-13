@@ -23,6 +23,8 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   
+  const isHomePage = location.pathname === '/';
+  
   useEffect(() => {
     const token = authService.getCurrentUser();
     setIsLoggedIn(!!token);
@@ -52,7 +54,7 @@ function Header() {
   };
   
   return (
-    <header className="site-header">
+    <header className={`site-header ${!isHomePage ? 'solid' : ''}`}>
       {/* Top Bar with Logo, Search, and Social Icons */}
       <div className="top-bar">
         <div className="container">

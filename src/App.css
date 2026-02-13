@@ -107,10 +107,20 @@ img {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+.site-header.solid {
+  position: relative;
+  background: var(--pure-white);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* Top Bar with Logo and Search */
 .top-bar {
   background: transparent;
   padding: 15px 0;
+}
+
+.site-header.solid .top-bar {
+  background: var(--pure-white);
 }
 
 .top-bar-content {
@@ -119,6 +129,14 @@ img {
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.site-header.solid .site-logo img {
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.site-header.solid .nav-link {
+  text-shadow: none;
 }
 
 @media (max-width: 767px) {
@@ -230,6 +248,10 @@ img {
 .site-nav {
   background: transparent;
   padding: 0;
+}
+
+.site-header.solid .site-nav {
+  background: var(--navy-blue);
 }
 
 .nav-content {
