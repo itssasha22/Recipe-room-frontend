@@ -18,7 +18,7 @@ const Groups = () => {
   const fetchGroups = async () => {
     try {
       setLoading(true);
-      const data = await groupService.getAllGroups();
+      const data = await groupService.getUserGroups();
       setGroups(data);
     } catch (err) {
       setError('Failed to load groups');
@@ -33,7 +33,10 @@ const Groups = () => {
 
     try {
       setCreating(true);
-      await groupService.createGroup(newGroupName, newGroupDesc);
+      await groupService.createGroup({ 
+        name: newGroupName, 
+        description: newGroupDesc 
+      });
       setNewGroupName('');
       setNewGroupDesc('');
       setShowCreateForm(false);
