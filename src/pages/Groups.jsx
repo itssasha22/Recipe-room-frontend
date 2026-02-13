@@ -33,6 +33,7 @@ const Groups = () => {
 
     try {
       setCreating(true);
+      setError('');
       await groupService.createGroup({ 
         name: newGroupName, 
         description: newGroupDesc 
@@ -42,7 +43,9 @@ const Groups = () => {
       setShowCreateForm(false);
       await fetchGroups();
     } catch (err) {
-      setError('Failed to create group');
+      const errorMsg = err.response?.data?.error || err.message || 'Failed to create group';
+      setError(errorMsg);
+      console.error('Group creation error:', err.response?.data);
     } finally {
       setCreating(false);
     }
