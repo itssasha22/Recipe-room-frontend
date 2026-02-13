@@ -1,256 +1,198 @@
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const contributors = [
-    { name: 'Derrick Koome', country: 'Kenya', role: 'Kenyan Cuisine Specialist' },
-    { name: 'Sasha Lisha', country: 'Kenya', role: 'Coastal Recipes Expert' },
-    { name: 'Ian Nassore', country: 'Kenya', role: 'Traditional Chef' },
-    { name: 'Alex Mureti', country: 'Kenya', role: 'Nyama Choma Master' },
-    { name: 'Joy Kori', country: 'Kenya', role: 'Pastry & Baking Chef' }
+  const featuredRecipes = [
+    {
+      title: 'Chapatti & Beef Stew',
+      image: 'https://i.pinimg.com/736x/63/a6/65/63a6659d40c699abb63d3d9f5cbdd6f6.jpg',
+      description: 'Traditional comfort food at its finest'
+    },
+    {
+      title: 'Asian Noodle Bowl',
+      image: 'https://i.pinimg.com/736x/83/63/6e/83636e0b1a2c91568ac18268c9055676.jpg',
+      description: 'Fresh vegetables with savory noodles'
+    },
+    {
+      title: 'Gourmet Pizza',
+      image: 'https://i.pinimg.com/1200x/15/30/e4/1530e4c9cc16b1777092a1e358c62de7.jpg',
+      description: 'Authentic stone-baked perfection'
+    }
   ];
 
   return (
-    <div>
-      {/* Hero Section with Logo */}
+    <div style={{ paddingTop: '0' }}>
+      {/* Hero Section - RecipeTin Eats Style with Large Image */}
       <section className="hero-section">
-        <div className="container">
-          <div style={{ marginBottom: '30px', display: 'flex', justifyContent: 'center' }}>
-            <img src="/flavorhub-logo.png" alt="FlavorHub Logo" style={{ height: '120px', width: 'auto' }} />
-          </div>
-          <h1 className="hero-title">Welcome to FlavorHub</h1>
-          <p className="hero-subtitle" style={{ letterSpacing: '2px', fontWeight: '500' }}>
-            TASTE THE WORLD
-          </p>
-          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '30px' }}>
-            <Link to="/register" className="btn btn-primary">
-              Join Free Today
-            </Link>
-            <Link to="/login" className="btn btn-secondary">
-              Sign In
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Recipe Images Section */}
-      <section style={{ padding: '60px 20px', background: 'white' }}>
-        <div className="container">
-          <h2 style={{ textAlign: 'center', marginBottom: '40px', color: 'var(--warm-brown)' }}>
-            Discover Authentic Flavors
-          </h2>
-          <div className="grid-3" style={{ gap: '20px' }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ 
-                height: '220px', 
-                background: 'linear-gradient(135deg, #ff9a56, #ff6b35)', 
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '4rem',
-                marginBottom: '15px'
-              }}>
-                🍛
-              </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>African Cuisine</h3>
-              <p style={{ color: 'var(--medium-gray)', fontSize: '0.95rem' }}>
-                Traditional dishes from Kenya, Nigeria, Ethiopia & more
-              </p>
-            </div>
-            
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ 
-                height: '220px', 
-                background: 'linear-gradient(135deg, #4CAF50, #2d6a4f)', 
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '4rem',
-                marginBottom: '15px'
-              }}>
-                🍜
-              </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Asian Flavors</h3>
-              <p style={{ color: 'var(--medium-gray)', fontSize: '0.95rem' }}>
-                Authentic recipes from Thailand, India, Japan & China
-              </p>
-            </div>
-            
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ 
-                height: '220px', 
-                background: 'linear-gradient(135deg, #e74c3c, #c0392b)', 
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '4rem',
-                marginBottom: '15px'
-              }}>
-                🥘
-              </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Mediterranean</h3>
-              <p style={{ color: 'var(--medium-gray)', fontSize: '0.95rem' }}>
-                Delicious dishes from Italy, Greece, Spain & Morocco
-              </p>
+        <img 
+          src="https://i.pinimg.com/736x/63/a6/65/63a6659d40c699abb63d3d9f5cbdd6f6.jpg"
+          alt="Chapatti & Beef Stew"
+          className="hero-background"
+        />
+        <div className="hero-overlay"></div>
+        
+        <div className="hero-content">
+          <div className="hero-panel">
+            <h1 className="hero-title">Chapatti & Beef Stew</h1>
+            <p className="hero-subtitle">
+              The soul-warming dish that brings families together. Tender beef in rich gravy, paired with soft, flaky chapattis.
+            </p>
+            <div className="hero-buttons">
+              <Link to="/recipes" className="btn btn-primary" style={{ fontSize: '16px', padding: '14px 32px' }}>
+                GET THE RECIPE →
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section style={{ padding: '60px 20px', background: 'var(--cream-bg)' }}>
+      {/* What I'm Craving Section */}
+      <section className="craving-section">
         <div className="container">
-          <h2 style={{ textAlign: 'center', marginBottom: '50px' }}>
-            Why Join FlavorHub?
-          </h2>
+          <div className="craving-header">
+            <img 
+              src="/flavorhub-logo.png" 
+              alt="FlavorHub" 
+              className="craving-avatar"
+            />
+            <h2 className="craving-title">WHAT I'M CRAVING</h2>
+          </div>
           
           <div className="grid-3">
-            <div style={{ textAlign: 'center', padding: '20px' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🌍</div>
-              <h3>Global Recipes</h3>
-              <p style={{ color: 'var(--medium-gray)', fontSize: '1rem' }}>
-                Access authentic recipes from 23+ countries around the world
-              </p>
-            </div>
-            
-            <div style={{ textAlign: 'center', padding: '20px' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '20px' }}>👨‍🍳</div>
-              <h3>Easy to Follow</h3>
-              <p style={{ color: 'var(--medium-gray)', fontSize: '1rem' }}>
-                Step-by-step instructions with prep times and serving sizes
-              </p>
-            </div>
-            
-            <div style={{ textAlign: 'center', padding: '20px' }}>
-              <div style={{ fontSize: '3rem', marginBottom: '20px' }}>⭐</div>
-              <h3>Community Rated</h3>
-              <p style={{ color: 'var(--medium-gray)', fontSize: '1rem' }}>
-                Real ratings and reviews from home cooks like you
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Premium Feature Section */}
-      <section style={{ padding: '60px 20px', background: 'white' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <div style={{ 
-            display: 'inline-block',
-            background: 'linear-gradient(135deg, #ff6b35, #ff9a56)',
-            padding: '4px 16px',
-            borderRadius: '20px',
-            color: 'white',
-            fontSize: '0.85rem',
-            fontWeight: '600',
-            letterSpacing: '1px',
-            marginBottom: '20px'
-          }}>
-            PREMIUM FEATURE
-          </div>
-          <h2 style={{ marginBottom: '20px' }}>Unlock Exclusive Chef Recipes</h2>
-          <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'var(--medium-gray)',
-            marginBottom: '30px',
-            maxWidth: '600px',
-            margin: '0 auto 30px'
-          }}>
-            Get access to premium recipes from professional chefs with PayD secure payment
-          </p>
-          <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ fontSize: '2.5rem' }}>🔒</div>
-            <div style={{ fontSize: '2.5rem' }}>👨‍🍳</div>
-            <div style={{ fontSize: '2.5rem' }}>📚</div>
-            <div style={{ fontSize: '2.5rem' }}>💳</div>
-          </div>
-          <p style={{ marginTop: '20px', color: 'var(--medium-gray)', fontSize: '0.9rem' }}>
-            Secure payments powered by <strong>PayD</strong> - Your trusted payment partner
-          </p>
-        </div>
-      </section>
-
-      {/* Featured Chefs Section */}
-      <section style={{ padding: '60px 20px', background: 'var(--warm-brown)', color: 'white' }}>
-        <div className="container">
-          <h2 style={{ textAlign: 'center', marginBottom: '15px', color: 'white' }}>
-            Featured Chefs
-          </h2>
-          <p style={{ textAlign: 'center', marginBottom: '40px', color: 'rgba(255, 255, 255, 0.85)', fontSize: '1.1rem' }}>
-            Discover authentic recipes from our talented Kenyan chefs 🇰🇪
-          </p>
-          
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-            gap: '30px',
-            maxWidth: '1000px',
-            margin: '0 auto'
-          }}>
-            {contributors.map((contributor, index) => (
-              <div 
-                key={index}
-                style={{ 
-                  textAlign: 'center',
-                  padding: '25px 15px',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  borderRadius: '8px',
-                  transition: 'transform 0.3s ease, background 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                }}
-              >
-                <div style={{ fontSize: '3rem', marginBottom: '15px' }}>
-                  👨‍🍳
+            {featuredRecipes.map((recipe, index) => (
+              <Link to="/recipes" key={index} style={{ textDecoration: 'none' }}>
+                <div className="recipe-card">
+                  <img src={recipe.image} alt={recipe.title} />
+                  <div className="recipe-card-content">
+                    <h3 className="recipe-card-title">{recipe.title}</h3>
+                    <p className="recipe-card-meta">{recipe.description}</p>
+                  </div>
                 </div>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '5px', color: 'white' }}>
-                  {contributor.name}
-                </h3>
-                <p style={{ 
-                  fontSize: '0.9rem', 
-                  color: 'var(--rust-orange)',
-                  fontWeight: '600',
-                  marginBottom: '5px'
-                }}>
-                  {contributor.role}
-                </p>
-                <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.7)' }}>
-                  📍 {contributor.country}
-                </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section style={{ 
-        padding: '60px 20px', 
-        background: 'var(--cream-bg)',
-        textAlign: 'center' 
+      {/* Premium Subscription Section */}
+      <section className="section-padding" style={{ 
+        background: 'linear-gradient(135deg, #ff6347 0%, #ff9a56 100%)',
+        color: 'white',
+        textAlign: 'center'
       }}>
         <div className="container">
-          <h2 style={{ marginBottom: '20px' }}>Ready to Start Cooking?</h2>
+          <h2 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '20px', fontWeight: '800' }}>Go Premium</h2>
+          <p style={{ fontSize: '1.2rem', marginBottom: '30px', maxWidth: '700px', margin: '0 auto 30px' }}>
+            Unlock exclusive recipes, meal plans, and ad-free browsing with FlavorHub Premium
+          </p>
+          <div className="grid-3" style={{ maxWidth: '900px', margin: '40px auto', textAlign: 'left' }}>
+            <div style={{ 
+              background: 'rgba(255, 255, 255, 0.15)', 
+              padding: '30px', 
+              backdropFilter: 'blur(10px)',
+              borderRadius: '8px'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '15px' }}>🔓</div>
+              <h3 style={{ fontSize: '1.3rem', marginBottom: '10px', fontWeight: '700', color: 'white' }}>Exclusive Recipes</h3>
+              <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.95)' }}>
+                Access premium recipes from top chefs worldwide
+              </p>
+            </div>
+
+            <div style={{ 
+              background: 'rgba(255, 255, 255, 0.15)', 
+              padding: '30px', 
+              backdropFilter: 'blur(10px)',
+              borderRadius: '8px'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '15px' }}>📅</div>
+              <h3 style={{ fontSize: '1.3rem', marginBottom: '10px', fontWeight: '700', color: 'white' }}>Meal Planning</h3>
+              <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.95)' }}>
+                Weekly meal plans with automatic shopping lists
+              </p>
+            </div>
+
+            <div style={{ 
+              background: 'rgba(255, 255, 255, 0.15)', 
+              padding: '30px', 
+              backdropFilter: 'blur(10px)',
+              borderRadius: '8px'
+            }}>
+              <div style={{ fontSize: '2.5rem', marginBottom: '15px' }}>🚫</div>
+              <h3 style={{ fontSize: '1.3rem', marginBottom: '10px', fontWeight: '700', color: 'white' }}>Ad-Free Experience</h3>
+              <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.95)' }}>
+                Enjoy distraction-free cooking experience
+              </p>
+            </div>
+          </div>
+          <Link to="/premium" className="btn" style={{ 
+            background: 'white',
+            color: '#ff6347',
+            fontSize: '16px',
+            padding: '14px 40px',
+            fontWeight: '800',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+          }}>
+            UPGRADE TO PREMIUM →
+          </Link>
+        </div>
+      </section>
+
+      {/* Simple Features */}
+      <section className="section-padding" style={{ background: 'white' }}>
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Why FlavorHub?</h2>
+            <p className="section-subtitle">Join thousands of home cooks worldwide</p>
+          </div>
+          
+          <div className="grid-3" style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', padding: '30px 20px' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🌍</div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: '700' }}>Global Recipes</h3>
+              <p style={{ fontSize: '15px', color: 'var(--text-gray)' }}>
+                Discover authentic dishes from 23+ countries
+              </p>
+            </div>
+
+            <div style={{ textAlign: 'center', padding: '30px 20px' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>⚡</div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: '700' }}>Quick & Easy</h3>
+              <p style={{ fontSize: '15px', color: 'var(--text-gray)' }}>
+                Step-by-step guides for perfect results
+              </p>
+            </div>
+
+            <div style={{ textAlign: 'center', padding: '30px 20px' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>⭐</div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '10px', fontWeight: '700' }}>Community Rated</h3>
+              <p style={{ fontSize: '15px', color: 'var(--text-gray)' }}>
+                Real reviews from home cooks
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section-padding" style={{ 
+        background: 'linear-gradient(135deg, var(--dark-navy), var(--navy-blue))', 
+        textAlign: 'center',
+        color: 'white'
+      }}>
+        <div className="container">
+          <h2 style={{ marginBottom: '20px', color: 'white', fontSize: '2rem' }}>Ready to Start Cooking?</h2>
           <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'var(--medium-gray)',
+            fontSize: '1.1rem',
             marginBottom: '30px',
             maxWidth: '600px',
             margin: '0 auto 30px'
           }}>
-            Join our community of food lovers and discover your next favorite recipe
+            Join FlavorHub today and discover recipes that will transform your kitchen
           </p>
-          <Link to="/register" className="btn btn-primary">
-            Sign Up - It's Free
-          </Link>
+          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/register" className="btn btn-primary">Sign Up Free</Link>
+            <Link to="/login" className="btn btn-secondary">Sign In</Link>
+          </div>
         </div>
       </section>
     </div>

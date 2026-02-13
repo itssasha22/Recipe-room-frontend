@@ -1,108 +1,160 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../store/authSlice';
 import authService from '../services/authService';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    username: '',
+    password: ''
   });
+  
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+    setError('');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    
+    if (!formData.username || !formData.password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
     try {
-      await authService.login(formData);
-      navigate('/profile');
+      setLoading(true);
+      setError('');
+      const data = await authService.login({ username: formData.username, password: formData.password });
+      dispatch(loginSuccess(data));
+      navigate('/recipes');
     } catch (err) {
-      setError('Login failed. Please check your credentials.');
+      setError(err.response?.data?.error || err.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#2c2c2c', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div style={{ maxWidth: '900px', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', background: '#1e1e1e', borderRadius: '16px', boxShadow: '0 10px 40px rgba(139, 92, 246, 0.5)', overflow: 'hidden', border: '2px solid #8b5cf6' }}>
-        
-        <div style={{ background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Food" style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }} />
-          <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', color: 'white' }}>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>FlavorHub</h2>
-            <p style={{ fontSize: '1.1rem', opacity: 0.95 }}>Discover amazing recipes from chefs around the world</p>
-          </div>
+    <div style={{ 
+      background: 'var(--off-white)', 
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <div style={{ 
+        background: 'white',
+        border: '1px solid var(--border-gray)',
+        padding: '40px 30px',
+        width: '100%',
+        maxWidth: '400px'
+      }}>
+        {/* Logo */}
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+          <img 
+            src="/flavorhub-logo.png" 
+            alt="FlavorHub" 
+            style={{ height: '60px', marginBottom: '10px' }}
+          />
+          <h1 style={{ fontSize: '1.75rem', marginBottom: '5px' }}>Login</h1>
+          <p style={{ fontSize: '14px', color: 'var(--light-gray)' }}>
+            Welcome back to FlavorHub
+          </p>
         </div>
 
-        <div style={{ padding: '3rem 2rem' }}>
-          <h2 style={{ color: '#fdba74', fontSize: '1.8rem', marginBottom: '0.5rem' }}>Welcome Back!</h2>
-          <p style={{ color: '#aaa', marginBottom: '2rem' }}>Login to continue your culinary journey</p>
+        <form onSubmit={handleSubmit}>
           {error && (
-            <div style={{ background: '#fee2e2', border: '1px solid #fecaca', borderRadius: '8px', padding: '1rem', marginBottom: '1.5rem', color: '#991b1b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span>⚠️</span>
-              <span>{error}</span>
+            <div style={{ 
+              background: '#fee', 
+              border: '1px solid var(--danger-red)',
+              color: 'var(--danger-red)',
+              padding: '12px',
+              marginBottom: '20px',
+              fontSize: '14px',
+              borderRadius: '3px'
+            }}>
+              {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#fdba74', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #8b5cf6', fontSize: '1rem', transition: 'all 0.3s', outline: 'none', background: '#2a2a2a', color: 'white' }}
-                onFocus={(e) => e.target.style.borderColor = '#10b981'}
-                onBlur={(e) => e.target.style.borderColor = '#8b5cf6'}
-              />
-            </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              display: 'block', 
+              marginBottom: '8px',
+              fontWeight: '500'
+            }}>
+              Username
+            </label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Enter your username"
+              autoFocus
+            />
+          </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#fdba74', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
-                required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #8b5cf6', fontSize: '1rem', transition: 'all 0.3s', outline: 'none', background: '#2a2a2a', color: 'white' }}
-                onFocus={(e) => e.target.style.borderColor = '#10b981'}
-                onBlur={(e) => e.target.style.borderColor = '#8b5cf6'}
-              />
-            </div>
+          <div style={{ marginBottom: '25px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              display: 'block', 
+              marginBottom: '8px',
+              fontWeight: '500'
+            }}>
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Enter your password"
+            />
+          </div>
 
-            <button 
-              type="submit" 
-              disabled={loading}
-              style={{ width: '100%', padding: '1rem', background: loading ? '#9ca3af' : 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: '600', cursor: loading ? 'not-allowed' : 'pointer', boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)', transition: 'transform 0.2s' }}
-              onMouseEnter={(e) => !loading && (e.target.style.transform = 'translateY(-2px)')}
-              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+          <button 
+            type="submit" 
+            className="btn-primary"
+            disabled={loading}
+            style={{ width: '100%', marginBottom: '20px' }}
+          >
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+
+          <p style={{ 
+            fontSize: '14px', 
+            textAlign: 'center',
+            color: 'var(--text-gray)'
+          }}>
+            Don't have an account?{' '}
+            <Link 
+              to="/register"
+              style={{ 
+                color: 'var(--primary-orange)',
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
             >
-              {loading ? 'Logging in...' : 'Login'}
-            </button>
-          </form>
-
-          <div style={{ marginTop: '1.5rem', textAlign: 'center', paddingTop: '1.5rem', borderTop: '1px solid #2a2a2a' }}>
-            <p style={{ color: '#aaa', marginBottom: '0.5rem' }}>Don't have an account?</p>
-            <Link to="/register" style={{ color: '#fdba74', textDecoration: 'none', fontWeight: '600', fontSize: '1.05rem' }}>
-              Create Account →
+              Sign up
             </Link>
-          </div>
-
-          <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-            <Link to="/" style={{ color: '#10b981', textDecoration: 'none', fontSize: '0.9rem' }}>
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
+          </p>
+        </form>
       </div>
     </div>
   );

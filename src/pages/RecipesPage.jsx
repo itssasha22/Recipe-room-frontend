@@ -1,88 +1,116 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import recipeService from '../services/recipeService';
 
 const RecipesPage = () => {
-  const navigate = useNavigate();
   const [recipes, setRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState('All');
-  
+  const [error, setError] = useState('');
+  const [search, setSearch] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
+
+  const countries = [
+    '🇰🇪 Kenya', '🇪🇹 Ethiopia', '🇳🇬 Nigeria', '🇮🇹 Italy', '🇹🇭 Thailand',
+    '🇮🇳 India', '🇲🇽 Mexico', '🇱🇧 Lebanon', '🇿🇦 South Africa', '🇲🇦 Morocco'
+  ];
+
   useEffect(() => {
     fetchRecipes();
-  }, [searchTerm, selectedCountry]);
-  
+  }, []);
+
+  useEffect(() => {
+    filterRecipes();
+  }, [search, selectedCountry, recipes]);
+
   const fetchRecipes = async () => {
     try {
       setLoading(true);
-      setError(null);
-      
-      const filters = {};
-      if (searchTerm) filters.search = searchTerm;
-      if (selectedCountry && selectedCountry !== 'All') {
-        filters.country = selectedCountry;
-      }
-      
-      const data = await recipeService.getAllRecipes(filters);
+      const data = await recipeService.getAllRecipes();
       setRecipes(data);
+      setFilteredRecipes(data);
     } catch (err) {
-      console.error('Error fetching recipes:', err);
-      setError('Failed to load recipes. Please try again.');
+      setError('Failed to load recipes');
     } finally {
       setLoading(false);
     }
   };
-  
-  const countries = [
-    'All', 'Algeria', 'Argentina', 'Australia', 'Belgium', 'Brazil', 'Canada',
-    'Chile', 'China', 'Colombia', 'Cuba', 'Denmark', 'Egypt', 'Ethiopia',
-    'France', 'Germany', 'Ghana', 'Greece', 'India', 'Indonesia', 'Italy',
-    'Jamaica', 'Japan', 'Kenya', 'Korea', 'Lebanon', 'Malaysia', 'Mexico',
-    'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'Norway', 'Pakistan',
-    'Peru', 'Philippines', 'Poland', 'Portugal', 'Russia', 'Saudi Arabia',
-    'Singapore', 'South Africa', 'Spain', 'Sweden', 'Switzerland', 'Tanzania',
-    'Thailand', 'Tunisia', 'Turkey', 'UAE', 'UK', 'USA', 'Vietnam'
-  ];
+
+  const filterRecipes = () => {
+    let filtered = [...recipes];
+
+    if (search) {
+      filtered = filtered.filter(recipe =>
+        recipe.title.toLowerCase().includes(search.toLowerCase()) ||
+        recipe.description.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    if (selectedCountry) {
+      const country = selectedCountry.split(' ')[1];
+      filtered = filtered.filter(recipe => recipe.country === country);
+    }
+
+    setFilteredRecipes(filtered);
+  };
+
+  if (loading) {
+    return (
+      <div style={{ padding: '40px 20px', textAlign: 'center' }}>
+        <div className="loading-spinner"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container" style={{ padding: '40px 20px' }}>
+        <div className="error-message">{error}</div>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ background: 'var(--pure-white)', minHeight: '100vh', paddingBottom: '60px' }}>
+    <div style={{ background: 'var(--pure-white)', minHeight: '100vh' }}>
       {/* Page Header */}
-      <div style={{ background: 'var(--off-white)', padding: '40px 20px', borderBottom: '1px solid var(--border-gray)' }}>
+      <div style={{ background: 'var(--off-white)', borderBottom: '1px solid var(--border-gray)', padding: '40px 20px' }}>
         <div className="container">
-          <h1 style={{ marginBottom: '10px' }}>All Recipes</h1>
-          <p style={{ color: 'var(--medium-gray)', fontSize: '1.125rem' }}>
-            Browse our collection of {recipes.length} recipes
+          <h1 style={{ fontSize: '2rem', marginBottom: '10px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px' }}>All Recipes</h1>
+          <p style={{ fontSize: '15px', color: 'var(--text-gray)' }}>
+            {filteredRecipes.length} delicious recipes to try
           </p>
         </div>
       </div>
-      
-      {/* Filter Section */}
-      <div style={{ background: 'white', borderBottom: '1px solid var(--border-gray)', padding: '30px 20px' }}>
+
+      {/* Filters */}
+      <div style={{ background: 'white', borderBottom: '1px solid var(--border-gray)', padding: '20px 0' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
-            <div>
-              <label className="form-label">Search Recipes</label>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr',
+            gap: '15px'
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
               <input
                 type="text"
-                placeholder="Search by name..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="🔍 Search recipes..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 className="form-input"
+                style={{ fontSize: '15px', padding: '12px 15px' }}
               />
-            </div>
-            
-            <div>
-              <label className="form-label">Filter by Country</label>
+              
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className="form-input"
-                style={{ cursor: 'pointer' }}
+                className="form-select"
+                style={{ fontSize: '15px', padding: '12px 15px' }}
               >
-                {countries.map(country => (
-                  <option key={country} value={country}>{country}</option>
+                <option value="">🌍 All Countries</option>
+                {countries.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
                 ))}
               </select>
             </div>
@@ -91,55 +119,62 @@ const RecipesPage = () => {
       </div>
 
       {/* Recipe Grid */}
-      <div className="container" style={{ padding: '40px 20px' }}>
-        {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <div className="loading-spinner" />
-            <p style={{ color: 'var(--medium-gray)', marginTop: '20px' }}>Loading recipes...</p>
-          </div>
-        ) : error ? (
-          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <p style={{ color: 'var(--coral-accent)', marginBottom: '20px', fontSize: '1.125rem' }}>{error}</p>
-            <button onClick={fetchRecipes} className="btn">Try Again</button>
-          </div>
-        ) : recipes.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <h3>No recipes found</h3>
-            <p style={{ color: 'var(--medium-gray)' }}>Try adjusting your search filters</p>
+      <div className="container section-padding">
+        {filteredRecipes.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+            <p style={{ fontSize: '15px', color: 'var(--light-gray)' }}>
+              No recipes found. Try adjusting your filters.
+            </p>
           </div>
         ) : (
           <div className="grid-3">
-            {recipes.map(recipe => (
-              <div
-                key={recipe.id}
-                className="card"
-                onClick={() => navigate(`/recipes/${recipe.id}`)}
-                style={{ cursor: 'pointer' }}
+            {filteredRecipes.map((recipe) => (
+              <Link 
+                key={recipe.id} 
+                to={`/recipes/${recipe.id}`}
+                style={{ textDecoration: 'none' }}
               >
-                <img 
-                  src={recipe.image_url || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80'} 
-                  alt={recipe.title}
-                  className="recipe-card-image"
-                />
-                <div className="recipe-card-content">
-                  <h3 className="recipe-card-title">{recipe.title}</h3>
-                  <p style={{ color: 'var(--medium-gray)', fontSize: '14px', marginBottom: '12px' }}>
-                    by {recipe.author || 'Anonymous'}
-                  </p>
-                  <div className="recipe-card-meta">
-                    <div className="rating-stars">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} style={{ color: i < Math.round(recipe.avg_rating || 0) ? '#ff9500' : '#ddd' }}>
-                          ★
-                        </span>
-                      ))}
+                <div className="recipe-card">
+                  <img 
+                    src={recipe.image_url || 'https://via.placeholder.com/400x300?text=Recipe'} 
+                    alt={recipe.title}
+                  />
+                  <div className="recipe-card-content">
+                    <h3 className="recipe-card-title">{recipe.title}</h3>
+                    
+                    <div className="recipe-card-meta">
+                      <span>⏱️ {recipe.prep_time + recipe.cook_time} min</span>
+                      <span>🍽️ {recipe.servings} servings</span>
+                      {recipe.average_rating > 0 && (
+                        <span>⭐ {recipe.average_rating.toFixed(1)}</span>
+                      )}
                     </div>
-                    <span style={{ color: 'var(--medium-gray)', fontSize: '14px' }}>
-                      {recipe.prep_time + recipe.cook_time} min
-                    </span>
+
+                    <p style={{ 
+                      fontSize: '13px', 
+                      color: 'var(--light-gray)',
+                      marginTop: '8px',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden'
+                    }}>
+                      {recipe.description}
+                    </p>
+
+                    {recipe.author_name && (
+                      <p style={{ 
+                        fontSize: '12px',
+                        color: 'var(--primary-orange)',
+                        marginTop: '8px',
+                        fontWeight: '500'
+                      }}>
+                        By {recipe.author_name}
+                      </p>
+                    )}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}

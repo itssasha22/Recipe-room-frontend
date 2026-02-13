@@ -1,143 +1,216 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../store/authSlice';
 import authService from '../services/authService';
 
 const Register = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
+  
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+    setError('');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+      setError('Please fill in all fields');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-    
-    setLoading(true);
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
     try {
-      await authService.register(formData);
-      navigate('/login');
+      setLoading(true);
+      setError('');
+      await authService.register({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password
+      });
+      // After registration, log in the user
+      const loginData = await authService.login({ username: formData.username, password: formData.password });
+      dispatch(loginSuccess(loginData));
+      navigate('/recipes');
     } catch (err) {
-      setError('Registration failed. Please try again.');
+      setError(err.response?.data?.error || err.message || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div style={{ maxWidth: '450px', width: '100%', background: 'white', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.1)', overflow: 'hidden', border: '2px solid #10b981' }}>
-        
-        <div style={{ background: 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', padding: '2rem', textAlign: 'center', color: 'white' }}>
-          <h2 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>Join FlavorHub</h2>
-          <p style={{ margin: '0.5rem 0 0 0', opacity: 0.9 }}>Start sharing your culinary creations</p>
+    <div style={{ 
+      background: 'var(--off-white)', 
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <div style={{ 
+        background: 'white',
+        border: '1px solid var(--border-gray)',
+        padding: '40px 30px',
+        width: '100%',
+        maxWidth: '400px'
+      }}>
+        {/* Logo */}
+        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
+          <img 
+            src="/flavorhub-logo.png" 
+            alt="FlavorHub" 
+            style={{ height: '60px', marginBottom: '10px' }}
+          />
+          <h1 style={{ fontSize: '1.75rem', marginBottom: '5px' }}>Sign Up</h1>
+          <p style={{ fontSize: '14px', color: 'var(--light-gray)' }}>
+            Join FlavorHub today
+          </p>
         </div>
 
-        <div style={{ padding: '2rem' }}>
+        <form onSubmit={handleSubmit}>
           {error && (
-            <div style={{ background: '#fee2e2', border: '1px solid #fecaca', borderRadius: '8px', padding: '1rem', marginBottom: '1.5rem', color: '#991b1b', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span>⚠️</span>
-              <span>{error}</span>
+            <div style={{ 
+              background: '#fee', 
+              border: '1px solid var(--danger-red)',
+              color: 'var(--danger-red)',
+              padding: '12px',
+              marginBottom: '20px',
+              fontSize: '14px',
+              borderRadius: '3px'
+            }}>
+              {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                Username
-              </label>
-              <input
-                type="text"
-                placeholder="Choose a username"
-                value={formData.username}
-                onChange={(e) => setFormData({...formData, username: e.target.value})}
-                required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-                onBlur={(e) => e.target.style.borderColor = '#10b981'}
-              />
-            </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              display: 'block', 
+              marginBottom: '8px',
+              fontWeight: '500'
+            }}>
+              Username
+            </label>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Choose a username"
+              autoFocus
+            />
+          </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-                onBlur={(e) => e.target.style.borderColor = '#10b981'}
-              />
-            </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              display: 'block', 
+              marginBottom: '8px',
+              fontWeight: '500'
+            }}>
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="your.email@example.com"
+            />
+          </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="Create a password"
-                value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
-                required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-                onBlur={(e) => e.target.style.borderColor = '#10b981'}
-              />
-            </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              display: 'block', 
+              marginBottom: '8px',
+              fontWeight: '500'
+            }}>
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="At least 6 characters"
+            />
+          </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#8b5cf6', fontWeight: '600', marginBottom: '0.5rem', fontSize: '0.95rem' }}>
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-                required
-                style={{ width: '100%', padding: '0.875rem 1rem', borderRadius: '10px', border: '2px solid #10b981', fontSize: '1rem', transition: 'all 0.3s', outline: 'none' }}
-                onFocus={(e) => e.target.style.borderColor = '#8b5cf6'}
-                onBlur={(e) => e.target.style.borderColor = '#10b981'}
-              />
-            </div>
+          <div style={{ marginBottom: '25px' }}>
+            <label style={{ 
+              fontSize: '14px', 
+              display: 'block', 
+              marginBottom: '8px',
+              fontWeight: '500'
+            }}>
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="Re-enter your password"
+            />
+          </div>
 
-            <button 
-              type="submit" 
-              disabled={loading}
-              style={{ width: '100%', padding: '1rem', background: loading ? '#9ca3af' : 'linear-gradient(135deg, #10b981 0%, #8b5cf6 100%)', color: 'white', border: 'none', borderRadius: '10px', fontSize: '1.1rem', fontWeight: '600', cursor: loading ? 'not-allowed' : 'pointer', boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)', transition: 'transform 0.2s' }}
-              onMouseEnter={(e) => !loading && (e.target.style.transform = 'translateY(-2px)')}
-              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+          <button 
+            type="submit" 
+            className="btn-primary"
+            disabled={loading}
+            style={{ width: '100%', marginBottom: '20px' }}
+          >
+            {loading ? 'Creating account...' : 'Create Account'}
+          </button>
+
+          <p style={{ 
+            fontSize: '14px', 
+            textAlign: 'center',
+            color: 'var(--text-gray)'
+          }}>
+            Already have an account?{' '}
+            <Link 
+              to="/login"
+              style={{ 
+                color: 'var(--primary-orange)',
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
             >
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </button>
-          </form>
-
-          <div style={{ marginTop: '1.5rem', textAlign: 'center', paddingTop: '1.5rem', borderTop: '1px solid #e5e7eb' }}>
-            <p style={{ color: '#666', marginBottom: '0.5rem' }}>Already have an account?</p>
-            <Link to="/login" style={{ color: '#8b5cf6', textDecoration: 'none', fontWeight: '600', fontSize: '1.05rem' }}>
-              Login →
+              Login
             </Link>
-          </div>
-
-          <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-            <Link to="/" style={{ color: '#10b981', textDecoration: 'none', fontSize: '0.9rem' }}>
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
+          </p>
+        </form>
       </div>
     </div>
   );
