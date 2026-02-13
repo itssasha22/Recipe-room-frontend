@@ -8,6 +8,8 @@ const GroupDetail = () => {
   const [group, setGroup] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [showInviteForm, setShowInviteForm] = useState(false);
 
   useEffect(() => {
     fetchGroupData();
@@ -44,6 +46,18 @@ const GroupDetail = () => {
       navigate('/groups');
     } catch (err) {
       setError('Failed to leave group');
+    }
+  };
+
+  const handleInvite = async (e) => {
+    e.preventDefault();
+    try {
+      await groupService.inviteToGroup(id, inviteEmail);
+      setInviteEmail('');
+      setShowInviteForm(false);
+      alert('Invitation sent!');
+    } catch (err) {
+      setError('Failed to send invitation');
     }
   };
 
@@ -101,9 +115,14 @@ const GroupDetail = () => {
             </p>
 
             {isMember ? (
-              <button onClick={handleLeaveGroup} className="btn-secondary">
-                Leave Group
-              </button>
+              <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+                <button onClick={() => setShowInviteForm(!showInviteForm)} className="btn-primary">
+                  Invite Members
+                </button>
+                <button onClick={handleLeaveGroup} className="btn-secondary">
+                  Leave Group
+                </button>
+              </div>
             ) : (
               <button onClick={handleJoinGroup} className="btn-primary">
                 Join Group
@@ -116,6 +135,35 @@ const GroupDetail = () => {
       {/* Group Content */}
       {isMember && (
         <div className="container section-padding">
+          {showInviteForm && (
+            <div style={{ 
+              background: 'white', 
+              border: '1px solid var(--border-gray)', 
+              padding: '25px',
+              marginBottom: '30px'
+            }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: '20px' }}>Invite to Group</h2>
+              <form onSubmit={handleInvite}>
+                <div style={{ marginBottom: '15px' }}>
+                  <label style={{ fontSize: '14px', display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={inviteEmail}
+                    onChange={(e) => setInviteEmail(e.target.value)}
+                    className="form-input"
+                    placeholder="friend@example.com"
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn-primary">
+                  Send Invitation
+                </button>
+              </form>
+            </div>
+          )}
+
           {/* Members Section */}
           {group.members && group.members.length > 0 && (
             <div style={{ marginBottom: '40px' }}>

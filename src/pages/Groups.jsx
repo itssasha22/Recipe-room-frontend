@@ -9,7 +9,9 @@ const Groups = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newGroupName, setNewGroupName] = useState('');
   const [newGroupDesc, setNewGroupDesc] = useState('');
+  const [newGroupImage, setNewGroupImage] = useState(null);
   const [creating, setCreating] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     fetchGroups();
@@ -34,18 +36,24 @@ const Groups = () => {
     try {
       setCreating(true);
       setError('');
-      await groupService.createGroup({ 
+      const group = await groupService.createGroup({ 
         name: newGroupName, 
         description: newGroupDesc 
       });
+      
+      if (newGroupImage) {
+        const formData = new FormData();
+        formData.append('image', newGroupImage);
+        await groupService.uploadGroupImage(group.id, formData);
+      }
+      
       setNewGroupName('');
       setNewGroupDesc('');
+      setNewGroupImage(null);
       setShowCreateForm(false);
       await fetchGroups();
     } catch (err) {
-      const errorMsg = err.response?.data?.error || err.message || 'Failed to create group';
-      setError(errorMsg);
-      console.error('Group creation error:', err.response?.data);
+      setError(err.response?.data?.error || 'Failed to create group');
     } finally {
       setCreating(false);
     }
@@ -65,17 +73,22 @@ const Groups = () => {
         <div className="container" style={{ padding: '25px 15px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
             <div>
-              <h1 style={{ fontSize: '1.75rem', marginBottom: '5px' }}>Recipe Groups</h1>
+              <h1 style={{ fontSize: '1.75rem', marginBottom: '5px' }}>My Groups</h1>
               <p style={{ fontSize: '14px', color: 'var(--light-gray)' }}>
                 {groups.length} {groups.length === 1 ? 'group' : 'groups'}
               </p>
             </div>
-            <button 
-              onClick={() => setShowCreateForm(!showCreateForm)}
-              className="btn-primary"
-            >
-              {showCreateForm ? 'Cancel' : '+ Create Group'}
-            </button>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <Link to="/groups/browse" className="btn-secondary">
+                Browse Groups
+              </Link>
+              <button 
+                onClick={() => setShowCreateForm(!showCreateForm)}
+                className="btn-primary"
+              >
+                {showCreateForm ? 'Cancel' : '+ Create Group'}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -128,6 +141,17 @@ const Groups = () => {
                   placeholder="What's this group about?"
                 />
               </div>
+              <div style={{ marginBottom: '20px' }}>
+                <label style={{ fontSize: '14px', display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                  Group Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setNewGroupImage(e.target.files[0])}
+                  className="form-input"
+                />
+              </div>
               <button type="submit" className="btn-primary" disabled={creating}>
                 {creating ? 'Creating...' : 'Create Group'}
               </button>
@@ -166,9 +190,13 @@ const Groups = () => {
                 }}
                 className="hover-card"
                 >
-                  <div style={{ fontSize: '36px', marginBottom: '12px', textAlign: 'center' }}>
-                    👥
-                  </div>
+                  {group.image_url ? (
+                    <img src={group.image_url} alt={group.name} style={{ width: '100%', height: '150px', objectFit: 'cover', marginBottom: '12px' }} />
+                  ) : (
+                    <div style={{ fontSize: '36px', marginBottom: '12px', textAlign: 'center' }}>
+                      👥
+                    </div>
+                  )}
                   <h3 style={{ fontSize: '1.1rem', marginBottom: '8px', textAlign: 'center' }}>
                     {group.name}
                   </h3>

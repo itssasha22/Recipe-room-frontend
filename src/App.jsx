@@ -10,6 +10,7 @@ import RecipesPage from './pages/RecipesPage.jsx';
 import RecipeDetail from './pages/RecipeDetail.jsx';
 import CreateRecipe from './pages/CreateRecipe.jsx';
 import Groups from './pages/Groups.jsx';
+import BrowseGroups from './pages/BrowseGroups.jsx';
 import GroupDetail from './pages/GroupDetail.jsx';
 import Bookmarks from './pages/Bookmarks.jsx';
 import PremiumRecipes from './pages/PremiumRecipes.jsx';
@@ -228,6 +229,11 @@ function App() {
             <Route path="/groups" element={
               <ProtectedRoute>
                 <Groups />
+              </ProtectedRoute>
+            } />
+            <Route path="/groups/browse" element={
+              <ProtectedRoute>
+                <BrowseGroups />
               </ProtectedRoute>
             } />
             <Route path="/groups/:id" element={
