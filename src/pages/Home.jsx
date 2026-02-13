@@ -8,14 +8,14 @@ const Home = () => {
       description: 'Traditional comfort food at its finest'
     },
     {
-      title: 'Asian Noodle Bowl',
+      title: 'Swahili Pilau',
       image: 'https://i.pinimg.com/736x/83/63/6e/83636e0b1a2c91568ac18268c9055676.jpg',
-      description: 'Fresh vegetables with savory noodles'
+      description: 'Aromatic spiced rice with tender meat'
     },
     {
-      title: 'Gourmet Pizza',
+      title: 'Pan-Fried Fish',
       image: 'https://i.pinimg.com/1200x/15/30/e4/1530e4c9cc16b1777092a1e358c62de7.jpg',
-      description: 'Authentic stone-baked perfection'
+      description: 'Crispy golden fish with fresh herbs'
     }
   ];
 
