@@ -146,6 +146,10 @@ Output in `dist/` directory.
 5. Add environment variables
 6. Deploy
 
-## Author
+## Authors
 
-Built by Derrick Koome
+- Derrick Koome
+- Sasha Lisa
+- Joy Kori
+- Alex Mureti
+- Ian Nassore
