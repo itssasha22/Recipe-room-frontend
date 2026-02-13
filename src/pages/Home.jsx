@@ -21,7 +21,6 @@ const Home = () => {
 
   return (
     <div style={{ paddingTop: '0' }}>
-      {/* Hero Section - RecipeTin Eats Style with Large Image */}
       <section className="hero-section">
         <img 
           src="https://i.pinimg.com/736x/63/a6/65/63a6659d40c699abb63d3d9f5cbdd6f6.jpg"
@@ -45,7 +44,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* What I'm Craving Section */}
       <section className="craving-section">
         <div className="container">
           <div className="craving-header">
@@ -73,7 +71,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Premium Subscription Section */}
       <section className="section-padding" style={{ 
         background: 'linear-gradient(135deg, #ff6347 0%, #ff9a56 100%)',
         color: 'white',
@@ -137,7 +134,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Simple Features */}
       <section className="section-padding" style={{ background: 'white' }}>
         <div className="container">
           <div className="section-header">
@@ -173,7 +169,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="section-padding" style={{ 
         background: 'linear-gradient(135deg, var(--dark-navy), var(--navy-blue))', 
         textAlign: 'center',

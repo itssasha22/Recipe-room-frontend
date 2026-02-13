@@ -14,7 +14,7 @@ const BookmarkButton = ({ recipeId, onBookmarkChange }) => {
       const result = await recipeService.checkBookmark(recipeId);
       setBookmarked(result.bookmarked);
     } catch (err) {
-      console.error('Error checking bookmark:', err);
+      // silent fail
     }
   };
 
@@ -30,11 +30,10 @@ const BookmarkButton = ({ recipeId, onBookmarkChange }) => {
         await recipeService.bookmarkRecipe(recipeId);
         setBookmarked(true);
       }
-      if (onBookmarkChange) {
-        onBookmarkChange();
-      }
+      if (onBookmarkChange) onBookmarkChange();
     } catch (err) {
-      console.error('Error toggling bookmark:', err);
+      // revert on error
+      setBookmarked(!bookmarked);
     } finally {
       setLoading(false);
     }

@@ -37,7 +37,7 @@ const Login = () => {
       setLoading(true);
       setError('');
       const data = await authService.login({ username: formData.username, password: formData.password });
-      dispatch(loginSuccess(data));
+      dispatch(loginSuccess({ user: data.user, token: data.access_token || data.token }));
       navigate('/recipes');
     } catch (err) {
       setError(err.response?.data?.error || err.message || 'Login failed. Please check your credentials.');

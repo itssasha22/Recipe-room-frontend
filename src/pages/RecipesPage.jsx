@@ -74,7 +74,6 @@ const RecipesPage = () => {
 
   return (
     <div style={{ background: 'var(--pure-white)', minHeight: '100vh' }}>
-      {/* Page Header */}
       <div style={{ background: 'var(--off-white)', borderBottom: '1px solid var(--border-gray)', padding: '40px 20px' }}>
         <div className="container">
           <h1 style={{ fontSize: '2rem', marginBottom: '10px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px' }}>All Recipes</h1>
@@ -84,7 +83,6 @@ const RecipesPage = () => {
         </div>
       </div>
 
-      {/* Filters */}
       <div style={{ background: 'white', borderBottom: '1px solid var(--border-gray)', padding: '20px 0' }}>
         <div className="container">
           <div style={{ 
@@ -120,7 +118,6 @@ const RecipesPage = () => {
         </div>
       </div>
 
-      {/* Recipe Grid */}
       <div className="container section-padding">
         {filteredRecipes.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '40px 20px' }}>

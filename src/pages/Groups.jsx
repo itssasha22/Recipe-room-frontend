@@ -61,7 +61,6 @@ const Groups = () => {
 
   return (
     <div style={{ background: 'var(--off-white)', minHeight: '100vh' }}>
-      {/* Page Header */}
       <div style={{ background: 'white', borderBottom: '1px solid var(--border-gray)' }}>
         <div className="container" style={{ padding: '25px 15px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
@@ -95,7 +94,6 @@ const Groups = () => {
           </div>
         )}
 
-        {/* Create Group Form */}
         {showCreateForm && (
           <div style={{ 
             background: 'white', 
@@ -137,7 +135,6 @@ const Groups = () => {
           </div>
         )}
 
-        {/* Groups Grid */}
         {groups.length === 0 ? (
           <div style={{ 
             textAlign: 'center', 

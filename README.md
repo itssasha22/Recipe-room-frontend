@@ -1,40 +1,109 @@
-# Recipe Room - Frontend
+# FlavorHub - Frontend
 
-React + Vite frontend application for Recipe Room.
+React + Vite frontend for FlavorHub recipe sharing platform.
 
-## 🚀 Quick Start
+![FlavorHub](./screenshots/homepage.png)
+
+## Screenshots
+
+### Homepage
+![Homepage](./screenshots/homepage.png)
+
+### Login
+![Login](./screenshots/login.png)
+
+### Register
+![Register](./screenshots/register.png)
+
+### Recipe Browser
+![Recipes](./screenshots/recipes.png)
+
+### Recipe Details
+![Recipe Detail](./screenshots/recipe-detail.png)
+
+### Bookmarks
+![Bookmarks](./screenshots/bookmarks.png)
+
+### Groups
+![Groups](./screenshots/groups.png)
+
+### User Profile
+![Profile](./screenshots/profile.png)
+
+## Tech Stack
+
+- React 18
+- Vite
+- Redux Toolkit
+- React Router
+- Axios
+- CSS3
+
+## Quick Start
 
 ```bash
 # Install dependencies
 npm install
 
-# Copy environment variables
+# Setup environment
 cp .env.example .env
+# Edit .env: VITE_API_BASE_URL=http://localhost:5000/api
 
-# Edit .env with your backend URL
-# VITE_API_BASE_URL=http://localhost:8000/api
-
-# Start development server
+# Run dev server
 npm run dev
 ```
 
-Frontend will run on http://localhost:5173
+Frontend runs on `http://localhost:5173`
 
-## 📖 Documentation
+## Project Structure
 
-See main project documentation:
-- [DEVELOPMENT.md](../DEVELOPMENT.md) - Local development setup
-- [DEPLOYMENT.md](../DEPLOYMENT.md) - Production deployment
-
-## 🔧 Configuration
-
-Edit `.env` file:
-```bash
-VITE_API_BASE_URL=http://localhost:8000/api  # Backend URL
-VITE_ENV=development
+```
+src/
+├── components/      # Reusable components
+│   ├── BookmarkButton.jsx
+│   ├── FilterPanel.jsx
+│   └── RecipeCard.jsx
+├── pages/          # Page components
+│   ├── Home.jsx
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   ├── RecipesPage.jsx
+│   ├── RecipeDetail.jsx
+│   ├── Bookmarks.jsx
+│   ├── Groups.jsx
+│   └── Profile.jsx
+├── services/       # API services
+│   ├── authService.js
+│   ├── recipeService.js
+│   └── groupService.js
+├── store/          # Redux store
+│   └── authSlice.js
+├── utils/          # Helper functions
+│   └── countryFlags.js
+├── config/
+│   └── api.config.js
+├── App.jsx
+└── main.jsx
 ```
 
-## 🛠️ Available Scripts
+## Features
+
+- 🌍 Browse 100+ recipes from 25 countries
+- 🔍 Search and filter recipes
+- 🔖 Bookmark favorite recipes
+- ⭐ Rate and comment on recipes
+- 👥 Create and join cooking groups
+- 🔐 JWT authentication
+- 📱 Fully responsive design
+
+## Environment Variables
+
+```bash
+VITE_API_BASE_URL=http://localhost:5000/api
+VITE_PAYD_PUBLIC_KEY=your-payd-public-key
+```
+
+## Available Scripts
 
 ```bash
 npm run dev          # Start development server
@@ -43,76 +112,40 @@ npm run preview      # Preview production build
 npm run lint         # Run ESLint
 ```
 
-## 📁 Project Structure
+## API Integration
 
-```
-src/
-├── components/      # Reusable components
-├── pages/          # Page components
-├── services/       # API services
-├── store/          # Redux store
-├── config/
-│   └── api.config.js  # Centralized API configuration
-├── hooks/          # Custom React hooks
-└── assets/         # Static assets
-```
+All API calls use centralized configuration in `src/config/api.config.js`.
 
-## 🔗 API Integration
-
-All API calls use the centralized configuration in `src/config/api.config.js`.
-
-Import and use:
 ```javascript
 import { API_BASE_URL, API_ENDPOINTS } from '../config/api.config';
 ```
 
-## 🧪 Testing
-
-Make sure backend is running on http://localhost:8000
-
-Test the connection:
-1. Start frontend
-2. Open browser DevTools → Console
-3. Check for any CORS errors
-4. Test login/registration
-
-## 🚀 Production Build
+## Build for Production
 
 ```bash
 npm run build
 ```
 
-Output will be in `dist/` directory.
+Output in `dist/` directory.
 
-Test production build locally:
-```bash
-npm run preview
-```
+## Deployment
 
-## 📦 Tech Stack
+### Vercel
+1. Push to GitHub
+2. Import project in Vercel
+3. Set build command: `npm run build`
+4. Set output directory: `dist`
+5. Add environment variables
+6. Deploy
 
-- **Framework:** React 18+
-- **Build Tool:** Vite
-- **State Management:** Redux Toolkit
-- **HTTP Client:** Axios
-- **Routing:** React Router
+### Netlify
+1. Push to GitHub
+2. New site from Git
+3. Build command: `npm run build`
+4. Publish directory: `dist`
+5. Add environment variables
+6. Deploy
 
-## 🔐 Environment Variables
+## Author
 
-Required variables:
-- `VITE_API_BASE_URL` - Backend API URL
-
-Optional variables:
-- `VITE_PAYD_PUBLIC_KEY` - PayD payment gateway key
-
-## 🤝 Contributing
-
-See main [README.md](../README.md) for contribution guidelines.
-
-## 📞 Support
-
-For issues:
-1. Check backend is running
-2. Verify `.env` configuration
-3. Check browser console for errors
-4. Review network tab in DevTools
+Built by Derrick Koome
