@@ -22,11 +22,15 @@ axios.interceptors.response.use(
 const authService = {
   login: async (credentials) => {
     const response = await axios.post(`${API_URL}/auth/login`, credentials);
+    console.log('Login response:', response.data);
     // Backend returns 'access_token' not 'token'
     const token = response.data.access_token || response.data.token;
+    console.log('Extracted token:', token);
     if (token && token !== 'undefined') {
       localStorage.setItem('token', token);
+      console.log('Token stored successfully');
     } else {
+      console.error('No valid token in response:', response.data);
       throw new Error('No valid token received from server');
     }
     return response.data;
