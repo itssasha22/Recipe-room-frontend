@@ -11,6 +11,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [userRecipes, setUserRecipes] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [stats, setStats] = useState({
     recipesCount: 0,
     bookmarksCount: 0,
@@ -54,6 +56,34 @@ const Profile = () => {
     navigate('/login');
   };
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      setUploading(true);
+      await authService.uploadImage(formData);
+      window.location.reload();
+    } catch (err) {
+      setError('Failed to upload image');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    try {
+      await authService.deleteAccount();
+      localStorage.removeItem('token');
+      navigate('/register');
+    } catch (err) {
+      setError('Failed to delete account');
+    }
+  };
+
   if (loading) {
     return (
       <div style={{ padding: '40px 20px', textAlign: 'center' }}>
@@ -74,19 +104,41 @@ const Profile = () => {
             gap: '15px',
             textAlign: 'center'
           }}>
-            {/* Profile Icon */}
-            <div style={{ 
-              width: '80px', 
-              height: '80px', 
-              background: 'var(--primary-orange)',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '36px',
-              color: 'white'
-            }}>
-              👤
+            <div style={{ position: 'relative' }}>
+              <div style={{ 
+                width: '80px', 
+                height: '80px', 
+                background: currentUser?.profile_image ? 'transparent' : 'var(--primary-orange)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '36px',
+                color: 'white',
+                overflow: 'hidden',
+                border: '3px solid var(--border-gray)'
+              }}>
+                {currentUser?.profile_image ? (
+                  <img src={currentUser.profile_image} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : '👤'}
+              </div>
+              <label style={{
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                background: 'var(--primary-orange)',
+                width: '28px',
+                height: '28px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                border: '2px solid white'
+              }}>
+                {uploading ? '⏳' : '📷'}
+                <input type="file" accept="image/*" onChange={handleImageUpload} style={{ display: 'none' }} disabled={uploading} />
+              </label>
             </div>
 
             <div>
@@ -119,13 +171,28 @@ const Profile = () => {
               </div>
             </div>
 
-            <button 
-              onClick={handleLogout}
-              className="btn-secondary"
-              style={{ marginTop: '10px' }}
-            >
-              Logout
-            </button>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+              <button 
+                onClick={handleLogout}
+                className="btn-secondary"
+              >
+                Logout
+              </button>
+              <button 
+                onClick={() => setShowDeleteModal(true)}
+                style={{
+                  background: 'transparent',
+                  color: 'var(--danger-red)',
+                  border: '2px solid var(--danger-red)',
+                  padding: '8px 16px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  cursor: 'pointer'
+                }}
+              >
+                Delete Account
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -217,6 +284,50 @@ const Profile = () => {
             fontSize: '14px'
           }}>
             {error}
+          </div>
+        </div>
+      )}
+
+      {showDeleteModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            background: 'white',
+            padding: '30px',
+            maxWidth: '400px',
+            width: '90%'
+          }}>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--danger-red)' }}>⚠️ Delete Account?</h2>
+            <p style={{ marginBottom: '20px', fontSize: '14px' }}>
+              This action cannot be undone. All your recipes, bookmarks, and data will be permanently deleted.
+            </p>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button onClick={() => setShowDeleteModal(false)} className="btn-secondary" style={{ flex: 1 }}>
+                Cancel
+              </button>
+              <button onClick={handleDeleteAccount} style={{
+                flex: 1,
+                background: 'var(--danger-red)',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}>
+                Delete Forever
+              </button>
+            </div>
           </div>
         </div>
       )}

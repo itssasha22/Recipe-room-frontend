@@ -72,6 +72,14 @@ const authService = {
     localStorage.removeItem('token');
   },
 
+  deleteAccount: async () => {
+    const token = localStorage.getItem('token');
+    const response = await axios.delete(`${API_URL}/auth/profile`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
+  },
+
   getCurrentUser: () => {
     return localStorage.getItem('token');
   }
