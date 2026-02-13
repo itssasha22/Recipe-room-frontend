@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import recipeService from '../services/recipeService';
+import { getCountryFlag } from '../utils/countryFlags';
 
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -11,8 +12,10 @@ const RecipesPage = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
 
   const countries = [
-    '🇰🇪 Kenya', '🇪🇹 Ethiopia', '🇳🇬 Nigeria', '🇮🇹 Italy', '🇹🇭 Thailand',
-    '🇮🇳 India', '🇲🇽 Mexico', '🇱🇧 Lebanon', '🇿🇦 South Africa', '🇲🇦 Morocco'
+    'Argentina', 'Brazil', 'China', 'Egypt', 'Ethiopia', 'France', 'Ghana',
+    'India', 'Indonesia', 'Italy', 'Ivory Coast', 'Japan', 'Kenya', 'Lebanon',
+    'Mexico', 'Morocco', 'Nigeria', 'Pakistan', 'Poland', 'Russia', 'Somalia',
+    'South Africa', 'Spain', 'Thailand', 'Ukraine'
   ];
 
   useEffect(() => {
@@ -47,8 +50,7 @@ const RecipesPage = () => {
     }
 
     if (selectedCountry) {
-      const country = selectedCountry.split(' ')[1];
-      filtered = filtered.filter(recipe => recipe.country === country);
+      filtered = filtered.filter(recipe => recipe.country === selectedCountry);
     }
 
     setFilteredRecipes(filtered);
@@ -109,7 +111,7 @@ const RecipesPage = () => {
                 <option value="">🌍 All Countries</option>
                 {countries.map((country) => (
                   <option key={country} value={country}>
-                    {country}
+                    {getCountryFlag(country)} {country}
                   </option>
                 ))}
               </select>
@@ -140,6 +142,10 @@ const RecipesPage = () => {
                     alt={recipe.title}
                   />
                   <div className="recipe-card-content">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '20px' }}>{getCountryFlag(recipe.country)}</span>
+                      <span style={{ fontSize: '12px', color: 'var(--light-gray)', fontWeight: '600' }}>{recipe.country}</span>
+                    </div>
                     <h3 className="recipe-card-title">{recipe.title}</h3>
                     
                     <div className="recipe-card-meta">

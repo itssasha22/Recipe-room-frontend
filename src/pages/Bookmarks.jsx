@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import recipeService from '../services/recipeService';
+import { getCountryFlag } from '../utils/countryFlags';
 
 const Bookmarks = () => {
   const [bookmarks, setBookmarks] = useState([]);
@@ -88,6 +89,10 @@ const Bookmarks = () => {
                     alt={recipe.title}
                   />
                   <div className="recipe-card-content">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '20px' }}>{getCountryFlag(recipe.country)}</span>
+                      <span style={{ fontSize: '12px', color: 'var(--light-gray)', fontWeight: '600' }}>{recipe.country}</span>
+                    </div>
                     <h3 className="recipe-card-title">{recipe.title}</h3>
                     
                     <div className="recipe-card-meta">
