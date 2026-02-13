@@ -24,8 +24,10 @@ const authService = {
     const response = await axios.post(`${API_URL}/auth/login`, credentials);
     // Backend returns 'access_token' not 'token'
     const token = response.data.access_token || response.data.token;
-    if (token) {
+    if (token && token !== 'undefined') {
       localStorage.setItem('token', token);
+    } else {
+      throw new Error('No valid token received from server');
     }
     return response.data;
   },
