@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import paydService from '../../services/paydService';
 
-const PayDPayment = ({ amount, description, onSuccess, onError }) => {
+const PayDPayment = ({ amount = 9.99, description = 'FlavorHub Premium Subscription', onSuccess, onError }) => {
   const [loading, setLoading] = useState(false);
 
   const handlePayment = async () => {
@@ -9,12 +9,13 @@ const PayDPayment = ({ amount, description, onSuccess, onError }) => {
     try {
       const payment = await paydService.initializePayment(amount, 'USD', description);
       
-      // Redirect to PayD payment page
-      window.location.href = payment.payment_url;
-      
-      onSuccess(payment);
+      if (payment.payment_url) {
+        window.location.href = payment.payment_url;
+      } else {
+        onSuccess(payment);
+      }
     } catch (error) {
-      onError(error.message);
+      onError(error.response?.data?.error || error.message || 'Payment failed');
     } finally {
       setLoading(false);
     }
